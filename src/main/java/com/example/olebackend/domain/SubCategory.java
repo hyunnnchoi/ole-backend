@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class SubCategory extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
     private String name ;
