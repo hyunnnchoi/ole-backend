@@ -2,8 +2,10 @@ package com.example.olebackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class OleBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OleBackendApplication.class, args);
