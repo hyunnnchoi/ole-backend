@@ -4,9 +4,12 @@ import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.domain.enums.Approved;
 import com.example.olebackend.domain.enums.Type;
 import com.example.olebackend.domain.enums.Week;
+import com.example.olebackend.domain.mapping.LectureTeacher;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -65,5 +68,10 @@ public class Lesson extends BaseEntity {
 
     private int views ; // 조회수
 
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    private List<NonMember> nonMemberList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    private List<LectureTeacher> lectureTeacherList = new ArrayList<>();
 
 }
