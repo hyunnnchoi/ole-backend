@@ -10,7 +10,9 @@ import com.example.olebackend.web.dto.NonMemberRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.LESSON_NOT_FOUND;
+import java.util.Optional;
+
+import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +29,17 @@ public class NonMemberService {
         NonMember nonMember = NonMemberConverter.toNonMember(request,lesson);
 
         return nonMemberRepository.save(nonMember);
+    }
+
+    public Lesson getApplications(String phoneNum) {
+
+        NonMember nonMember=nonMemberRepository.findByPhoneNum(phoneNum);
+        if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
+            throw new GeneralException(NON_MEMBER_NOT_FOUND);
+        }
+        Lesson lesson=nonMember.getLesson();
+
+        return lesson;
     }
 
 }

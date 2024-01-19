@@ -5,4 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NonMemberRepository extends JpaRepository<NonMember, Long> {
 
+
+
+    NonMember findByPhoneNum(String phoneNum);
+
+    boolean existsByPhoneNum(String phoneNum);
 }

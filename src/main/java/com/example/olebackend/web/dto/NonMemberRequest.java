@@ -14,4 +14,10 @@ public class NonMemberRequest {
         @NotNull
         String phoneNum;
     }
+
+    @Getter
+    public static class getApplications{
+        @NotBlank
+        String phoneNum;
+    }
 }
