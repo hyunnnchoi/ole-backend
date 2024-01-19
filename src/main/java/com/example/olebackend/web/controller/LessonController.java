@@ -5,6 +5,7 @@ import com.example.olebackend.converter.LessonConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.service.LessonService;
 import com.example.olebackend.web.dto.LessonResponse;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ public class LessonController {
     private final LessonService lessonService;
 
     @GetMapping("/{lessonId}")
+    @Operation(summary = "교육 상세 조회 API")
     public ApiResponse<LessonResponse.getLessonDetailDTO> getLessonDetail(@PathVariable Long lessonId) {
         Optional<Lesson> lesson = lessonService.getLessonDetail(lessonId);
         return ApiResponse.onSuccess(LessonConverter.toLessonDetailDTO(lesson));
