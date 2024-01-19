@@ -12,7 +12,7 @@ public class SurveyConverter {
      */
     public static SurveyResponse.SubCategoryDto toSubCategoryDto(SubCategory subCategory){
         return SurveyResponse.SubCategoryDto.builder()
-                .id(subCategory.getId())
+                .sub_categoryId(subCategory.getId())
                 .name(subCategory.getName())
                 .build();
     } // toSubCategoryDto

@@ -1,5 +1,6 @@
 package com.example.olebackend.web.controller;
 
+import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.SurveyConverter;
 import com.example.olebackend.domain.SubCategory;
 import com.example.olebackend.service.SurveyService;
@@ -25,7 +26,7 @@ public class SurveyController {
 
     @Operation(summary = "세부 카테고리 목록조회", description = "세부 카테고리 목록조회")
     @GetMapping("/sub_categories/{categoryId}")
-    public ResponseEntity secondProblem(@PathVariable long categoryId){
+    public ApiResponse<List<SurveyResponse.SubCategoryDto>> secondProblem(@PathVariable long categoryId){
 
         log.info("/sub_categories - "+ categoryId);
 
@@ -34,6 +35,6 @@ public class SurveyController {
                 .map(s -> SurveyConverter.toSubCategoryDto(s))
                 .collect(Collectors.toList());
 
-        return new ResponseEntity(result, HttpStatus.ACCEPTED) ;
+        return ApiResponse.onSuccess(result) ;
     } // secondProblem
 }
