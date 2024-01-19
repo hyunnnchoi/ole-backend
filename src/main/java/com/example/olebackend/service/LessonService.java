@@ -24,6 +24,6 @@ public class LessonService {
         if (!lessonRepository.existsById(lessonId)) {
             throw new GeneralException(LESSON_NOT_FOUND);
         }
-        return lessonRepository.findById(lessonId);
+        return lesson;
     }
 }
