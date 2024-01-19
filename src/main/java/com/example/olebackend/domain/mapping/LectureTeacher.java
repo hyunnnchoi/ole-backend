@@ -1,6 +1,7 @@
 package com.example.olebackend.domain.mapping;
 
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.domain.Teacher;
 import com.example.olebackend.domain.common.BaseEntity;
 import lombok.*;
 
@@ -18,7 +19,7 @@ public class LectureTeacher extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
-    private Lesson teacher;
+    private Teacher teacher;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
