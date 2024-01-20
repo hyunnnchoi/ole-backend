@@ -62,6 +62,13 @@ public class LessonService {
 
     public List<Lesson> getLessonListByOrderCriteria(String orderCriteria) {
 
+        // 존재하지 않는 정렬 조건일 때 (=정렬 조건이 Lesson의 필드명과 일치하지 않을 때)
+        try {
+            Lesson.class.getDeclaredField(orderCriteria);
+        } catch (NoSuchFieldException e) {
+            throw new GeneralException(ORDER_CRITERIA_INVALID);
+        }
+
         List<Lesson> lessonList = lessonRepository.findAll(Sort.by(Sort.Direction.DESC, orderCriteria));
 
         return lessonList;
