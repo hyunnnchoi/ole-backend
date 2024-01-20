@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,7 +37,19 @@ public class LessonController {
     })
     public ApiResponse<LessonResponse.getLessonListByCategoryListlDTO> getLessonListByCategory(@PathVariable Long categoryId,
                                                                                                @RequestParam Integer page) {
-        Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page-1);
+        Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page - 1);
         return ApiResponse.onSuccess(LessonConverter.toLessonListByCategoryDTO(lessonList));
+    }
+
+    @GetMapping
+    @Operation(summary = "조건별 교육 조회 API")
+    @Parameters({
+            @Parameter(name = "orderBy", description = "교육을 조회할 정렬 기준입니다."),
+    })
+    public ApiResponse<LessonResponse.getLessonListOrderByCriteriaDTO> getLessonListByOrderCriteria(@RequestParam(required = false, defaultValue = "id", value = "orderBy") String orderCriteria) {
+
+        List<Lesson> lessonList = lessonService.getLessonListByOrderCriteria(orderCriteria);
+
+        return ApiResponse.onSuccess(LessonConverter.toLessonListOrderByCriteriaDTO(lessonList));
     }
 }

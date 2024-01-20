@@ -7,9 +7,12 @@ import com.example.olebackend.repository.LessonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
@@ -53,6 +56,20 @@ public class LessonService {
         if (page < 1) {
             throw new GeneralException(PAGE_INVALID);
         }
+
+        return lessonList;
+    }
+
+    public List<Lesson> getLessonListByOrderCriteria(String orderCriteria) {
+
+        // 존재하지 않는 정렬 조건일 때 (=정렬 조건이 Lesson의 필드명과 일치하지 않을 때)
+        try {
+            Lesson.class.getDeclaredField(orderCriteria);
+        } catch (NoSuchFieldException e) {
+            throw new GeneralException(ORDER_CRITERIA_INVALID);
+        }
+
+        List<Lesson> lessonList = lessonRepository.findAll(Sort.by(Sort.Direction.DESC, orderCriteria));
 
         return lessonList;
     }
