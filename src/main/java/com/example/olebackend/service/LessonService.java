@@ -4,6 +4,8 @@ import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.repository.LessonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,5 +27,10 @@ public class LessonService {
             throw new GeneralException(LESSON_NOT_FOUND);
         }
         return lesson;
+    }
+
+    public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
+        Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page, 10));
+        return lessonList;
     }
 }
