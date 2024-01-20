@@ -30,6 +30,9 @@ public class LessonController {
 
     @GetMapping("/category/{categoryId}")
     @Operation(summary = "카테고리별 교육 상세 조회 API")
+    @Parameters({
+            @Parameter(name = "page", description = "페이지 번호이며, 1번이 1 페이지 입니다."),
+    })
     public ApiResponse<LessonResponse.getLessonListByCategoryListlDTO> getLessonListByCategory(@PathVariable Long categoryId,
                                                                                                @RequestParam Integer page) {
         Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page-1);
