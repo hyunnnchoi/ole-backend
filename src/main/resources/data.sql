@@ -20,6 +20,8 @@ INSERT INTO CATEGORY(name, created_at) VALUES('자산', NOW()) ;
 INSERT INTO SUB_CATEGORY( name, category_id, created_at) VALUES('기본 설정(앱 설치, 환경설정 등)', 1, NOW()) ;
 INSERT INTO SUB_CATEGORY( name, category_id, created_at) VALUES('기본 활용(카메라,갤러리 등)', 1, NOW()) ;
 INSERT INTO SUB_CATEGORY( name, category_id, created_at) VALUES('실생활 활용(카카오톡,모바일 주문, 배달 앱 등)', 1, NOW()) ;
+INSERT INTO SUB_CATEGORY( name, category_id, created_at) VALUES('생활 영어', 4, NOW()) ;
+
 
 -- 교육 테이블
 INSERT INTO LESSON(approved, current_count, description,
