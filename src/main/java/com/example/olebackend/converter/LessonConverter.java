@@ -47,7 +47,7 @@ public class LessonConverter {
                 .build();
     }
 
-    public static LessonResponse.getLessonListByCategoryPreviewlDTO toLessonListByCategoryPreviewlDTO(Lesson lesson){
+    public static LessonResponse.getLessonListByCategoryPreviewlDTO toLessonListByCategoryPreviewlDTO(Lesson lesson) {
         return LessonResponse.getLessonListByCategoryPreviewlDTO.builder()
                 .title(lesson.getTitle())
                 .gatherStartDate(lesson.getGatherStartDate())
@@ -63,6 +63,7 @@ public class LessonConverter {
                 .currentCount(lesson.getCurrentCount())
                 .build();
     }
+
     public static LessonResponse.getLessonListByCategoryListlDTO toLessonListByCategoryDTO(Page<Lesson> lessonList) {
         List<LessonResponse.getLessonListByCategoryPreviewlDTO> lessonListPreviewDTOList = lessonList.stream()
                 .map(LessonConverter::toLessonListByCategoryPreviewlDTO).collect(Collectors.toList());
@@ -74,6 +75,24 @@ public class LessonConverter {
                 .totalElements(lessonList.getTotalElements())
                 .listSize(lessonListPreviewDTOList.size())
                 .lessonList(lessonListPreviewDTOList)
+                .build();
+    }
+
+    public static LessonResponse.getLessonOrderByCriteriaDTO toLessonOrderByCriteriaDTO(Lesson lesson) {
+
+        return LessonResponse.getLessonOrderByCriteriaDTO.builder()
+                .title(lesson.getTitle())
+                .currentCount(lesson.getCurrentCount())
+                .place(lesson.getPlace())
+                .build();
+    }
+
+    public static LessonResponse.getLessonListOrderByCriteriaDTO toLessonListOrderByCriteriaDTO(List<Lesson> lessonList) {
+
+        List<LessonResponse.getLessonOrderByCriteriaDTO> lessonListOrderByCriteriaDTOList = lessonList.stream()
+                .map(LessonConverter::toLessonOrderByCriteriaDTO).collect(Collectors.toList());
+        return LessonResponse.getLessonListOrderByCriteriaDTO.builder()
+                .lessonList(lessonListOrderByCriteriaDTOList)
                 .build();
     }
 

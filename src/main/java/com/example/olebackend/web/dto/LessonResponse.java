@@ -50,7 +50,7 @@ public class LessonResponse {
         LocalDateTime gatherEndDate; // 모집 마감일
 
         Integer limitCount; // 신청 제한 인원
-        Integer currentCount ; // 현재 신청 인원
+        Integer currentCount; // 현재 신청 인원
 
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList; // 강사
     }
@@ -77,14 +77,14 @@ public class LessonResponse {
         String place; // 수업 장소
 
         Integer limitCount; // 신청 제한 인원
-        Integer currentCount ; // 현재 신청 인원
+        Integer currentCount; // 현재 신청 인원
     }
 
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getLessonListByCategoryListlDTO{
+    public static class getLessonListByCategoryListlDTO {
         List<LessonResponse.getLessonListByCategoryPreviewlDTO> lessonList;
         Integer listSize;
         Integer totalPage;
@@ -92,4 +92,24 @@ public class LessonResponse {
         Boolean isFirst;
         Boolean isLast;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getLessonOrderByCriteriaDTO {
+        String title;
+        Integer currentCount;
+        String place;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getLessonListOrderByCriteriaDTO {
+        List<LessonResponse.getLessonOrderByCriteriaDTO> lessonList;
+    }
+
+
 }
