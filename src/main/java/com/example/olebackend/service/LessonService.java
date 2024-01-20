@@ -10,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
@@ -44,6 +43,17 @@ public class LessonService {
         if (lessonList.getTotalPages() == 0) {
             throw new GeneralException(LESSON_NOT_FOUND);
         }
+
+        // 전체 페이지 수 이상의 값을 입력했을 때
+        if (page > lessonList.getTotalPages()) {
+            throw new GeneralException(PAGE_NOT_FOUND);
+        }
+
+        // 1 미만의 페이지를 입력했을 때
+        if (page < 1) {
+            throw new GeneralException(PAGE_INVALID);
+        }
+
         return lessonList;
     }
 }
