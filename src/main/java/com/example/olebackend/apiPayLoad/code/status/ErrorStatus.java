@@ -19,6 +19,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 교육 관련 응답
     LESSON_NOT_FOUND(HttpStatus.NOT_FOUND, "LESSON4001", "해당하는 교육이 없습니다."),
 
+    // 카테고리 관련 응답
+    CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "해당하는 카테고리가 없습니다."),
+
     //비회원 관련 응답
     NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다.");
 

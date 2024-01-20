@@ -6,11 +6,11 @@ import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.service.LessonService;
 import com.example.olebackend.web.dto.LessonResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -26,5 +26,16 @@ public class LessonController {
     public ApiResponse<LessonResponse.getLessonDetailDTO> getLessonDetail(@PathVariable Long lessonId) {
         Optional<Lesson> lesson = lessonService.getLessonDetail(lessonId);
         return ApiResponse.onSuccess(LessonConverter.toLessonDetailDTO(lesson));
+    }
+
+    @GetMapping("/category/{categoryId}")
+    @Operation(summary = "카테고리별 교육 상세 조회 API")
+    @Parameters({
+            @Parameter(name = "page", description = "페이지 번호이며, 1번이 1 페이지 입니다."),
+    })
+    public ApiResponse<LessonResponse.getLessonListByCategoryListlDTO> getLessonListByCategory(@PathVariable Long categoryId,
+                                                                                               @RequestParam Integer page) {
+        Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page-1);
+        return ApiResponse.onSuccess(LessonConverter.toLessonListByCategoryDTO(lessonList));
     }
 }
