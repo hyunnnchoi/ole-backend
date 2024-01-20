@@ -44,7 +44,7 @@ public class NonMemberService {
     }
 
     @Transactional
-    public Object cancelLesson(NonMemberRequest.cancelDTO request, Long lessonId) {
+    public void cancelLesson(NonMemberRequest.cancelDTO request, Long lessonId) {
         NonMember nonMember = NonMemberConverter.toCancelDTO(request);
         String phoneNum=nonMember.getPhoneNum();
         if (nonMember == null) {
@@ -57,7 +57,6 @@ public class NonMemberService {
         }
 
         nonMemberRepository.removeByPhoneNumAndLessonId(phoneNum, lessonId);
-        return null;
     }
 
 
