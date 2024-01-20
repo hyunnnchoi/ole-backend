@@ -33,7 +33,15 @@ public class NonMemberController {
     @Operation(summary = "비회원 신청 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationsResultDTO> getLessonDetail(@RequestParam String phoneNum) {
         Lesson lesson = nonMemberService.getApplications(phoneNum);
-        return ApiResponse.onSuccess(NonMemberConverter.toApplications(lesson));
+        return ApiResponse.onSuccess(NonMemberConverter.toApplicationsResultDTO(lesson));
+    }
+
+    @DeleteMapping("/guest/lessons")
+    @Operation(summary = "신청취소(비로그인)API")
+    public ApiResponse<Object> cancelLesson(
+            @RequestBody NonMemberRequest.cancelDTO request, @RequestParam Long lessonId) {
+        nonMemberService.cancelLesson(request,lessonId);
+        return ApiResponse.onSuccess(null);
     }
 
 }

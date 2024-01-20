@@ -9,6 +9,7 @@ import com.example.olebackend.repository.NonMemberRepository;
 import com.example.olebackend.web.dto.NonMemberRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -41,5 +42,24 @@ public class NonMemberService {
 
         return lesson;
     }
+
+    @Transactional
+    public Object cancelLesson(NonMemberRequest.cancelDTO request, Long lessonId) {
+        NonMember nonMember = NonMemberConverter.toCancelDTO(request);
+        String phoneNum=nonMember.getPhoneNum();
+        if (nonMember == null) {
+            throw new GeneralException(NON_MEMBER_NOT_FOUND);
+        }
+
+        Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
+        if (optionalLesson.isEmpty()) {
+            throw new GeneralException(LESSON_NOT_FOUND);
+        }
+
+        nonMemberRepository.removeByPhoneNumAndLessonId(phoneNum, lessonId);
+        return null;
+    }
+
+
 
 }
