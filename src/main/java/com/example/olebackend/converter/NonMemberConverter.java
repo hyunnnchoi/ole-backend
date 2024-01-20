@@ -22,12 +22,12 @@ public class NonMemberConverter {
         return NonMember.builder()
                 .lesson(lesson)
                 .name(request.getName())
-                .email(request.getPhoneNum())
+                .email(request.getEmail())
                 .phoneNum(request.getPhoneNum())
                 .build();
     }
 
-    public static NonMemberResponse.getApplicationsResultDTO toApplications(Lesson lesson){
+    public static NonMemberResponse.getApplicationsResultDTO toApplicationsResultDTO(Lesson lesson){
 
         List<LectureTeacher> teacherList = lesson.getLectureTeacherList();
 
@@ -42,6 +42,13 @@ public class NonMemberConverter {
                 .lessonEndTime(lesson.getLessonEndTime())
                 .lessonTeacherList(lessonTeacherList)
                 .place(lesson.getPlace())
+                .build();
+    }
+
+    public static NonMember toCancelDTO(NonMemberRequest.cancelDTO request){
+
+        return NonMember.builder()
+                .phoneNum(request.getPhoneNum())
                 .build();
     }
 }

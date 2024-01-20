@@ -14,10 +14,9 @@ public class NonMemberRequest {
         @NotNull
         String phoneNum;
     }
-
     @Getter
-    public static class getApplications{
-        @NotBlank
+    public static class cancelDTO{
+        @NotNull
         String phoneNum;
     }
 }
