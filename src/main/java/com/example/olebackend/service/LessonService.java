@@ -32,9 +32,17 @@ public class LessonService {
     }
 
     public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
+
         Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page, 10));
+
+        // 카테고리 자체가 없을 때
         if (!categoryRepository.existsById(categoryId)) {
             throw new GeneralException(CATEGORY_NOT_FOUND);
+        }
+
+        // 해당 카테고리에 존재하는 교육이 없을 때
+        if (lessonList.getTotalPages() == 0) {
+            throw new GeneralException(LESSON_NOT_FOUND);
         }
         return lessonList;
     }
