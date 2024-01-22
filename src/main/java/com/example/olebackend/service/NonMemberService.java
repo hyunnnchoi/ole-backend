@@ -47,8 +47,7 @@ public class NonMemberService {
     @Transactional
     public void cancelLesson(NonMemberRequest.getPhoneNumDTO request, Long lessonId) {
         String phoneNum=request.getPhoneNum();
-        NonMember nonMember=nonMemberRepository.findByPhoneNum(phoneNum);
-        if (nonMember == null) {
+        if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
         }
 
