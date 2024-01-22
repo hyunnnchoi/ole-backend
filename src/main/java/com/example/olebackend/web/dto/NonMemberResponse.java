@@ -1,5 +1,6 @@
 package com.example.olebackend.web.dto;
 
+import com.example.olebackend.domain.NonMember;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,7 +19,7 @@ public class NonMemberResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getApplicationsResultDTO{
+    public static class getApplicationResultDTO{
 
         String title; //강의 제목
         LocalDateTime lessonStartDate; // 강의 시작일
@@ -27,6 +28,14 @@ public class NonMemberResponse {
         LocalDateTime lessonEndTime; // 강의 종료 시간
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList; // 강사
         String place; //강의 장소
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getApplicationListResultDTO {
+        List<NonMemberResponse.getApplicationResultDTO> applicationList;
     }
 
 }

@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
@@ -32,21 +33,21 @@ public class NonMemberService {
         return nonMemberRepository.save(nonMember);
     }
 
-    public Lesson getApplications(String phoneNum) {
+    public List<NonMember> getApplication(NonMemberRequest.getPhoneNumDTO request) {
+        String phoneNum=request.getPhoneNum();
 
-        NonMember nonMember=nonMemberRepository.findByPhoneNum(phoneNum);
         if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
         }
-        Lesson lesson=nonMember.getLesson();
+        List<NonMember> nonMemberList= nonMemberRepository.findAllByPhoneNum(phoneNum);
 
-        return lesson;
+        return nonMemberList;
     }
 
     @Transactional
-    public void cancelLesson(NonMemberRequest.cancelDTO request, Long lessonId) {
-        NonMember nonMember = NonMemberConverter.toCancelDTO(request);
-        String phoneNum=nonMember.getPhoneNum();
+    public void cancelLesson(NonMemberRequest.getPhoneNumDTO request, Long lessonId) {
+        String phoneNum=request.getPhoneNum();
+        NonMember nonMember=nonMemberRepository.findByPhoneNum(phoneNum);
         if (nonMember == null) {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
         }

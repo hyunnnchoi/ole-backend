@@ -7,16 +7,16 @@ import javax.validation.constraints.*;
 public class NonMemberRequest {
     @Getter
     public static class ApplyDTO{
-        @NotBlank
+        @NotBlank(message = "이름은 공백일 수 없습니다!")
         String name;
-        @NotNull
+        @NotBlank(message = "이메일은 공백일 수 없습니다!")
         String email;
-        @NotNull
+        @NotBlank(message = "전화번호는 공백일 수 없습니다!")
         String phoneNum;
     }
     @Getter
-    public static class cancelDTO{
-        @NotNull
+    public static class getPhoneNumDTO{
+        @NotBlank(message = "전화번호는 공백일 수 없습니다!")
         String phoneNum;
     }
 }
