@@ -15,7 +15,7 @@ public class NonMemberRequest {
         String phoneNum;
     }
     @Getter
-    public static class cancelDTO{
+    public static class getPhoneNumDTO{
         @NotNull
         String phoneNum;
     }

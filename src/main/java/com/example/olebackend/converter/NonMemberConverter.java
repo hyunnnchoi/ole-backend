@@ -27,14 +27,14 @@ public class NonMemberConverter {
                 .build();
     }
 
-    public static NonMemberResponse.getApplicationsResultDTO toApplicationsResultDTO(Lesson lesson){
+    public static NonMemberResponse.getApplicationResultDTO toApplicationDTO(Lesson lesson){
 
         List<LectureTeacher> teacherList = lesson.getLectureTeacherList();
 
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList = teacherList.stream()
                 .map(LessonConverter::toTeacherNameDTO).collect(Collectors.toList());
 
-        return NonMemberResponse.getApplicationsResultDTO.builder()
+        return NonMemberResponse.getApplicationResultDTO.builder()
                 .title(lesson.getTitle())
                 .lessonStartDate(lesson.getLessonStartDate())
                 .lessonEndDate(lesson.getLessonEndDate())
@@ -44,11 +44,14 @@ public class NonMemberConverter {
                 .place(lesson.getPlace())
                 .build();
     }
+    public static NonMemberResponse.getApplicationListResultDTO toApplicationListDTO(List<NonMember> nonMembers) {
 
-    public static NonMember toCancelDTO(NonMemberRequest.cancelDTO request){
+        List<NonMemberResponse.getApplicationResultDTO> applicationList = nonMembers.stream()
+                .map(nonMember -> NonMemberConverter.toApplicationDTO(nonMember.getLesson()))
+                .collect(Collectors.toList());
 
-        return NonMember.builder()
-                .phoneNum(request.getPhoneNum())
+        return NonMemberResponse.getApplicationListResultDTO.builder()
+                .applicationList(applicationList)
                 .build();
     }
 }
