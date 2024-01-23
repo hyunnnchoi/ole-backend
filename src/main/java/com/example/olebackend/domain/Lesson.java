@@ -5,6 +5,7 @@ import com.example.olebackend.domain.enums.Approved;
 import com.example.olebackend.domain.enums.Type;
 import com.example.olebackend.domain.enums.Week;
 import com.example.olebackend.domain.mapping.LectureTeacher;
+import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -73,5 +74,8 @@ public class Lesson extends BaseEntity {
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
     private List<LectureTeacher> lectureTeacherList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    private List<MemberApply> memberApplyList = new ArrayList<>();
 
 }
