@@ -47,12 +47,13 @@ public class LessonConverter {
                 .build();
     }
 
-    public static LessonResponse.getLessonListByCategoryPreviewlDTO toLessonListByCategoryPreviewlDTO(Lesson lesson) {
-        return LessonResponse.getLessonListByCategoryPreviewlDTO.builder()
+    public static LessonResponse.getLessonByCategoryAndSearchDTO toLessonByCategoryAndSearchDTO(Lesson lesson) {
+        return LessonResponse.getLessonByCategoryAndSearchDTO.builder()
                 .lessonId(lesson.getId())
                 .title(lesson.getTitle())
                 .gatherStartDate(lesson.getGatherStartDate())
                 .gatherEndDate(lesson.getGatherEndDate())
+                .gatherStatus(lesson.getGatherStatus())
                 .lessonStartDate(lesson.getLessonStartDate())
                 .lessonEndDate(lesson.getLessonEndDate())
                 .lectureWeekDay(lesson.getLectureWeekDay().toString())
@@ -65,11 +66,11 @@ public class LessonConverter {
                 .build();
     }
 
-    public static LessonResponse.getLessonListByCategoryListlDTO toLessonListByCategoryDTO(Page<Lesson> lessonList) {
-        List<LessonResponse.getLessonListByCategoryPreviewlDTO> lessonListPreviewDTOList = lessonList.stream()
-                .map(LessonConverter::toLessonListByCategoryPreviewlDTO).collect(Collectors.toList());
+    public static LessonResponse.getLessonListByCategoryAndSearchDTO toLessonListByCategoryAndSearchDTO(Page<Lesson> lessonList) {
+        List<LessonResponse.getLessonByCategoryAndSearchDTO> lessonListPreviewDTOList = lessonList.stream()
+                .map(LessonConverter::toLessonByCategoryAndSearchDTO).collect(Collectors.toList());
 
-        return LessonResponse.getLessonListByCategoryListlDTO.builder()
+        return LessonResponse.getLessonListByCategoryAndSearchDTO.builder()
                 .isLast(lessonList.isLast())
                 .isFirst(lessonList.isFirst())
                 .totalPage(lessonList.getTotalPages())

@@ -29,6 +29,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 페이징 관련 응답
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "PAGE4001", "존재하지 않는 페이지 입니다."),
 
+    // 검색 관련 응답
+    KEYWORD_NOT_FOUND(HttpStatus.BAD_REQUEST, "SEARCH4001", "검색어를 입력하세요"),
+
     //비회원 관련 응답
     NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다."),
 
