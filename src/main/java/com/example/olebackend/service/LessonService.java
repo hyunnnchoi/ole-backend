@@ -35,7 +35,7 @@ public class LessonService {
 
     public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
 
-        Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page, 10));
+        Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page - 1, 10));
 
         // 카테고리 자체가 없을 때
         if (!categoryRepository.existsById(categoryId)) {
@@ -50,11 +50,6 @@ public class LessonService {
         // 전체 페이지 수 이상의 값을 입력했을 때
         if (page > lessonList.getTotalPages()) {
             throw new GeneralException(PAGE_NOT_FOUND);
-        }
-
-        // 1 미만의 페이지를 입력했을 때
-        if (page < 1) {
-            throw new GeneralException(PAGE_INVALID);
         }
 
         return lessonList;
