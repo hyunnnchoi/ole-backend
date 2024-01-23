@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,6 +69,12 @@ public class LessonService {
 
         List<Lesson> lessonList = lessonRepository.findAll(Sort.by(Sort.Direction.DESC, orderCriteria));
 
+        return lessonList;
+    }
+
+    public Page<Lesson> getLessonListBySearch(Specification<Lesson> spec, Integer page) {
+
+        Page<Lesson> lessonList = lessonRepository.findAll(spec, PageRequest.of(page - 1, 10));
         return lessonList;
     }
 }
