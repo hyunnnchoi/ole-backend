@@ -62,6 +62,10 @@ public class MemberService {
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
 
+        if(memberApplyRepository.existsByLessonIdAndMemberId(lessonId, memberId)){
+            throw new GeneralException(LESSONAPPLY_ALREADY_EXISTS);
+        }
+
         MemberApply memberApply = MemberConverter.toMemberApply(lesson,member);
 
         return memberApplyRepository.save(memberApply);
