@@ -28,7 +28,10 @@ public enum ErrorStatus implements BaseErrorCode {
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "PAGE4001", "존재하지 않는 페이지 입니다."),
 
     //비회원 관련 응답
-    NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다.");
+    NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다."),
+
+    //회원 관련 응답
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER4001", "회원 정보가 존재하지 않습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

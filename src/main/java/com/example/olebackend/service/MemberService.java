@@ -1,13 +1,21 @@
 package com.example.olebackend.service;
 
+import com.example.olebackend.apiPayLoad.exception.GeneralException;
+import com.example.olebackend.converter.MemberConverter;
+import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.Member;
 import com.example.olebackend.domain.enums.Role;
+import com.example.olebackend.domain.mapping.MemberApply;
+import com.example.olebackend.repository.LessonRepository;
+import com.example.olebackend.repository.MemberApplyRepository;
 import com.example.olebackend.repository.MemberRepository;
 import com.example.olebackend.web.dto.MemberSignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 @Service
 @Transactional
@@ -16,6 +24,8 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+    private final LessonRepository lessonRepository;
+    private final MemberApplyRepository memberApplyRepository;
 
     public void signUp(MemberSignUpRequest memberSignUpDto) throws Exception{
 
@@ -42,5 +52,18 @@ public class MemberService {
 
         member.passwordEncode(passwordEncoder);
         memberRepository.save(member);
+    }
+
+    public MemberApply applyLesson(Long lessonId,Long memberId) {
+
+        Lesson lesson=lessonRepository.findById(lessonId)
+                .orElseThrow(() ->new GeneralException(LESSON_NOT_FOUND));
+
+        Member member=memberRepository.findById(memberId)
+                .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
+
+        MemberApply memberApply = MemberConverter.toMemberApply(lesson,member);
+
+        return memberApplyRepository.save(memberApply);
     }
 }

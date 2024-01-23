@@ -30,4 +30,12 @@ public class MemberResponse {
     public static class JoinResultDTO{
         Long memberId;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class applyResultDTO{
+        Long memberApplyId;
+    }
 }
