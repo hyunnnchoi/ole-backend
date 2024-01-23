@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface MemberApplyRepository extends JpaRepository<MemberApply, Long> {
     Boolean existsByLessonIdAndMemberId(Long lessonId, Long memberId);
+
+    void removeByLessonIdAndMemberId(Long lessonId, Long memberId);
 }
