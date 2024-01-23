@@ -33,10 +33,10 @@ public class LessonController {
     @GetMapping("/category/{categoryId}")
     @Operation(summary = "카테고리별 교육 상세 조회 API")
     @Parameters({
-            @Parameter(name = "page", description = "페이지 번호이며, 1번이 1 페이지 입니다."),
+            @Parameter(name = "page", description = "페이지 번호이며, 1페이지부터 시작입니다."),
     })
     public ApiResponse<LessonResponse.getLessonListByCategoryListlDTO> getLessonListByCategory(@PathVariable Long categoryId,
-                                                                                               @RequestParam Integer page) {
+                                                                                               @RequestParam(required = false, defaultValue = "1") Integer page) {
         Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page);
         return ApiResponse.onSuccess(LessonConverter.toLessonListByCategoryDTO(lessonList));
     }
