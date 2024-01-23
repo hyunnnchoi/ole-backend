@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 @Service
@@ -69,5 +71,20 @@ public class MemberService {
         MemberApply memberApply = MemberConverter.toMemberApply(lesson,member);
 
         return memberApplyRepository.save(memberApply);
+    }
+
+    @Transactional
+    public void cancelLesson(Long lessonId,Long memberId) {
+
+        Optional<Lesson> optionalLesson = lessonRepository.findById(lessonId);
+        if (optionalLesson.isEmpty()) {
+            throw new GeneralException(LESSON_NOT_FOUND);
+        }
+
+        if (!memberApplyRepository.existsByLessonIdAndMemberId(lessonId, memberId)) {
+            throw new GeneralException(LESSONAPPLY_NOT_FOUND);
+        }
+
+        memberApplyRepository.removeByLessonIdAndMemberId(lessonId, memberId);
     }
 }

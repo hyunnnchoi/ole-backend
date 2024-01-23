@@ -40,4 +40,13 @@ public class MemberController {
         MemberResponse.applyResultDTO resultDto = MemberConverter.toApplyresultDTO(memberApply);
         return ApiResponse.onSuccess(resultDto);
     }
+
+    @DeleteMapping("/lesson/{lessonId}/member")
+    @Operation(summary = "신청취소(로그인)API")
+    public ApiResponse<Object> cancelLesson(
+            @PathVariable(name = "lessonId") @Valid Long lessonId,
+            @RequestParam(name = "memberId") @Valid Long memberId) {
+        memberService.cancelLesson(lessonId, memberId);
+        return ApiResponse.onSuccess(null);
+    }
 }
