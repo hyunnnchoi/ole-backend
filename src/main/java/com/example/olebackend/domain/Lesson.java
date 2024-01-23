@@ -7,6 +7,8 @@ import com.example.olebackend.domain.enums.Week;
 import com.example.olebackend.domain.mapping.LectureTeacher;
 import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import java.util.ArrayList;
@@ -67,7 +69,12 @@ public class Lesson extends BaseEntity {
 
     private int currentCount ; // 현재 신청 인원
 
+    @ColumnDefault("0")
     private int views ; // 조회수
+
+    public void incrementViews() {
+        this.views++;
+    }
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
     private List<NonMember> nonMemberList = new ArrayList<>();

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +24,11 @@ public class LessonService {
     private final LessonRepository lessonRepository;
     private final CategoryRepository categoryRepository;
 
+    @Transactional
     public Optional<Lesson> getLessonDetail(Long lessonId) {
         Optional<Lesson> lesson = lessonRepository.findById(lessonId);
+        lesson.ifPresent(Lesson::incrementViews);
+        lessonRepository.save(lesson.get());
         if (!lessonRepository.existsById(lessonId)) {
             throw new GeneralException(LESSON_NOT_FOUND);
         }
