@@ -37,7 +37,7 @@ public class LessonController {
     })
     public ApiResponse<LessonResponse.getLessonListByCategoryListlDTO> getLessonListByCategory(@PathVariable Long categoryId,
                                                                                                @RequestParam Integer page) {
-        Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page - 1);
+        Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page);
         return ApiResponse.onSuccess(LessonConverter.toLessonListByCategoryDTO(lessonList));
     }
 

@@ -35,7 +35,7 @@ public class LessonService {
 
     public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
 
-        Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page, 10));
+        Page<Lesson> lessonList = lessonRepository.findLessonsByCategoryId(categoryId, PageRequest.of(page - 1, 10));
 
         // 카테고리 자체가 없을 때
         if (!categoryRepository.existsById(categoryId)) {
