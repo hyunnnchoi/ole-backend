@@ -49,6 +49,7 @@ public class LessonConverter {
 
     public static LessonResponse.getLessonListByCategoryPreviewlDTO toLessonListByCategoryPreviewlDTO(Lesson lesson) {
         return LessonResponse.getLessonListByCategoryPreviewlDTO.builder()
+                .lessonId(lesson.getId())
                 .title(lesson.getTitle())
                 .gatherStartDate(lesson.getGatherStartDate())
                 .gatherEndDate(lesson.getGatherEndDate())

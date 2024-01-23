@@ -61,6 +61,7 @@ public class LessonResponse {
     @AllArgsConstructor
     public static class getLessonListByCategoryPreviewlDTO {
 
+        Long lessonId; // 교육 id
         String title; // 수업명
 
         LocalDateTime gatherStartDate; // 모집 시작일
