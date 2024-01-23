@@ -26,7 +26,6 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 페이징 관련 응답
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "PAGE4001", "존재하지 않는 페이지 입니다."),
-    PAGE_INVALID(HttpStatus.BAD_REQUEST, "PAGE4002", "페이지는 1페이지부터 시작합니다."),
 
     //비회원 관련 응답
     NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다.");

@@ -52,11 +52,6 @@ public class LessonService {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
 
-        // 1 미만의 페이지를 입력했을 때
-        if (page < 1) {
-            throw new GeneralException(PAGE_INVALID);
-        }
-
         return lessonList;
     }
 
