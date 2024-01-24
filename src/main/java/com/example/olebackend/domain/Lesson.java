@@ -5,7 +5,10 @@ import com.example.olebackend.domain.enums.Approved;
 import com.example.olebackend.domain.enums.Type;
 import com.example.olebackend.domain.enums.Week;
 import com.example.olebackend.domain.mapping.LectureTeacher;
+import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import java.util.ArrayList;
@@ -39,7 +42,8 @@ public class Lesson extends BaseEntity {
     private String supplies ; // 준비물
 
     private int price ; // 수강료
-    
+    private Boolean priceStatus; // 수강료 유무
+
     private String refund ; // 환불규정
 
     private String place ; // 수업 장소
@@ -62,16 +66,25 @@ public class Lesson extends BaseEntity {
 
     private LocalDateTime gatherEndDate ; // 모집 마감일
 
+    private Boolean gatherStatus; // 모집중 여부
+
     private int limitCount ; // 신청 제한 인원
 
     private int currentCount ; // 현재 신청 인원
 
+    @ColumnDefault("0")
     private int views ; // 조회수
+    public void incrementViews() {
+        this.views++;
+    }
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
     private List<NonMember> nonMemberList = new ArrayList<>();
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
     private List<LectureTeacher> lectureTeacherList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    private List<MemberApply> memberApplyList = new ArrayList<>();
 
 }

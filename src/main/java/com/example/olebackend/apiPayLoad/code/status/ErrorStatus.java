@@ -20,16 +20,23 @@ public enum ErrorStatus implements BaseErrorCode {
     // 교육 관련 응답
     LESSON_NOT_FOUND(HttpStatus.NOT_FOUND, "LESSON4001", "해당하는 교육이 없습니다."),
     ORDER_CRITERIA_INVALID(HttpStatus.BAD_REQUEST, "LESSON4002", "존재하지 않는 정렬 조건입니다."),
+    LESSONAPPLY_ALREADY_EXISTS(HttpStatus.NOT_FOUND, "LESSON4001", "이미 신청한 교육입니다."),
+    LESSONAPPLY_NOT_FOUND(HttpStatus.NOT_FOUND, "LESSON4001", "신청 정보가 존재하지 않습니다."),
 
     // 카테고리 관련 응답
     CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "해당하는 카테고리가 없습니다."),
 
     // 페이징 관련 응답
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "PAGE4001", "존재하지 않는 페이지 입니다."),
-    PAGE_INVALID(HttpStatus.BAD_REQUEST, "PAGE4002", "페이지는 1페이지부터 시작합니다."),
+
+    // 검색 관련 응답
+    KEYWORD_NOT_FOUND(HttpStatus.BAD_REQUEST, "SEARCH4001", "검색어를 입력하세요"),
 
     //비회원 관련 응답
-    NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다.");
+    NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다."),
+
+    //회원 관련 응답
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER4001", "회원 정보가 존재하지 않습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

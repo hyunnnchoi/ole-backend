@@ -4,10 +4,13 @@ import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.domain.enums.Gender;
 import com.example.olebackend.domain.enums.Role;
 import com.example.olebackend.domain.enums.SocialType;
+import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -72,4 +75,7 @@ public class Member extends BaseEntity {
     public void updateRefreshToken(String updateRefreshToken) {
         this.refreshToken = updateRefreshToken;
     }
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<MemberApply> memberApplyList = new ArrayList<>();
 }

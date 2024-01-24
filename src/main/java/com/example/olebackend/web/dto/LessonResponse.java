@@ -1,15 +1,11 @@
 package com.example.olebackend.web.dto;
 
-import com.example.olebackend.domain.Teacher;
-import com.example.olebackend.domain.enums.Approved;
-import com.example.olebackend.domain.enums.Week;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,8 +55,9 @@ public class LessonResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getLessonListByCategoryPreviewlDTO {
+    public static class getLessonByCategoryAndSearchDTO {
 
+        Long lessonId; // 교육 id
         String title; // 수업명
 
         LocalDateTime gatherStartDate; // 모집 시작일
@@ -84,8 +81,8 @@ public class LessonResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getLessonListByCategoryListlDTO {
-        List<LessonResponse.getLessonListByCategoryPreviewlDTO> lessonList;
+    public static class getLessonListByCategoryAndSearchDTO {
+        List<LessonResponse.getLessonByCategoryAndSearchDTO> lessonList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
