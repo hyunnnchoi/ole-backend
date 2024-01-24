@@ -50,6 +50,11 @@ public class Member extends BaseEntity {
 
     @Column(nullable = false)
     private boolean smsAgree; // 문자 수신 동의
+
+
+    @OneToOne(mappedBy = "member",fetch = FetchType.LAZY)
+    private File file ;
+
     // ======================================
 
     @Enumerated(EnumType.STRING)

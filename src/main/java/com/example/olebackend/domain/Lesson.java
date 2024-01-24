@@ -87,4 +87,9 @@ public class Lesson extends BaseEntity {
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
     private List<MemberApply> memberApplyList = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "lesson")
+    private List<File> fileList = new ArrayList<>() ;
+
+
 }
