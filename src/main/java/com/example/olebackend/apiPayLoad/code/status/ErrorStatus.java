@@ -25,6 +25,7 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 카테고리 관련 응답
     CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "CATEGORY4001", "해당하는 카테고리가 없습니다."),
+    SUBCATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "SUBCATEGORY4001", "해당 카테고리에 대한 세부 카테고리가 없습니다."),
 
     // 페이징 관련 응답
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "PAGE4001", "존재하지 않는 페이지 입니다."),
