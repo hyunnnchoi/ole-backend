@@ -52,11 +52,11 @@ VALUES ('APPROVED', 1, '내 손안에 들어온 작은 컴퓨터_스마트폰을
         'OFFLINE', 30, '서대문50플러스센터', 0, '환불규정', '스마트폰, 개인 충전기', '생활 스마트폰-처음시작', 1, TRUE, FALSE);
 
 -- 강사 테이블
-INSERT INTO TEACHER(birth, gender, name) VALUES (19881212, 'WOMAN', '서정희');
-INSERT INTO TEACHER(birth, gender, name) VALUES (19730811, 'MAN', '김진형');
+INSERT INTO TEACHER(birth, gender, name) VALUES (1988, 'WOMAN', '서정희');
+INSERT INTO TEACHER(birth, gender, name) VALUES (1973, 'MAN', '김진형');
 
-INSERT INTO TEACHER(birth, gender, name) VALUES (19920303, 'WOMAN', '정희정');
-INSERT INTO TEACHER(birth, gender, name) VALUES (20010310, 'MAN', '조현호');
+INSERT INTO TEACHER(birth, gender, name) VALUES (1992, 'WOMAN', '정희정');
+INSERT INTO TEACHER(birth, gender, name) VALUES (2001, 'MAN', '조현호');
 
 -- 교육-강사 테이블
 INSERT INTO LECTURE_TEACHER(lesson_id, teacher_id) VALUES (1, 2);
