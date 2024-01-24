@@ -2,8 +2,10 @@ package com.example.olebackend.web.controller;
 
 import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.SurveyConverter;
+import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.SubCategory;
 import com.example.olebackend.service.SurveyService;
+import com.example.olebackend.web.dto.SurveyRequest;
 import com.example.olebackend.web.dto.SurveyResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,4 +40,19 @@ public class SurveyController {
 
         return ApiResponse.onSuccess(result) ;
     } // secondProblem
+
+    @Operation(summary = "설문조사 - 강의 추천하기", description = "설문조사 - 강의 추천하기")
+    @GetMapping("/lessons/survey")
+    public ApiResponse<List<SurveyResponse.SurveyResponseDto>> surveyResults(SurveyRequest.SurveyCondition condition){
+
+        log.info("/lessons/survey ");
+
+        List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
+        List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
+                .map(s -> SurveyConverter.toSurveyResponseDto(s))
+                .collect(Collectors.toList());
+
+        return ApiResponse.onSuccess(result) ;
+    } // secondProblem
+
 }
