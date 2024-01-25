@@ -62,6 +62,7 @@ public class LessonResponse {
 
         LocalDateTime gatherStartDate; // 모집 시작일
         LocalDateTime gatherEndDate; // 모집 마감일
+        Boolean gatherStatus;
 
         LocalDateTime lessonStartDate; // 강의 시작일
         LocalDateTime lessonEndDate; // 강의 종료일
