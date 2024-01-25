@@ -30,6 +30,18 @@ public class LikeService {
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
 
+        Likes createdLikes = Likes.creaLikes(lesson,member) ;
+        likeRepository.save(createdLikes) ;
+    }
+    @Transactional
+    public void removeFromWishlist(Long lessonId, Long memberId){
+
+        Lesson lesson=lessonRepository.findById(lessonId)
+                .orElseThrow(() ->new GeneralException(LESSON_NOT_FOUND));
+
+        Member member=memberRepository.findById(memberId)
+                .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
+
         Likes createdLikes = Likes.builder().lesson(lesson).member(member).build();
         likeRepository.save(createdLikes) ;
     }
