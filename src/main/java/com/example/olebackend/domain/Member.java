@@ -4,6 +4,7 @@ import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.domain.enums.Gender;
 import com.example.olebackend.domain.enums.Role;
 import com.example.olebackend.domain.enums.SocialType;
+import com.example.olebackend.domain.mapping.Like;
 import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -54,6 +55,9 @@ public class Member extends BaseEntity {
 
     @OneToOne(mappedBy = "member",fetch = FetchType.LAZY)
     private File file ;
+
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY )
+    private List<Like> likes = new ArrayList<>() ;
 
     // ======================================
 
