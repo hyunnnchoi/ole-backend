@@ -76,4 +76,8 @@ compileQuerydsl{
 configurations {
 	querydsl.extendsFrom compileClasspath
 }
+
+jar{
+	enabled=false
+}
 //querydsl 추가 끝
