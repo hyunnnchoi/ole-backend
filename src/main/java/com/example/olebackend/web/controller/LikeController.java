@@ -23,5 +23,13 @@ public class LikeController {
         return ApiResponse.onSuccess("isSuccess");
     }
 
+    @DeleteMapping("/lesson/{lessonId}/like")
+    @Operation(summary = "찜 취소(위시리스트 삭제)")
+    public ApiResponse<String> pressUnLike(
+            @PathVariable(name = "lessonId") Long lessonId,
+            @RequestParam(name = "memberId") Long memberId){
 
+        likeService.removeFromWishlist(lessonId, memberId);
+        return ApiResponse.onSuccess("isSuccess");
+    }
 }

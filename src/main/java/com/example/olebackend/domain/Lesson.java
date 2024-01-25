@@ -88,7 +88,7 @@ public class Lesson extends BaseEntity {
     private List<MemberApply> memberApplyList = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "lesson")
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.REMOVE)
     private List<File> fileList = new ArrayList<>() ;
 
 

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LikeRepository extends JpaRepository<Likes, Long> {
 
-    void removeByLessonIdAndMemberId(Long lessonId, Long memberId);
+    Likes findByLessonIdAndMemberId(Long lessonId, Long memberId) ;
 }
