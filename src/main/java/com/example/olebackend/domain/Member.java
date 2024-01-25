@@ -56,7 +56,7 @@ public class Member extends BaseEntity {
     @OneToOne(mappedBy = "member",fetch = FetchType.LAZY)
     private File file ;
 
-    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY )
+    @OneToMany(mappedBy = "member",fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
     private List<Likes> likes = new ArrayList<>() ;
 
     // ======================================

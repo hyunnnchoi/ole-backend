@@ -33,16 +33,15 @@ public class LikeService {
         Likes createdLikes = Likes.creaLikes(lesson,member) ;
         likeRepository.save(createdLikes) ;
     }
+
+
     @Transactional
     public void removeFromWishlist(Long lessonId, Long memberId){
 
-        Lesson lesson=lessonRepository.findById(lessonId)
-                .orElseThrow(() ->new GeneralException(LESSON_NOT_FOUND));
+        Likes likes = likeRepository.findByLessonIdAndMemberId(lessonId, memberId);
 
-        Member member=memberRepository.findById(memberId)
-                .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
-
-        Likes createdLikes = Likes.builder().lesson(lesson).member(member).build();
-        likeRepository.save(createdLikes) ;
+        if (likes != null) {
+            likeRepository.delete(likes); // 멤버 likes 목록에서도 삭제되었는지 확인 필요
+        }
     }
 }
