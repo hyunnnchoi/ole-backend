@@ -5,6 +5,7 @@ import com.example.olebackend.web.dto.CommunityResponse;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CommunityConverter {
@@ -34,6 +35,19 @@ public class CommunityConverter {
                 .totalPage(communityList.getTotalPages())
                 .totalElements(communityList.getTotalElements())
                 .listSize(communityPreviewDTOList.size())
+                .build();
+    }
+
+    public static CommunityResponse.getCommunityDetailDTO toCommunityDetailDTO(Optional<Community> community) {
+
+        return CommunityResponse.getCommunityDetailDTO.builder()
+                .title(community.get().getTitle())
+                .body(community.get().getBody())
+                .category(community.get().getCategory().toString())
+                .views(community.get().getViews())
+                .commentCounts(community.get().getComments().size())
+                .memberName(community.get().getMember().getName())
+                .createdAt(community.get().getCreatedAt())
                 .build();
     }
 }

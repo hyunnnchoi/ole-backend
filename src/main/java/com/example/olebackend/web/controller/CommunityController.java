@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/community")
@@ -27,4 +29,13 @@ public class CommunityController {
         Page<Community> communityList = communityService.getCommunityList(page);
         return ApiResponse.onSuccess(CommunityConverter.toCommunityListDTO(communityList));
     }
+
+    @GetMapping("{communityId}")
+    @Operation(summary = "소통하러올래 게시글 상세 조회 API")
+    public ApiResponse<CommunityResponse.getCommunityDetailDTO> getCommunityDetail(@PathVariable Long communityId) {
+        Optional<Community> community = communityService.getCommunity(communityId);
+        return ApiResponse.onSuccess(CommunityConverter.toCommunityDetailDTO(community));
+    }
+
+
 }

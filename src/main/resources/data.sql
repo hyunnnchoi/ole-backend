@@ -77,7 +77,7 @@ VALUES (2, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소',
 INSERT IGNORE INTO member(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
 VALUES (3, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾3', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
 
-INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디', 'TOGETHER', '소올 제목', 1, 10);
+INSERT INTO COMMUNITY(created_at, body, category, title, member_id, views) VALUES (NOW(), '소올 내용인디', 'TOGETHER', '소올 제목', 1, 10);
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디2', 'QUESTION', '소올 제목', 2, 122);
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디3', 'TOGETHER', '소올 제목', 3, 1233);
 

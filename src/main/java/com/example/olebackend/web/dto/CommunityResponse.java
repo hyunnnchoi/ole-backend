@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CommunityResponse {
@@ -34,5 +35,21 @@ public class CommunityResponse {
         Long totalElements;
         Boolean isFirst;
         Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getCommunityDetailDTO {
+
+        private String title;
+        private String body;
+        private String category;
+        private int views;
+        private int commentCounts;
+        private String memberName;
+        private LocalDateTime createdAt;
+
     }
 }

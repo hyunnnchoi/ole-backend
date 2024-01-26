@@ -33,6 +33,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 검색 관련 응답
     KEYWORD_NOT_FOUND(HttpStatus.BAD_REQUEST, "SEARCH4001", "검색어를 입력하세요"),
 
+    // 소통하러 올래 관련 응답
+    COMMUNITY_NOT_FOUND(HttpStatus.NOT_FOUND, "COMMUNITY4001", "존재하지 않는 글 입니다."),
+
     //비회원 관련 응답
     NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다."),
 
