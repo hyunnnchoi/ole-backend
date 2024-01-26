@@ -11,7 +11,6 @@ public class CommunityConverter {
 
     public static CommunityResponse.getCommunityPreviewDTO toCommunityPreviewDTO(Community community) {
         Integer commentCount = community.getComments().size();
-        Integer likeCount = community.getLikes().size();
 
         return CommunityResponse.getCommunityPreviewDTO.builder()
                 .id(community.getId())
@@ -19,7 +18,7 @@ public class CommunityConverter {
                 .body(community.getBody())
                 .category(community.getCategory().toString())
                 .commentCounts(commentCount)
-                .likeCounts(likeCount)
+                .views(community.getViews())
                 .build();
 
     }

@@ -18,7 +18,7 @@ public class CommunityResponse {
         private String title;
         private String body;
         private String category;
-        private int likeCounts;
+        private int views;
         private int commentCounts;
 
     }
