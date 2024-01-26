@@ -1,6 +1,7 @@
 package com.example.olebackend.web.dto;
 
 
+import com.example.olebackend.domain.File;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -76,6 +77,8 @@ public class LessonResponse {
 
         Integer limitCount; // 신청 제한 인원
         Integer currentCount; // 현재 신청 인원
+
+        String file;
     }
 
     @Builder
@@ -99,6 +102,7 @@ public class LessonResponse {
         String title;
         Integer currentCount;
         String place;
+        String filePath;
     }
 
     @Builder

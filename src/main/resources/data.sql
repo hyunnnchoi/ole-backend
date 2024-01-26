@@ -24,29 +24,29 @@ INSERT INTO SUB_CATEGORY( name, category_id, created_at) VALUES('생활 영어',
 
 
 -- 교육 테이블
-INSERT INTO LESSON(approved, current_count, description,
+INSERT INTO LESSON(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
                    lesson_type, limit_count, place, price, refund, supplies, title, subcategory_id, gather_status, price_status)
-VALUES ('APPROVED', 1, '카카오톡의 다양한 기능을 알아보는 과정',
+VALUES (NOW(),'APPROVED', 1, '카카오톡의 다양한 기능을 알아보는 과정',
         "2024-12-31", "2024-01-01",
         'MONDAY', NOW(), NOW(), NOW(), NOW(),
         'ONLINE', 30, '노원50플러스센터', 20000, '환불규정', '스마트폰', '카카오톡, 생활에 유용한 앱 활용', 1, TRUE, TRUE);
 
-INSERT INTO LESSON(approved, current_count, description,
+INSERT INTO LESSON(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
                    lesson_type, limit_count, place, price, refund, supplies, title, subcategory_id, gather_status, price_status)
-VALUES ('REVIEWING', 1, '일반적 표현을 위한 주요 어휘 및 관련 문장 학습',
+VALUES (NOW(), 'REVIEWING', 1, '일반적 표현을 위한 주요 어휘 및 관련 문장 학습',
         NOW(), NOW(),
         'FRIDAY', NOW(), NOW(), NOW(), NOW(),
         'ONLINE', 30, '동작50플러스센터', 15000, '환불규정', '필기구', 'YOU CAN SPEAK 일상표현 영어', 4, FALSE, TRUE);
 
-INSERT INTO LESSON(approved, current_count, description,
+INSERT INTO LESSON(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
                    lesson_type, limit_count, place, price, refund, supplies, title, subcategory_id, gather_status, price_status)
-VALUES ('APPROVED', 1, '내 손안에 들어온 작은 컴퓨터_스마트폰을 일상생활에 잘 활용하는 방법',
+VALUES (NOW(), 'APPROVED', 1, '내 손안에 들어온 작은 컴퓨터_스마트폰을 일상생활에 잘 활용하는 방법',
         NOW(), NOW(),
         'TUESDAY', NOW(), NOW(), NOW(), NOW(),
         'OFFLINE', 30, '서대문50플러스센터', 0, '환불규정', '스마트폰, 개인 충전기', '생활 스마트폰-처음시작', 1, TRUE, FALSE);
@@ -63,3 +63,9 @@ INSERT INTO LECTURE_TEACHER(lesson_id, teacher_id) VALUES (1, 2);
 INSERT INTO LECTURE_TEACHER(lesson_id, teacher_id) VALUES (1, 1);
 INSERT INTO LECTURE_TEACHER(lesson_id, teacher_id) VALUES (2, 3);
 INSERT INTO LECTURE_TEACHER(lesson_id, teacher_id) VALUES (3, 2);
+
+INSERT INTO FILE(name, path, represent, lesson_id, member_id) VALUES ('test', 'resources/static/test.png', TRUE, 1, null);
+INSERT INTO FILE(name, path, represent, lesson_id, member_id) VALUES ('test1-f', 'resources/static/test2.png', FALSE, 1, null);
+
+INSERT INTO FILE(name, lesson_id, member_id) VALUES ('test2', 2, null);
+INSERT INTO FILE(name, lesson_id, member_id) VALUES ('test3', 3, null);
