@@ -2,6 +2,7 @@ package com.example.olebackend.service;
 
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.repository.CategoryRepository;
 import com.example.olebackend.repository.LessonRepository;
 import lombok.RequiredArgsConstructor;
@@ -60,10 +61,17 @@ public class LessonService {
 
     public List<Lesson> getLessonListByOrderCriteria(String orderCriteria) {
 
-        // 존재하지 않는 정렬 조건일 때 (=정렬 조건이 Lesson의 필드명과 일치하지 않을 때)
-        try {
-            Lesson.class.getDeclaredField(orderCriteria);
-        } catch (NoSuchFieldException e) {
+        Class<?> currentClass = Lesson.class;
+        while (currentClass != null) {
+            try {
+                currentClass.getDeclaredField(orderCriteria);
+                break;
+            } catch (NoSuchFieldException ignored) {
+                currentClass = currentClass.getSuperclass();
+            }
+        }
+
+        if (currentClass == null) {
             throw new GeneralException(ORDER_CRITERIA_INVALID);
         }
 
