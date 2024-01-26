@@ -69,3 +69,25 @@ INSERT INTO FILE(name, path, represent, lesson_id, member_id) VALUES ('test1-f',
 
 INSERT INTO FILE(name, lesson_id, member_id) VALUES ('test2', 2, null);
 INSERT INTO FILE(name, lesson_id, member_id) VALUES ('test3', 3, null);
+
+INSERT INTO MEMBER(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
+VALUES (1, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
+INSERT INTO MEMBER(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
+VALUES (2, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾2', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
+INSERT INTO MEMBER(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
+VALUES (3, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾3', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
+
+INSERT INTO COMMUNITY(body, category, title, member_id) VALUES ('소올 내용인디', 'TOGETHER', '소올 제목', 1);
+INSERT INTO COMMUNITY(body, category, title, member_id) VALUES ('소올 내용인디2', 'TOGETHER', '소올 제목', 2);
+INSERT INTO COMMUNITY(body, category, title, member_id) VALUES ('소올 내용인디3', 'TOGETHER', '소올 제목', 3);
+
+INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
+INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
+INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
+
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (1, 1);
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (1, 3);
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (1, 2);
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (2, 1);
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (3, 1);
+INSERT INTO COMMUNITY_LIKES(community_id, member_id) VALUES (3, 2);
