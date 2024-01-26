@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.PAGE_NOT_FOUND;
+import java.util.Optional;
+
+import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,5 +29,20 @@ public class CommunityService {
         }
 
         return communityList;
+    }
+
+    @Transactional
+    public Optional<Community> getCommunity(Long communityId) {
+        Optional<Community> community = communityRepository.findById(communityId);
+
+        // communityId에 해당하는 글이 없는 경우
+        if(community.isEmpty()){
+            throw new GeneralException(COMMUNITY_NOT_FOUND);
+        }
+
+        community.ifPresent(Community::incrementViews);
+        communityRepository.save(community.get());
+
+        return community;
     }
 }
