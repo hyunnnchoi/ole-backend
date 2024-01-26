@@ -15,11 +15,13 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
 
+    @Column(columnDefinition = "VARCHAR(255) default 'resources/static/default.jpeg'")
     private String path ;
 
     private String name ;
 
-    private boolean represent ;
+    @Column(columnDefinition = "BOOLEAN default TRUE")
+    private boolean represent;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id" )

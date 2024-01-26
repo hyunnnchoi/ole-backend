@@ -1,5 +1,6 @@
 package com.example.olebackend.converter;
 
+import com.example.olebackend.domain.File;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.mapping.LectureTeacher;
 import com.example.olebackend.web.dto.LessonResponse;
@@ -82,10 +83,19 @@ public class LessonConverter {
 
     public static LessonResponse.getLessonOrderByCriteriaDTO toLessonOrderByCriteriaDTO(Lesson lesson) {
 
+        List<File> fileList = lesson.getFileList();
+
+        File file = fileList.stream()
+                .filter(File::isRepresent)
+                .findFirst()
+                .orElse(null);
+
+
         return LessonResponse.getLessonOrderByCriteriaDTO.builder()
                 .title(lesson.getTitle())
                 .currentCount(lesson.getCurrentCount())
                 .place(lesson.getPlace())
+                .filePath(file.getPath())
                 .build();
     }
 
