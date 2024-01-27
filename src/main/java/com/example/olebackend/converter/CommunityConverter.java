@@ -1,6 +1,9 @@
 package com.example.olebackend.converter;
 
 import com.example.olebackend.domain.Community;
+import com.example.olebackend.domain.Member;
+import com.example.olebackend.domain.mapping.CommunityComments;
+import com.example.olebackend.web.dto.CommunityRequest;
 import com.example.olebackend.web.dto.CommunityResponse;
 import org.springframework.data.domain.Page;
 
@@ -48,6 +51,14 @@ public class CommunityConverter {
                 .commentCounts(community.get().getComments().size())
                 .memberName(community.get().getMember().getName())
                 .createdAt(community.get().getCreatedAt())
+                .build();
+    }
+
+    public static CommunityComments toCommunityComment(Community community, Member member, CommunityRequest.toCommunityComment request) {
+        return CommunityComments.builder()
+                .community(community)
+                .member(member)
+                .content(request.getContent())
                 .build();
     }
 }
