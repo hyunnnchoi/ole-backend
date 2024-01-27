@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class NewsResponse {
@@ -35,4 +36,30 @@ public class NewsResponse {
         Boolean isFirst;
         Boolean isLast;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getNewsDetailDTO {
+
+        String title;
+        String content;
+        String category;
+        String author;
+        LocalDateTime createdAt;
+        List<NewsResponse.getNewsFileDTO> fileList;
+        int views;
+
+    }
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getNewsFileDTO {
+
+        String filePath;
+
+    }
+
 }

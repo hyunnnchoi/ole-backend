@@ -10,10 +10,9 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @RestController
@@ -31,5 +30,12 @@ public class NewsController {
     public ApiResponse<NewsResponse.getNewsListDTO> getNewsList(@RequestParam(required = false, defaultValue = "1") Integer page) {
         Page<News> newsList = newsService.getNewsList(page);
         return ApiResponse.onSuccess(NewsConverter.toNewsListDTO(newsList));
+    }
+
+    @GetMapping("/{newsId}")
+    @Operation(summary = "올래생활뉴스 글 상세 조회 API")
+    public ApiResponse<NewsResponse.getNewsDetailDTO> getNewsDetail(@PathVariable Long newsId) {
+        Optional<News> news = newsService.getNewsDetail(newsId);
+        return ApiResponse.onSuccess(NewsConverter.toNewsDetailDTO(news));
     }
 }

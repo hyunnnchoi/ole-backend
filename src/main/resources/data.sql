@@ -91,6 +91,8 @@ INSERT INTO NEWS(category, author, content, title) VALUES ('LIFE', '친절한 �
 INSERT INTO NEWS(category, author, content, title) VALUES ('RECRUIT', '친절한 쩡아쌤', '생활뉴스 글4', '생활뉴스 제목4');
 
 INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 1);
+INSERT INTO FILE(name, path, represent, lesson_id, member_id, news_id) VALUES ('test', 'resources/static/test.png', FALSE, null, null, 1);
+
 INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 2);
 INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 3);
 INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 4);
