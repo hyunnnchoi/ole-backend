@@ -16,7 +16,6 @@ public class NewsResponse {
 
         Long id;
         String title;
-        String content;
         String category;
         String author;
         String filePath;
