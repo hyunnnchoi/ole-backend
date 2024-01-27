@@ -42,3 +42,7 @@ out/
 
 # query DSL Q파일
 /src/main/generated/
+
+## OAuth API Key
+
+/src/main/resources/application-oauth.yml

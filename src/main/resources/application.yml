@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    group:
+      "local": "local, jwt, oauth"
+    active: local
   datasource:
     url: jdbc:mysql://localhost:3306/ole
     username: root
