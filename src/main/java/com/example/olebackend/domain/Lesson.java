@@ -79,16 +79,20 @@ public class Lesson extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<NonMember> nonMemberList = new ArrayList<>();
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<LectureTeacher> lectureTeacherList = new ArrayList<>();
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<MemberApply> memberApplyList = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.REMOVE)
+    @Builder.Default
     private List<File> fileList = new ArrayList<>() ;
 
 

@@ -26,5 +26,6 @@ public class Teacher extends BaseEntity {
     private int birth; //강사 출생연도
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<LectureTeacher> lectureTeachersList = new ArrayList<>();
 }

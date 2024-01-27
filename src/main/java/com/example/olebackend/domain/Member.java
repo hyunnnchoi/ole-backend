@@ -57,6 +57,7 @@ public class Member extends BaseEntity {
     private File file ;
 
     @OneToMany(mappedBy = "member",fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
+    @Builder.Default
     private List<Likes> likes = new ArrayList<>() ;
 
     // ======================================
@@ -86,8 +87,10 @@ public class Member extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<MemberApply> memberApplyList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<Community> memberCommunityList = new ArrayList<>();
 }

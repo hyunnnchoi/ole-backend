@@ -25,5 +25,6 @@ public class SubCategory extends BaseEntity {
     private Category category ;
 
     @OneToMany(mappedBy = "subCategory")
+    @Builder.Default
     private List<Lesson> lessons = new ArrayList<>() ;
 }

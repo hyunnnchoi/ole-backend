@@ -20,5 +20,3 @@ spring:
         default_batch_fetch_size: 1000${}
 
     defer-datasource-initialization: true  # 초기 데이터 적재 설정
-server:
-  port: 8081

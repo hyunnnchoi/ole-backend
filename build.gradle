@@ -3,7 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.1.4'
 	//querydsl 추가
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	// id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.example'
@@ -51,12 +51,26 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+
+/*
 //querydsl 추가 시작
-//def querydslDir = '$buildDir/generated'
 def querydslDir = "src/main/generated"
 
+sourceSets {
+	main.java.srcDirs += [ querydslDir ]
+}
+
+tasks.withType(JavaCompile) {
+	options.getGeneratedSourceOutputDirectory().set(file(querydslDir))
+}
+
+clean.doLast {
+	file(querydslDir).deleteDir()
+}
+/*
+
 querydsl {
-	library = "com.querydsl:querydsl-apt"
+	library = "com.querydsl:querydsl-jpa"
 	jpa = true
 	querydslSourcesDir = querydslDir
 }
@@ -78,6 +92,7 @@ configurations {
 }
 
 jar{
-	enabled=false
+	enabled=true
 }
 //querydsl 추가 끝
+*/

@@ -36,6 +36,7 @@ public class Community extends BaseEntity {
     private CommunityCategory category;
 
     @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @Builder.Default
     private List<CommunityComments> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
