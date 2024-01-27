@@ -1,0 +1,35 @@
+package com.example.olebackend.web.controller;
+
+import com.example.olebackend.apiPayLoad.ApiResponse;
+import com.example.olebackend.converter.NewsConverter;
+import com.example.olebackend.domain.News;
+import com.example.olebackend.service.NewsService;
+import com.example.olebackend.web.dto.NewsResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/news")
+public class NewsController {
+
+    private final NewsService newsService;
+
+    @GetMapping
+    @Operation(summary = "올래생활뉴스 목록 조회 API")
+    @Parameters({
+            @Parameter(name = "page", description = "페이지 번호이며, 1페이지부터 시작입니다."),
+    })
+    public ApiResponse<NewsResponse.getNewsListDTO> getNewsList(@RequestParam(required = false, defaultValue = "1") Integer page) {
+        Page<News> newsList = newsService.getNewsList(page);
+        return ApiResponse.onSuccess(NewsConverter.toNewsListDTO(newsList));
+    }
+}
