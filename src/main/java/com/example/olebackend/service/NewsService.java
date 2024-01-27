@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.PAGE_NOT_FOUND;
+import java.util.Optional;
+
+import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 
 @Service
@@ -27,5 +29,21 @@ public class NewsService {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
         return newsList;
+    }
+
+    @Transactional
+    public Optional<News> getNewsDetail(Long newsId) {
+
+        Optional<News> news = newsRepository.findById(newsId);
+
+        // newsId에 해당하는 글이 없는 경우
+        if (news.isEmpty()) {
+            throw new GeneralException(NEWS_NOT_FOUND);
+        }
+
+        news.ifPresent(News::incrementViews);
+        newsRepository.save(news.get());
+
+        return news;
     }
 }
