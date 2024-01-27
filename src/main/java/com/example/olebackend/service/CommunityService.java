@@ -1,8 +1,14 @@
 package com.example.olebackend.service;
 
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
+import com.example.olebackend.converter.CommunityConverter;
 import com.example.olebackend.domain.Community;
+import com.example.olebackend.domain.Member;
+import com.example.olebackend.domain.mapping.CommunityComments;
+import com.example.olebackend.repository.CommunityCommentsRepository;
 import com.example.olebackend.repository.CommunityRepository;
+import com.example.olebackend.repository.MemberRepository;
+import com.example.olebackend.web.dto.CommunityRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +25,9 @@ import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 public class CommunityService {
 
     private final CommunityRepository communityRepository;
+    private final MemberRepository memberRepository;
+    private final CommunityCommentsRepository communityCommentsRepository;
+
     public Page<Community> getCommunityList(Integer page) {
 
         Page<Community> communityList = communityRepository.findAll(PageRequest.of(page - 1, 10));
@@ -36,7 +45,7 @@ public class CommunityService {
         Optional<Community> community = communityRepository.findById(communityId);
 
         // communityId에 해당하는 글이 없는 경우
-        if(community.isEmpty()){
+        if (community.isEmpty()) {
             throw new GeneralException(COMMUNITY_NOT_FOUND);
         }
 
@@ -44,5 +53,17 @@ public class CommunityService {
         communityRepository.save(community.get());
 
         return community;
+    }
+
+    @Transactional
+    public CommunityComments submitComment(Long communityId, Long memberId, CommunityRequest.toCommunityComment request) {
+        Community community = communityRepository.findById(communityId)
+                .orElseThrow(() -> new GeneralException(COMMUNITY_NOT_FOUND));
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new GeneralException(MEMBER_NOT_FOUND));
+
+        CommunityComments communityComments = CommunityConverter.toCommunityComment(community, member, request);
+        return communityCommentsRepository.save(communityComments);
     }
 }
