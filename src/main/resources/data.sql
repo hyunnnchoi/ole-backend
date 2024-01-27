@@ -81,6 +81,6 @@ INSERT INTO COMMUNITY(created_at, body, category, title, member_id, views) VALUE
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디2', 'QUESTION', '소올 제목', 2, 122);
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디3', 'TOGETHER', '소올 제목', 3, 1233);
 
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);

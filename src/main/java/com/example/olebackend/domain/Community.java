@@ -2,7 +2,7 @@ package com.example.olebackend.domain;
 
 import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.domain.enums.CommunityCategory;
-import com.example.olebackend.domain.mapping.CommunityComments;
+import com.example.olebackend.domain.mapping.CommunityComment;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -37,7 +37,7 @@ public class Community extends BaseEntity {
 
     @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @Builder.Default
-    private List<CommunityComments> comments = new ArrayList<>();
+    private List<CommunityComment> comments = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

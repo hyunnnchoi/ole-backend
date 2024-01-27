@@ -15,12 +15,12 @@ public class CommunityResponse {
     @AllArgsConstructor
     public static class getCommunityPreviewDTO {
 
-        private Long id;
-        private String title;
-        private String body;
-        private String category;
-        private int views;
-        private int commentCounts;
+        Long id;
+        String title;
+        String body;
+        String category;
+        int views;
+        int commentCounts;
 
     }
 
@@ -43,13 +43,29 @@ public class CommunityResponse {
     @AllArgsConstructor
     public static class getCommunityDetailDTO {
 
-        private String title;
-        private String body;
-        private String category;
-        private int views;
-        private int commentCounts;
-        private String memberName;
-        private LocalDateTime createdAt;
+        String title;
+        String body;
+        String category;
+        int views;
+        int commentCounts;
+        String memberName;
+        LocalDateTime createdAt;
+        List<CommunityResponse.getCommunityCommentPreviewDTO> communityCommentList;
+
+
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getCommunityCommentPreviewDTO {
+
+        Long id;
+        String content;
+        int likeCounts;
+        String memberName;
+        LocalDateTime createdAt;
 
     }
 }
