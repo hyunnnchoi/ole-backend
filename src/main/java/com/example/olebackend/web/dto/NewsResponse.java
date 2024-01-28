@@ -8,19 +8,18 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class CommunityResponse {
+public class NewsResponse {
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getCommunityPreviewDTO {
+    public static class getNewsPreviewDTO {
 
         Long id;
         String title;
-        String body;
         String category;
-        int views;
-        int commentCounts;
+        String author;
+        String filePath;
 
     }
 
@@ -28,8 +27,9 @@ public class CommunityResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getCommunityListDTO {
-        List<CommunityResponse.getCommunityPreviewDTO> communityList;
+    public static class getNewsListDTO {
+
+        List<NewsResponse.getNewsPreviewDTO> newsList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -41,31 +41,25 @@ public class CommunityResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getCommunityDetailDTO {
+    public static class getNewsDetailDTO {
 
         String title;
-        String body;
+        String content;
         String category;
-        int views;
-        int commentCounts;
-        String memberName;
+        String author;
         LocalDateTime createdAt;
-        List<CommunityResponse.getCommunityCommentPreviewDTO> communityCommentList;
-
+        List<NewsResponse.getNewsFileDTO> fileList;
+        int views;
 
     }
-
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getCommunityCommentPreviewDTO {
+    public static class getNewsFileDTO {
 
-        Long id;
-        String content;
-        int likeCounts;
-        String memberName;
-        LocalDateTime createdAt;
+        String filePath;
 
     }
+
 }

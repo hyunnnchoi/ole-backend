@@ -1,8 +1,7 @@
 package com.example.olebackend.domain;
 
 import com.example.olebackend.domain.common.BaseEntity;
-import com.example.olebackend.domain.enums.CommunityCategory;
-import com.example.olebackend.domain.mapping.CommunityComment;
+import com.example.olebackend.domain.enums.NewsCategory;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Community extends BaseEntity {
+public class News extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,12 @@ public class Community extends BaseEntity {
 
     private String title;
 
-    private String body;
+    private String content;
+
+    @Enumerated(EnumType.STRING)
+    private NewsCategory category;
+
+    private String author;
 
     @ColumnDefault("0")
     private int views;
@@ -32,14 +36,7 @@ public class Community extends BaseEntity {
         this.views++;
     }
 
-    @Enumerated(EnumType.STRING)
-    private CommunityCategory category;
-
-    @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.REMOVE)
     @Builder.Default
-    private List<CommunityComment> comments = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private List<File> fileList = new ArrayList<>();
 }

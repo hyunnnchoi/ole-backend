@@ -4,8 +4,8 @@ import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.CommunityConverter;
 import com.example.olebackend.domain.Community;
 import com.example.olebackend.domain.Member;
-import com.example.olebackend.domain.mapping.CommunityComments;
-import com.example.olebackend.repository.CommunityCommentsRepository;
+import com.example.olebackend.domain.mapping.CommunityComment;
+import com.example.olebackend.repository.CommunityCommentRepository;
 import com.example.olebackend.repository.CommunityRepository;
 import com.example.olebackend.repository.MemberRepository;
 import com.example.olebackend.web.dto.CommunityRequest;
@@ -26,7 +26,7 @@ public class CommunityService {
 
     private final CommunityRepository communityRepository;
     private final MemberRepository memberRepository;
-    private final CommunityCommentsRepository communityCommentsRepository;
+    private final CommunityCommentRepository communityCommentRepository;
 
     public Page<Community> getCommunityList(Integer page) {
 
@@ -56,14 +56,16 @@ public class CommunityService {
     }
 
     @Transactional
-    public CommunityComments submitComment(Long communityId, Long memberId, CommunityRequest.toCommunityComment request) {
+    public CommunityComment submitComment(Long communityId, Long memberId, CommunityRequest.toCommunityComment request) {
         Community community = communityRepository.findById(communityId)
                 .orElseThrow(() -> new GeneralException(COMMUNITY_NOT_FOUND));
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new GeneralException(MEMBER_NOT_FOUND));
 
-        CommunityComments communityComments = CommunityConverter.toCommunityComment(community, member, request);
-        return communityCommentsRepository.save(communityComments);
+        CommunityComment communityComments = CommunityConverter.toCommunityComment(community, member, request);
+        return communityCommentRepository.save(communityComments);
     }
+
+
 }

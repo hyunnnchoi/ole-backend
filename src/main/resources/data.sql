@@ -81,6 +81,18 @@ INSERT INTO COMMUNITY(created_at, body, category, title, member_id, views) VALUE
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디2', 'QUESTION', '소올 제목', 2, 122);
 INSERT INTO COMMUNITY(body, category, title, member_id, views) VALUES ('소올 내용인디3', 'TOGETHER', '소올 제목', 3, 1233);
 
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
-INSERT INTO COMMUNITY_COMMENTS(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
+INSERT INTO COMMUNITY_COMMENT(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
+
+INSERT INTO NEWS(category, author, content, title) VALUES ('BOARD', '친절한 쩡아쌤', '생활뉴스 글1', '생활뉴스 제목1');
+INSERT INTO NEWS(category, author, content, title) VALUES ('HEALTH', '친절한 쩡아쌤', '생활뉴스 글2', '생활뉴스 제목2');
+INSERT INTO NEWS(category, author, content, title) VALUES ('LIFE', '친절한 쩡아쌤', '생활뉴스 글3', '생활뉴스 제목3');
+INSERT INTO NEWS(category, author, content, title) VALUES ('RECRUIT', '친절한 쩡아쌤', '생활뉴스 글4', '생활뉴스 제목4');
+
+INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 1);
+INSERT INTO FILE(name, path, represent, lesson_id, member_id, news_id) VALUES ('test', 'resources/static/test.png', FALSE, null, null, 1);
+
+INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 2);
+INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 3);
+INSERT INTO FILE(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 4);

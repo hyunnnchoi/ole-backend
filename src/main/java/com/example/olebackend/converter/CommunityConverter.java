@@ -2,7 +2,7 @@ package com.example.olebackend.converter;
 
 import com.example.olebackend.domain.Community;
 import com.example.olebackend.domain.Member;
-import com.example.olebackend.domain.mapping.CommunityComments;
+import com.example.olebackend.domain.mapping.CommunityComment;
 import com.example.olebackend.web.dto.CommunityRequest;
 import com.example.olebackend.web.dto.CommunityResponse;
 import org.springframework.data.domain.Page;
@@ -42,6 +42,11 @@ public class CommunityConverter {
     }
 
     public static CommunityResponse.getCommunityDetailDTO toCommunityDetailDTO(Optional<Community> community) {
+        List<CommunityComment> communityCommentList = community.get().getComments();
+
+        List<CommunityResponse.getCommunityCommentPreviewDTO> communityCommentPreviewDTOList = communityCommentList.stream()
+                .map(CommunityConverter::toCommunityCommentPreviewDTO).collect(Collectors.toList());
+
 
         return CommunityResponse.getCommunityDetailDTO.builder()
                 .title(community.get().getTitle())
@@ -51,14 +56,28 @@ public class CommunityConverter {
                 .commentCounts(community.get().getComments().size())
                 .memberName(community.get().getMember().getName())
                 .createdAt(community.get().getCreatedAt())
+                .communityCommentList(communityCommentPreviewDTOList)
+
                 .build();
     }
 
-    public static CommunityComments toCommunityComment(Community community, Member member, CommunityRequest.toCommunityComment request) {
-        return CommunityComments.builder()
+    public static CommunityComment toCommunityComment(Community community, Member member, CommunityRequest.toCommunityComment request) {
+        return CommunityComment.builder()
                 .community(community)
                 .member(member)
                 .content(request.getContent())
                 .build();
     }
+
+    public static CommunityResponse.getCommunityCommentPreviewDTO toCommunityCommentPreviewDTO(CommunityComment comment) {
+        return CommunityResponse.getCommunityCommentPreviewDTO.builder()
+                .id(comment.getId())
+                .content(comment.getContent())
+                .likeCounts(comment.getLikeCount())
+                .memberName(comment.getMember().getName())
+                .createdAt(comment.getCreatedAt())
+                .build();
+    }
+
 }
+

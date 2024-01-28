@@ -36,6 +36,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 소통하러 올래 관련 응답
     COMMUNITY_NOT_FOUND(HttpStatus.NOT_FOUND, "COMMUNITY4001", "존재하지 않는 글 입니다."),
 
+    // 올래생활뉴스 관련 응답
+    NEWS_NOT_FOUND(HttpStatus.NOT_FOUND, "NEWS4001", "존재하지 않는 글 입니다."),
+
     //비회원 관련 응답
     NON_MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "NONMEMBER4001", "회원 정보가 존재하지 않습니다."),
 
