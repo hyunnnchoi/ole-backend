@@ -19,7 +19,7 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("/member/signup")
+    @PostMapping("/sign-up")
     public String signUp(@RequestBody MemberSignUpRequest memberSignUpDto) throws Exception{
         memberService.signUp(memberSignUpDto);
         return "signup success";
