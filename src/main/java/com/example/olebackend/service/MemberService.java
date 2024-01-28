@@ -9,6 +9,7 @@ import com.example.olebackend.domain.mapping.MemberApply;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
 import com.example.olebackend.repository.MemberRepository;
+import com.example.olebackend.web.dto.MemberLoginRequest;
 import com.example.olebackend.web.dto.MemberSignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -55,6 +56,8 @@ public class MemberService {
         member.passwordEncode(passwordEncoder);
         memberRepository.save(member);
     }
+
+
 
     public MemberApply applyLesson(Long lessonId,Long memberId) {
 

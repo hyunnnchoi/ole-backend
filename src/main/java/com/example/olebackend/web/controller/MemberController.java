@@ -4,6 +4,7 @@ import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.MemberConverter;
 import com.example.olebackend.domain.mapping.MemberApply;
 import com.example.olebackend.service.MemberService;
+import com.example.olebackend.web.dto.MemberLoginRequest;
 import com.example.olebackend.web.dto.MemberResponse;
 import com.example.olebackend.web.dto.MemberSignUpRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,6 +29,16 @@ public class MemberController {
     public String jwtTest(){
         return "jwtTest request success";
     }
+
+//    @PostMapping("/member/login")
+//    public String login(@RequestBody MemberLoginRequest memberLoginDto) throws Exception{
+//        memberService.login(memberLoginDto);
+//        return "login success";
+//    }
+//    @GetMapping("/member/login")
+//    String login() {
+//        return "login";
+//    }
 
     @PostMapping("/lesson/{lessonId}/member")
     @Operation(summary = "교육 신청하기(로그인) API")
