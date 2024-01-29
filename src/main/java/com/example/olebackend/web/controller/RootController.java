@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RootController {
     @GetMapping("/health")
-    public ApiResponse<Object> healthCheck(){
-        return ApiResponse.onSuccess("I'm healthy") ;
+    public String healthCheck(){
+        return "I'm healthy";
 
     }
 }
