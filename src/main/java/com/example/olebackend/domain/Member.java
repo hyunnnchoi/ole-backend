@@ -18,7 +18,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "member")
 public class Member extends BaseEntity {
     @Id
     @GeneratedValue
