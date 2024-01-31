@@ -1,7 +1,7 @@
 package com.example.olebackend.jwt.filter;
 
 import com.example.olebackend.domain.Member;
-import com.example.olebackend.jwt.service.JwtService;
+//import com.example.olebackend.jwt.service.JwtService;
 import com.example.olebackend.repository.MemberRepository;
 //import com.example.olebackend.oauth2.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
