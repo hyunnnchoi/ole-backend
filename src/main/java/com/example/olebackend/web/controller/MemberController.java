@@ -18,17 +18,17 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
-
-    @PostMapping("/member/signup")
-    public String signUp(@RequestBody MemberSignUpRequest memberSignUpDto) throws Exception{
-        memberService.signUp(memberSignUpDto);
-        return "signup success";
-    }
-
-    @GetMapping("/jwt-test")
-    public String jwtTest(){
-        return "jwtTest request success";
-    }
+//
+//    @PostMapping("/member/signup")
+//    public String signUp(@RequestBody MemberSignUpRequest memberSignUpDto) throws Exception{
+//        memberService.signUp(memberSignUpDto);
+//        return "signup success";
+//    }
+//
+//    @GetMapping("/jwt-test")
+//    public String jwtTest(){
+//        return "jwtTest request success";
+//    }
 
 //    @PostMapping("/member/login")
 //    public String login(@RequestBody MemberLoginRequest memberLoginDto) throws Exception{
