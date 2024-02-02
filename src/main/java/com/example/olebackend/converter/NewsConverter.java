@@ -24,8 +24,10 @@ public class NewsConverter {
 
         return NewsResponse.getNewsPreviewDTO.builder()
                 .id(news.getId())
-                .title(news.getTitle())
+                .createdAt(news.getCreatedAt())
                 .category(news.getCategory().toString())
+                .title(news.getTitle())
+                .content(news.getContent())
                 .author(news.getAuthor())
                 .filePath(file != null ? file.getPath() : null)
                 .build();
