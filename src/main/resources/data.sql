@@ -85,10 +85,10 @@ INSERT INTO community_comment(content, community_id, member_id) VALUES ("1번글
 INSERT INTO community_comment(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
 INSERT INTO community_comment(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
 
-INSERT INTO news(category, author, content, title) VALUES ('BOARD', '친절한 쩡아쌤', '생활뉴스 글1', '생활뉴스 제목1');
-INSERT INTO news(category, author, content, title) VALUES ('HEALTH', '친절한 쩡아쌤', '생활뉴스 글2', '생활뉴스 제목2');
-INSERT INTO news(category, author, content, title) VALUES ('LIFE', '친절한 쩡아쌤', '생활뉴스 글3', '생활뉴스 제목3');
-INSERT INTO news(category, author, content, title) VALUES ('RECRUIT', '친절한 쩡아쌤', '생활뉴스 글4', '생활뉴스 제목4');
+INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-26 23:50:19.000000', 'BOARD', '친절한 쩡아쌤', '생활뉴스 글1', '생활뉴스 제목1');
+INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-27 23:50:19.000000', 'HEALTH', '친절한 쩡아쌤', '생활뉴스 글2', '생활뉴스 제목2');
+INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-25 23:50:19.000000','LIFE', '친절한 쩡아쌤', '생활뉴스 글3', '생활뉴스 제목3');
+INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-23 23:50:19.000000','RECRUIT', '친절한 쩡아쌤', '생활뉴스 글4', '생활뉴스 제목4');
 
 INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 1);
 INSERT INTO file(name, path, represent, lesson_id, member_id, news_id) VALUES ('test', 'resources/static/test.png', FALSE, null, null, 1);
