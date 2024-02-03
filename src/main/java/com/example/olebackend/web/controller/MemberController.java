@@ -2,7 +2,6 @@ package com.example.olebackend.web.controller;
 
 import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.MemberConverter;
-import com.example.olebackend.domain.mapping.MemberApply;
 import com.example.olebackend.service.MemberService;
 import com.example.olebackend.web.dto.MemberLoginRequest;
 import com.example.olebackend.web.dto.MemberResponse;
@@ -39,25 +38,4 @@ public class MemberController {
 //    String login() {
 //        return "login";
 //    }
-
-    @PostMapping("/lesson/{lessonId}/member")
-    @Operation(summary = "교육 신청하기(로그인) API")
-    public ApiResponse<MemberResponse.applyResultDTO> apply(
-            @PathVariable(name = "lessonId") @Valid Long lessonId,
-            @RequestParam(name = "memberId") @Valid Long memberId){
-
-        MemberApply memberApply = memberService.applyLesson(lessonId, memberId);
-
-        MemberResponse.applyResultDTO resultDto = MemberConverter.toApplyresultDTO(memberApply);
-        return ApiResponse.onSuccess(resultDto);
-    }
-
-    @DeleteMapping("/lesson/{lessonId}/member")
-    @Operation(summary = "신청취소(로그인)API")
-    public ApiResponse<Object> cancelLesson(
-            @PathVariable(name = "lessonId") @Valid Long lessonId,
-            @RequestParam(name = "memberId") @Valid Long memberId) {
-        memberService.cancelLesson(lessonId, memberId);
-        return ApiResponse.onSuccess(null);
-    }
 }
