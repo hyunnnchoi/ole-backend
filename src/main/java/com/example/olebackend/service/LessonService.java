@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
-import static com.example.olebackend.repository.specification.LessonSpecification.findByCategoryAndKeyword;
-import static com.example.olebackend.repository.specification.LessonSpecification.findByKeyword;
 
 @Service
 @RequiredArgsConstructor
