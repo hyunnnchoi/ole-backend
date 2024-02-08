@@ -19,10 +19,18 @@ public class Survey extends BaseEntity {
     private Long id ;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+
+    // == 연관관계 메서드 == //
+    public static Survey createSurvey(Member member, Lesson lesson){
+        Survey survey = Survey.builder().member(member).lesson(lesson).build();
+        member.getSurveyLessonList().add(survey) ;
+        return survey;
+    }
 }

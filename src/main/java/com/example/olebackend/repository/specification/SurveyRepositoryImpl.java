@@ -1,8 +1,10 @@
 package com.example.olebackend.repository.specification;
 
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.domain.Member;
 import com.example.olebackend.domain.enums.Type;
 import com.example.olebackend.domain.enums.Week;
+import com.example.olebackend.domain.mapping.QSurvey;
 import com.example.olebackend.web.dto.SurveyRequest;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.example.olebackend.domain.QLesson.lesson;
+import static com.example.olebackend.domain.mapping.QSurvey.*;
 import static com.querydsl.core.util.ArrayUtils.isEmpty;
 
 public class SurveyRepositoryImpl implements SurveyRepositoryCustom{
@@ -28,6 +31,17 @@ public class SurveyRepositoryImpl implements SurveyRepositoryCustom{
         this.em = em;
         this.queryFactory = new JPAQueryFactory(em);
     }
+
+    @Override
+    public List<Lesson> findPastResults(Member member, List<Long> subcategoryIds){
+        return queryFactory
+                .select(lesson)
+                .from(survey)
+                .where(survey.member.id.eq(member.getId())
+                        .and(survey.lesson.subCategory.id.in(subcategoryIds)))
+                .fetch() ;
+    } // strictFiltering
+
 
     @Override
     public List<Lesson> strictFiltering(SurveyRequest.SurveyCondition condition){
