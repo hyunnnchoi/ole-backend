@@ -47,7 +47,11 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 좋아요 관련 응답
     ALREADY_IN_WISHLIST(HttpStatus.NOT_FOUND, "LIKE001", "이미 좋아요 목록에 존재합니다."),
-    ALREADY_CANCELED(HttpStatus.NOT_FOUND, "LIKE4002", "이미 취소되었습니다.");
+    ALREADY_CANCELED(HttpStatus.NOT_FOUND, "LIKE4002", "이미 취소되었습니다."),
+
+    // 설문조사 관련 응답
+    NEVER_SURVEYED(HttpStatus.NOT_FOUND, "SURVEY4001", "이전 설문 내역이 없습니다. 새롭게 설문조사를 진행해주세요.");
+
 
 
     private final HttpStatus httpStatus;

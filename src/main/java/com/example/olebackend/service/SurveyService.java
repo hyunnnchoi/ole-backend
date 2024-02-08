@@ -50,11 +50,14 @@ public class SurveyService {
     public List<Lesson> getPastResults(Long categoryId, Long memberId){
 
         Member member=memberRepository.findById(memberId)
-                .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
+                .orElseThrow(() ->new GeneralException(NEVER_SURVEYED));
 
         List<Long> subCategoryIds = subCategoryRepository.findIdsByCategoryId(categoryId);
+        List<Lesson> lessons = surveyRepository.findPastResults(member, subCategoryIds);
 
-        return surveyRepository.findPastResults(member, subCategoryIds);
+        if(lessons.isEmpty())
+            throw new GeneralException(NEVER_SURVEYED) ;
+        return lessons ;
     } // getSurveyResults
 
     /*
@@ -86,7 +89,7 @@ public class SurveyService {
     @Transactional
     public void postSurveyResults(Long memberId, List<Lesson> lessons){
 
-        Member member=memberRepository.findById(memberId)
+        Member member=memberRepository.findById(memberId) // 토큰 검사 코드로 변경 필요
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
 
         for(Lesson lesson : lessons){
