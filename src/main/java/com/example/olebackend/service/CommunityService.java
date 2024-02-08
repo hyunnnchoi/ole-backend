@@ -13,6 +13,7 @@ import com.example.olebackend.web.dto.CommunityRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,10 +35,10 @@ public class CommunityService {
         Page<Community> communityList;
         
         if (category == null) {
-            communityList = communityRepository.findAll(PageRequest.of(page - 1, 10));
+            communityList = communityRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
 
         } else {
-            communityList = communityRepository.findCommunityByCategory(category, PageRequest.of(page - 1, 10));
+            communityList = communityRepository.findCommunityByCategory(category, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
 
         }
 
