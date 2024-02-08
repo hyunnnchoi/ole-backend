@@ -89,7 +89,9 @@ public class SurveyService {
         Member member=memberRepository.findById(memberId)
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
 
-        lessons.stream().forEach(e
-                -> surveyRepository.save(Survey.createSurvey(member, e))) ;
+        for(Lesson lesson : lessons){
+            if(!surveyRepository.existsByMemberAndLesson(member, lesson))
+                surveyRepository.save(Survey.createSurvey(member,lesson)) ;
+        }
     } // postSurveyResults
 }
