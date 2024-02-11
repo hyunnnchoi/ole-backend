@@ -3,8 +3,11 @@ package com.example.olebackend.service;
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.domain.Category;
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.domain.Member;
 import com.example.olebackend.domain.SubCategory;
+import com.example.olebackend.domain.mapping.Survey;
 import com.example.olebackend.repository.CategoryRepository;
+import com.example.olebackend.repository.MemberRepository;
 import com.example.olebackend.repository.SubCategoryRepository;
 import com.example.olebackend.repository.SurveyRepository;
 import com.example.olebackend.web.dto.SurveyRequest;
@@ -26,14 +29,14 @@ public class SurveyService {
     private final CategoryRepository categoryRepository ;
     private final SubCategoryRepository subCategoryRepository ;
     private final SurveyRepository surveyRepository ;
+    private final MemberRepository memberRepository ;
 
     /*
     카테고리별 서브 카테고리 조회
      */
     @Transactional
     public List<SubCategory> getSubCategories(Long categoryId){
-        Optional<Category> category = categoryRepository.findById(categoryId) ;
-        List<SubCategory> subCategories = subCategoryRepository.findAllByCategory(category.get());
+        List<SubCategory> subCategories = subCategoryRepository.findAllByCategoryId(categoryId);
         if (subCategories.isEmpty()) {
             throw new GeneralException(SUBCATEGORY_NOT_FOUND) ;
         }
@@ -41,7 +44,24 @@ public class SurveyService {
     }
 
     /*
-    맞춤 교육 추천
+    이전 설문 내역 조사
+     */
+    @Transactional
+    public List<Lesson> getPastResults(Long categoryId, Long memberId){
+
+        Member member=memberRepository.findById(memberId)
+                .orElseThrow(() ->new GeneralException(NEVER_SURVEYED));
+
+        List<Long> subCategoryIds = subCategoryRepository.findIdsByCategoryId(categoryId);
+        List<Lesson> lessons = surveyRepository.findPastResults(member, subCategoryIds);
+
+        if(lessons.isEmpty())
+            throw new GeneralException(NEVER_SURVEYED) ;
+        return lessons ;
+    } // getSurveyResults
+
+    /*
+    설문조사 결과
      */
     @Transactional
     public List<Lesson> getSurveyResults(SurveyRequest.SurveyCondition condition){
@@ -63,5 +83,18 @@ public class SurveyService {
         return lessons ;
     } // getSurveyResults
 
+    /*
+    설문 조사 결과 저장
+     */
+    @Transactional
+    public void saveSurveyResults(Long memberId, List<Lesson> lessons){
 
+        Member member=memberRepository.findById(memberId) // 토큰 검사 코드로 변경 필요
+                .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
+
+        for(Lesson lesson : lessons){
+            if(!surveyRepository.existsByMemberAndLesson(member, lesson))
+                surveyRepository.save(Survey.createSurvey(member,lesson)) ;
+        }
+    } // postSurveyResults
 }

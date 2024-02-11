@@ -12,10 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +23,7 @@ import java.util.stream.Collectors;
 public class SurveyController {
 
     private final SurveyService surveyService;
+
 
     @Operation(summary = "세부 카테고리 목록조회", description = "세부 카테고리 목록조회")
     @GetMapping("/sub_categories/{categoryId}")
@@ -41,18 +39,39 @@ public class SurveyController {
         return ApiResponse.onSuccess(result) ;
     } // secondProblem
 
-    @Operation(summary = "설문조사 - 강의 추천하기", description = "설문조사 - 강의 추천하기")
-    @GetMapping("/lessons/survey")
-    public ApiResponse<List<SurveyResponse.SurveyResponseDto>> surveyResults(SurveyRequest.SurveyCondition condition){
+    @Operation(summary = "설문조사-이전 참여내역 조회", description = "설문조사 - 이전 참여내역 조회")
+    @GetMapping("/lessons/{categoryId}/surveys")
+    public ApiResponse<List<SurveyResponse.SurveyResponseDto>> pastResults(
+            @PathVariable(name = "categoryId") Long categoryId,
+            @RequestParam(name = "memberId") Long memberId){ // 토큰으로 변경 필요
 
-        log.info("/lessons/survey ");
+        log.info("/lessons/survey(get)");
 
-        List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
+        List<Lesson> surveyResults = surveyService.getPastResults(categoryId, memberId);
         List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
                 .map(s -> SurveyConverter.toSurveyResponseDto(s))
                 .collect(Collectors.toList());
 
         return ApiResponse.onSuccess(result) ;
-    } // secondProblem
+    } // pastResults
+
+
+    @Operation(summary = "설문조사 제출- 강의 추천하기", description = "설문조사 - 강의 추천하기")
+    @PostMapping("/lessons/survey")
+    public ApiResponse<List<SurveyResponse.SurveyResponseDto>> surveyResults(
+            SurveyRequest.SurveyCondition condition,
+            @RequestParam(name = "memberId") Long memberId){
+
+        log.info("/lessons/survey(post)");
+        
+        List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
+        surveyService.saveSurveyResults(memberId ,surveyResults) ;
+
+        List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
+                .map(s -> SurveyConverter.toSurveyResponseDto(s))
+                .collect(Collectors.toList());
+
+        return ApiResponse.onSuccess(result) ;
+    } // surveyResults
 
 }

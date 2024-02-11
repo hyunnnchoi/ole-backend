@@ -6,6 +6,7 @@ import com.example.olebackend.domain.enums.Role;
 import com.example.olebackend.domain.enums.SocialType;
 import com.example.olebackend.domain.mapping.Likes;
 import com.example.olebackend.domain.mapping.MemberApply;
+import com.example.olebackend.domain.mapping.Survey;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -96,4 +97,9 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @Builder.Default
     private List<Community> memberCommunityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @Builder.Default
+    private List<Survey> surveyLessonList = new ArrayList<>();
+
 }
