@@ -8,6 +8,7 @@ import com.example.olebackend.repository.NewsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,9 +30,9 @@ public class NewsService {
         Page<News> newsList;
 
         if (category == null) {
-            newsList = newsRepository.findAll(PageRequest.of(page - 1, 10));
+            newsList = newsRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
         } else {
-            newsList = newsRepository.findNewsByCategory(category, PageRequest.of(page - 1, 10));
+            newsList = newsRepository.findNewsByCategory(category, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
         }
         // 전체 페이지 수 이상의 값을 입력했을 때
         if (page > newsList.getTotalPages()) {
