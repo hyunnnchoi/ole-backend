@@ -9,9 +9,10 @@ public class MemberConverter {
                 .memberId(memberId)
                 .build();
     }
-    public static MemberResponse.getLoginResultDTO toLoginResultDTO(Long memberId){
+    public static MemberResponse.getLoginResultDTO toLoginResultDTO(Long memberId, String name){
         return MemberResponse.getLoginResultDTO.builder()
                 .memberId(memberId)
+                .name(name)
                 .build();
     }
     public static MemberResponse.getLoginResultDTO toLoginResultDTO(){

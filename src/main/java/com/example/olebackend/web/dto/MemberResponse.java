@@ -36,5 +36,6 @@ public class MemberResponse {
     @AllArgsConstructor
     public static class getLoginResultDTO{
         Long memberId;
+        String name;
     }
 }
