@@ -30,6 +30,8 @@ public class SurveyResponse {
         LocalDateTime endDate; // 강의 종료일
         LocalDateTime startTime; // 강의 시작 시간
         LocalDateTime endTime; // 강의 종료 시간
+        LocalDateTime gatherStartDate; // 모집 시작일 
+        LocalDateTime gatherEndDate; // 모집 마감일
         String weekDay ; // 강의 진행 요일
         String place; // 수업 장소
         Integer price; // 가격

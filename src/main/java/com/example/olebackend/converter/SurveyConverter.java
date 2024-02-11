@@ -43,6 +43,8 @@ public class SurveyConverter {
                 .endDate(lesson.getLessonEndDate())
                 .startTime(lesson.getLessonStartTime())
                 .endTime(lesson.getLessonEndTime())
+                .gatherStartDate(lesson.getGatherStartDate())
+                .gatherEndDate(lesson.getGatherEndDate())
                 .weekDay(lesson.getLectureWeekDay().toString())
                 .imgUrl(imgUrl)
                 .currentCount(lesson.getCurrentCount())
