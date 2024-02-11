@@ -63,14 +63,16 @@ public class SurveyRepositoryImpl implements SurveyRepositoryCustom{
                 .where(subcategoryEq(condition.getSub_categoryIds()),
                         lessonTypeEq(condition.getClassType()),
                         weekDayEq(condition.getChoices()),
-                        classTimeEq(condition.getChoices()))
+                        classTimeEq(condition.getChoices())
+                                )
                 .fetch() ;
     } // normalFiltering
 
     @Override
     public List<Lesson> lenientFiltering(SurveyRequest.SurveyCondition condition){
         return queryFactory
-                .selectFrom(lesson)
+                .select(lesson)
+                .from(lesson)
                 .where(subcategoryEq(condition.getSub_categoryIds()),
                         lessonTypeEq(condition.getClassType()))
                 .fetch() ;
@@ -82,9 +84,9 @@ public class SurveyRepositoryImpl implements SurveyRepositoryCustom{
     */
     private BooleanExpression subcategoryEq(Long[] subCategoryIds) {
         if (isEmpty(subCategoryIds)) {
-            return null;
+            return lesson.gatherStatus.eq(true);
         } else {
-            return lesson.subCategory.id.in(subCategoryIds);
+            return lesson.subCategory.id.in(subCategoryIds).and(lesson.gatherStatus.eq(true));
         }
     }
 
