@@ -47,13 +47,14 @@ public class SurveyController {
 
         log.info("/lessons/survey(get)");
 
-        List<Lesson> surveyResults = surveyService.getPastResults(memberId, categoryId);
+        List<Lesson> surveyResults = surveyService.getPastResults(categoryId, memberId);
         List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
                 .map(s -> SurveyConverter.toSurveyResponseDto(s))
                 .collect(Collectors.toList());
 
         return ApiResponse.onSuccess(result) ;
     } // pastResults
+
 
     @Operation(summary = "설문조사 제출- 강의 추천하기", description = "설문조사 - 강의 추천하기")
     @PostMapping("/lessons/survey")
@@ -64,13 +65,13 @@ public class SurveyController {
         log.info("/lessons/survey(post)");
         
         List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
-        surveyService.postSurveyResults(memberId, surveyResults) ;
+        surveyService.saveSurveyResults(memberId ,surveyResults) ;
 
         List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
                 .map(s -> SurveyConverter.toSurveyResponseDto(s))
                 .collect(Collectors.toList());
 
         return ApiResponse.onSuccess(result) ;
-    } // secondProblem
+    } // surveyResults
 
 }

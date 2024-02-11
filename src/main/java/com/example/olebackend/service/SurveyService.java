@@ -87,7 +87,7 @@ public class SurveyService {
     설문 조사 결과 저장
      */
     @Transactional
-    public void postSurveyResults(Long memberId, List<Lesson> lessons){
+    public void saveSurveyResults(Long memberId, List<Lesson> lessons){
 
         Member member=memberRepository.findById(memberId) // 토큰 검사 코드로 변경 필요
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
