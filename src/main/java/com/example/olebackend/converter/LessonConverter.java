@@ -85,17 +85,22 @@ public class LessonConverter {
 
         List<File> fileList = lesson.getFileList();
 
+        String filePath = null;
+
         File file = fileList.stream()
                 .filter(File::isRepresent)
                 .findFirst()
                 .orElse(null);
 
+        if (file != null) {
+            filePath = file.getPath();
+        }
 
         return LessonResponse.getLessonOrderByCriteriaDTO.builder()
                 .title(lesson.getTitle())
                 .currentCount(lesson.getCurrentCount())
                 .place(lesson.getPlace())
-                .filePath(file.getPath())
+                .filePath(filePath)
                 .build();
     }
 
