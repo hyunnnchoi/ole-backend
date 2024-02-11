@@ -2,6 +2,7 @@ package com.example.olebackend.web.controller;
 
 import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.MemberConverter;
+import com.example.olebackend.login.filter.CustomJsonUsernamePasswordAuthenticationFilter;
 import com.example.olebackend.service.MemberService;
 import com.example.olebackend.web.dto.MemberLoginRequest;
 import com.example.olebackend.web.dto.MemberResponse;
@@ -17,25 +18,18 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
-//
-//    @PostMapping("/member/signup")
-//    public String signUp(@RequestBody MemberSignUpRequest memberSignUpDto) throws Exception{
-//        memberService.signUp(memberSignUpDto);
-//        return "signup success";
-//    }
-//
-//    @GetMapping("/jwt-test")
-//    public String jwtTest(){
-//        return "jwtTest request success";
-//    }
+    private CustomJsonUsernamePasswordAuthenticationFilter customJsonUsernamePasswordAuthenticationFilter;
 
-//    @PostMapping("/member/login")
-//    public String login(@RequestBody MemberLoginRequest memberLoginDto) throws Exception{
-//        memberService.login(memberLoginDto);
-//        return "login success";
-//    }
-//    @GetMapping("/member/login")
-//    String login() {
-//        return "login";
-//    }
+    // login은 JwtAuthenticationProcessingFilter에서 낚아채서 처리합니다.
+    // {bcrypt}$2a$10$YDbw/rMsG6YteiS4kk7HrOqsBUkYPZ9fgfvfTkT5gywKG6vxl3AXO
+    @PostMapping("/member/sign-up")
+    public ApiResponse<MemberResponse.getJoinResultDTO> signUp(@RequestBody MemberSignUpRequest memberSignUpDto) throws Exception{
+        Long memberId = memberService.signUp(memberSignUpDto);
+        return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(memberId));
+    }
+
+    @GetMapping("/jwt-test")
+    public String jwtTest(){
+        return "jwtTest request success";
+    }
 }

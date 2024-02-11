@@ -27,7 +27,14 @@ public class MemberResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class JoinResultDTO{
+    public static class getJoinResultDTO{
+        Long memberId;
+    }
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getLoginResultDTO{
         Long memberId;
     }
 }
