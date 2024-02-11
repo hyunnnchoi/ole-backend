@@ -58,7 +58,8 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     public ApiResponse<MemberResponse.getLoginResultDTO> loginSuccessResponse(Authentication authentication) {
         String email = extractUsername(authentication);
         Long memberId = memberRepository.findByEmail(email).get().getId();
-        return ApiResponse.onSuccess(MemberConverter.toLoginResultDTO(memberId));
+        String name = memberRepository.findByEmail(email).get().getName();
+        return ApiResponse.onSuccess(MemberConverter.toLoginResultDTO(memberId, name));
     }
 
     private String extractUsername(Authentication authentication) {
