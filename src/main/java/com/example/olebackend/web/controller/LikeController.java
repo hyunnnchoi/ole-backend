@@ -28,21 +28,21 @@ public class LikeController {
     private final LikeService likeService ;
     private final JwtService jwtService;
 
-//    @PostMapping("/lesson/{lessonId}/like")
-//    @Operation(summary = "찜 하기(위시리스트 추가)")
-//    public ApiResponse<String> pressLike(
-//            @PathVariable(name = "lessonId") Long lessonId,
-//            HttpServletRequest request){
-//        String accessToken = jwtService.extractAccessToken(request).orElse(null);
-//
-//        Long memberId = null;
-//        if (accessToken != null) {
-//            // AccessToken에서 memberId 추출
-//            memberId = jwtService.extractId(accessToken).orElse(null);
-//        }
-//        likeService.addToWishlist(lessonId, memberId);
-//        return ApiResponse.onSuccess("isSuccess");
-//    }
+    @PostMapping("/lesson/{lessonId}/like")
+    @Operation(summary = "찜 하기(위시리스트 추가)")
+    public ApiResponse<String> pressLike(
+            @PathVariable(name = "lessonId") Long lessonId,
+            HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
+        likeService.addToWishlist(lessonId, memberId);
+        return ApiResponse.onSuccess("isSuccess");
+    }
 
     @DeleteMapping("/lesson/{lessonId}/like")
     @Operation(summary = "찜 취소(위시리스트 삭제)")
