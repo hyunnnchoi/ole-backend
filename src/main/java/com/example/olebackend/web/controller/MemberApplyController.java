@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,5 +35,21 @@ public class MemberApplyController {
             @RequestParam(name = "memberId") @Valid Long memberId) {
         memberApplyService.cancelLesson(lessonId, memberId);
         return ApiResponse.onSuccess(null);
+    }
+
+    @PostMapping ("/member/lessons")
+    @Operation(summary = "수업 신청 내역 조회 API")
+    public ApiResponse<MemberApplyResponse.getApplicationListResultDTO> getLessons(
+            @RequestParam Long memberId) {
+        List<MemberApply> memeberApplyList = memberApplyService.getApplication(memberId);
+        return ApiResponse.onSuccess(MemberApplyConverter.toApplicationListDTO(memeberApplyList));
+    }
+
+    @PostMapping ("/member/lessons/completed")
+    @Operation(summary = "수업 수강 내역 조회 API")
+    public ApiResponse<MemberApplyResponse.getApplicationListResultDTO> getCompletedLessons(
+            @RequestParam Long memberId) {
+        List<MemberApply> memeberApplyList = memberApplyService.getCompletedApplication(memberId);
+        return ApiResponse.onSuccess(MemberApplyConverter.toApplicationListDTO(memeberApplyList));
     }
 }
