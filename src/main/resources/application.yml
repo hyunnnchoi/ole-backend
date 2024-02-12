@@ -11,7 +11,7 @@ spring:
 
   sql:
     init:
-      mode: always   # 초기 데이터 적재 설정
+      mode: never   # 초기 데이터 적재 설정
   jpa:
     properties:
       hibernate:
