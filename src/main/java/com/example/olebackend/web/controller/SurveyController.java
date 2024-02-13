@@ -4,6 +4,7 @@ import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.converter.SurveyConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.SubCategory;
+import com.example.olebackend.jwt.service.JwtService;
 import com.example.olebackend.service.SurveyService;
 import com.example.olebackend.web.dto.SurveyRequest;
 import com.example.olebackend.web.dto.SurveyResponse;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,8 @@ import java.util.stream.Collectors;
 public class SurveyController {
 
     private final SurveyService surveyService;
+    private final JwtService jwtService;
+
 
 
     @Operation(summary = "세부 카테고리 목록조회", description = "세부 카테고리 목록조회")
@@ -43,7 +47,14 @@ public class SurveyController {
     @GetMapping("/lessons/{categoryId}/surveys")
     public ApiResponse<List<SurveyResponse.SurveyResponseDto>> pastResults(
             @PathVariable(name = "categoryId") Long categoryId,
-            @RequestParam(name = "memberId") Long memberId){ // 토큰으로 변경 필요
+            HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
 
         log.info("/lessons/survey(get)");
 
@@ -60,10 +71,17 @@ public class SurveyController {
     @PostMapping("/lessons/survey")
     public ApiResponse<List<SurveyResponse.SurveyResponseDto>> surveyResults(
             SurveyRequest.SurveyCondition condition,
-            @RequestParam(name = "memberId") Long memberId){
+            HttpServletRequest request){
 
         log.info("/lessons/survey(post)");
-        
+
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
         List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
         surveyService.saveSurveyResults(memberId ,surveyResults) ;
 
