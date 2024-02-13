@@ -2,6 +2,8 @@ package com.example.olebackend.converter;
 
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.NonMember;
+import com.example.olebackend.domain.enums.ApplicationStatus;
+import com.example.olebackend.domain.enums.Completed;
 import com.example.olebackend.domain.mapping.LectureTeacher;
 import com.example.olebackend.web.dto.LessonResponse;
 import com.example.olebackend.web.dto.NonMemberResponse;
@@ -24,10 +26,12 @@ public class NonMemberConverter {
                 .name(request.getName())
                 .email(request.getEmail())
                 .phoneNum(request.getPhoneNum())
+                .attendanceStatus(Completed.NOT_COMPLETED)
+                .applicationStatus(ApplicationStatus.REVIEWING)
                 .build();
     }
 
-    public static NonMemberResponse.getApplicationResultDTO toApplicationDTO(Lesson lesson){
+    public static NonMemberResponse.getApplicationResultDTO toApplicationDTO(Lesson lesson, NonMember nonMember){
 
         List<LectureTeacher> teacherList = lesson.getLectureTeacherList();
 
@@ -42,12 +46,15 @@ public class NonMemberConverter {
                 .lessonEndTime(lesson.getLessonEndTime())
                 .lessonTeacherList(lessonTeacherList)
                 .place(lesson.getPlace())
+                .categoryId(lesson.getSubCategory().getCategory().getId())
+                .createdAt(nonMember.getCreatedAt())
+                .applicationStatus(nonMember.getApplicationStatus())
                 .build();
     }
     public static NonMemberResponse.getApplicationListResultDTO toApplicationListDTO(List<NonMember> nonMembers) {
 
         List<NonMemberResponse.getApplicationResultDTO> applicationList = nonMembers.stream()
-                .map(nonMember -> NonMemberConverter.toApplicationDTO(nonMember.getLesson()))
+                .map(nonMember -> NonMemberConverter.toApplicationDTO(nonMember.getLesson(),nonMember))
                 .collect(Collectors.toList());
 
         return NonMemberResponse.getApplicationListResultDTO.builder()

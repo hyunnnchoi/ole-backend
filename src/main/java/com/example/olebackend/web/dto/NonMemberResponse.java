@@ -1,7 +1,9 @@
 package com.example.olebackend.web.dto;
 
 import com.example.olebackend.domain.NonMember;
+import com.example.olebackend.domain.enums.ApplicationStatus;
 import lombok.*;
+import net.bytebuddy.asm.Advice;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,6 +30,10 @@ public class NonMemberResponse {
         LocalDateTime lessonEndTime; // 강의 종료 시간
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList; // 강사
         String place; //강의 장소
+        Long categoryId; //신청한 강의 카테고리
+        LocalDateTime createdAt; //신청 날짜
+        ApplicationStatus applicationStatus; //신청 상태
+
     }
 
     @Builder
