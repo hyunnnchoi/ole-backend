@@ -35,7 +35,7 @@ public class MemberApplyService {
                 .orElseThrow(() ->new GeneralException(MEMBER_NOT_FOUND));
 
         if(memberApplyRepository.existsByLessonIdAndMemberId(lessonId, memberId)){
-            throw new GeneralException(LESSONAPPLY_ALREADY_EXISTS);
+            throw new GeneralException(LESSON_APPLY_ALREADY_EXISTS);
         }
 
         MemberApply memberApply = MemberApplyConverter.toMemberApply(lesson,member);
@@ -52,7 +52,7 @@ public class MemberApplyService {
         }
 
         if (!memberApplyRepository.existsByLessonIdAndMemberId(lessonId, memberId)) {
-            throw new GeneralException(LESSONAPPLY_NOT_FOUND);
+            throw new GeneralException(LESSON_APPLY_NOT_FOUND);
         }
 
         memberApplyRepository.removeByLessonIdAndMemberId(lessonId, memberId);
@@ -61,7 +61,7 @@ public class MemberApplyService {
     public List<MemberApply> getApplication(Long memberId) {
 
         if (!memberApplyRepository.existsByMemberId(memberId)) {
-            throw new GeneralException(LESSONAPPLY_NOT_FOUND);
+            throw new GeneralException(LESSON_APPLY_NOT_FOUND);
         }
         List<MemberApply> memberApplyList= memberApplyRepository.findAllByMemberId(memberId);
 
@@ -70,11 +70,16 @@ public class MemberApplyService {
 
     public List<MemberApply> getCompletedApplication(Long memberId) {
 
+        //신청한 수업이 없을때
         if (!memberApplyRepository.existsByMemberId(memberId)) {
-            throw new GeneralException(LESSONAPPLY_NOT_FOUND);
+            throw new GeneralException(LESSON_APPLY_NOT_FOUND);
         }
         List<MemberApply> memberApplyList= memberApplyRepository.findAllByMemberIdAndAttendanceStatus(memberId,COMPLETED);
 
+        //수강 완료한 수업이 없을 때
+        if (memberApplyList.isEmpty()) {
+            throw new GeneralException(COMPLETED_LESSON_NOT_FOUND);
+        }
         return memberApplyList;
     }
 }
