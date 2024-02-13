@@ -95,5 +95,5 @@ public class Lesson extends BaseEntity {
     @Builder.Default
     private List<File> fileList = new ArrayList<>() ;
 
-
+    private String imageUrl; // 이미지
 }
