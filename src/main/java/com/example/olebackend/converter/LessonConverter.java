@@ -48,6 +48,35 @@ public class LessonConverter {
                 .build();
     }
 
+
+    public static LessonResponse.getLessonPreviewDTO toLessonPreviewDTO(Lesson lesson) {
+        return LessonResponse.getLessonPreviewDTO.builder()
+                .lessonId(lesson.getId())
+                .title(lesson.getTitle())
+                .lessonStartDate(lesson.getLessonStartDate())
+                .lessonEndDate(lesson.getLessonEndDate())
+                .lessonStartTime(lesson.getLessonStartTime())
+                .lessonEndTime(lesson.getLessonEndTime())
+                .gatherEndDate(lesson.getGatherEndDate())
+                .imageUrl(lesson.getImageUrl())
+                .description(lesson.getDescription())
+                .place(lesson.getPlace())
+                .build();
+    }
+    public static LessonResponse.getLessonListDTO toLessonListDTO(Page<Lesson> lessonList){
+        List<LessonResponse.getLessonPreviewDTO> lessonListPreviewDTOList = lessonList.stream()
+                .map(LessonConverter::toLessonPreviewDTO).collect(Collectors.toList());
+
+        return LessonResponse.getLessonListDTO.builder()
+                .isLast(lessonList.isLast())
+                .isFirst(lessonList.isFirst())
+                .totalPage(lessonList.getTotalPages())
+                .totalElements(lessonList.getTotalElements())
+                .listSize(lessonListPreviewDTOList.size())
+                .lessonPreviewDTOList(lessonListPreviewDTOList)
+                .build();
+    }
+
     public static LessonResponse.getLessonByCategoryAndSearchDTO toLessonByCategoryAndSearchDTO(Lesson lesson) {
         return LessonResponse.getLessonByCategoryAndSearchDTO.builder()
                 .lessonId(lesson.getId())

@@ -56,6 +56,44 @@ public class LessonResponse {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class getLessonPreviewDTO {
+
+        Long lessonId;
+
+        String title; // 수업명
+        LocalDateTime lessonStartDate; // 강의 시작일
+        LocalDateTime lessonEndDate; // 강의 종료일
+
+        LocalDateTime lessonStartTime; // 강의 시작 시간
+        LocalDateTime lessonEndTime; // 강의 종료 시간
+
+        LocalDateTime gatherEndDate; // 모집 마감일
+
+        String imageUrl; // 이미지 url
+
+        String description; // 수업 설명
+        String place; // 수업 장소
+
+
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class getLessonListDTO {
+        List<LessonResponse.getLessonPreviewDTO> lessonPreviewDTOList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class getLessonByCategoryAndSearchDTO {
 
         Long lessonId; // 교육 id
