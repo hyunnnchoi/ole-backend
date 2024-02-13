@@ -6,10 +6,11 @@ import com.example.olebackend.domain.enums.CommunityCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommunityRepository extends JpaRepository<Community, Long> {
+public interface CommunityRepository extends JpaRepository<Community, Long>, JpaSpecificationExecutor<Community> {
 
     Page<Community> findCommunityByCategory(CommunityCategory category, PageRequest pageRequest);
 

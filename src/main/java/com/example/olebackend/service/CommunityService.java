@@ -9,11 +9,13 @@ import com.example.olebackend.domain.mapping.CommunityComment;
 import com.example.olebackend.repository.CommunityCommentRepository;
 import com.example.olebackend.repository.CommunityRepository;
 import com.example.olebackend.repository.MemberRepository;
+import com.example.olebackend.repository.specification.CommunitySpecification;
 import com.example.olebackend.web.dto.CommunityRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,11 +35,11 @@ public class CommunityService {
     public Page<Community> getCommunityList(CommunityCategory category, Integer page) {
 
         Page<Community> communityList;
-        
-        if (category == null) {
+
+        if (category == null) { // 카테고리가 없으면 전체 조회
             communityList = communityRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
 
-        } else {
+        } else { // 카테고리 있으면 카테고리에 해당하는 게시물 조회
             communityList = communityRepository.findCommunityByCategory(category, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
 
         }
@@ -47,8 +49,20 @@ public class CommunityService {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
         return communityList;
+    }
 
+    public Page<Community> findCommunityListBySearch(CommunityCategory category, Specification<Community> spec, Integer page) {
 
+        // 카테고리가 없을 때 -> 전체에서 검색
+        if (category == null) {
+            return communityRepository.findAll(spec, PageRequest.of(page - 1, 10));
+        }
+
+        // 카테고리가 있을 때 -> 카테고리에 해당하는 게시글 중에서 검색
+        else {
+            spec = spec.and(CommunitySpecification.findByCategory(category));
+            return communityRepository.findAll(spec, PageRequest.of(page - 1, 10));
+        }
     }
 
     @Transactional
