@@ -35,9 +35,17 @@ public class NonMemberController {
 
     @PostMapping ("/guest/lessons")
     @Operation(summary = "비회원 신청 내역 조회 API")
-    public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getLessonDetail(
+    public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getApplication(
             @RequestBody NonMemberRequest.getPhoneNumDTO request) {
         List<NonMember> nonMemberList = nonMemberService.getApplication(request);
+        return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
+    }
+
+    @PostMapping ("/guest/lessons/completed")
+    @Operation(summary = "비회원 수강 내역 조회 API")
+    public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getCompletedApplication(
+            @RequestBody NonMemberRequest.getPhoneNumDTO request) {
+        List<NonMember> nonMemberList = nonMemberService.getCompletedApplication(request);
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 

@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
+import static com.example.olebackend.domain.enums.Completed.COMPLETED;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class NonMemberService {
                 .orElseThrow(() ->new GeneralException(LESSON_NOT_FOUND));
 
         if(nonMemberRepository.existsByLessonIdAndPhoneNum(lessonId, phoneNum)){
-            throw new GeneralException(LESSONAPPLY_ALREADY_EXISTS);
+            throw new GeneralException(LESSON_APPLY_ALREADY_EXISTS);
         }
 
         NonMember nonMember = NonMemberConverter.toNonMember(request,lesson);
@@ -44,6 +45,23 @@ public class NonMemberService {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
         }
         List<NonMember> nonMemberList= nonMemberRepository.findAllByPhoneNum(phoneNum);
+
+        return nonMemberList;
+    }
+
+    public List<NonMember> getCompletedApplication(NonMemberRequest.getPhoneNumDTO request) {
+        String phoneNum=request.getPhoneNum();
+
+        //비회원 정보가 없을 때
+        if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
+            throw new GeneralException(NON_MEMBER_NOT_FOUND);
+        }
+        List<NonMember> nonMemberList= nonMemberRepository.findAllByPhoneNumAndAttendanceStatus(phoneNum,COMPLETED);
+
+        //수강 완료한 수업이 없을 때
+        if (nonMemberList.isEmpty()) {
+            throw new GeneralException(COMPLETED_LESSON_NOT_FOUND);
+        }
 
         return nonMemberList;
     }
