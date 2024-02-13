@@ -1,14 +1,15 @@
 package com.example.olebackend.service;
 
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
-import com.example.olebackend.domain.Community;
 import com.example.olebackend.domain.News;
 import com.example.olebackend.domain.enums.NewsCategory;
 import com.example.olebackend.repository.NewsRepository;
+import com.example.olebackend.repository.specification.NewsSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +25,8 @@ public class NewsService {
 
     private final NewsRepository newsRepository;
 
+    // 검색어 없을 때의 조회
     public Page<News> getNewsList(NewsCategory category, Integer page) {
-
 
         Page<News> newsList;
 
@@ -39,6 +40,21 @@ public class NewsService {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
         return newsList;
+    }
+
+    // 검색어 있을 때 조회
+    public Page<News> getNewsListBySearch(NewsCategory category, Specification<News> spec, Integer page){
+
+        // 카테고리가 없을 때 -> 전체에서 검색
+        if (category == null) {
+            return newsRepository.findAll(spec, PageRequest.of(page - 1, 10));
+        }
+
+        // 카테고리가 있을 때 -> 카테고리에 해당하는 게시글 중에서 검색
+        else {
+            spec = spec.and(NewsSpecification.findByCategory(category));
+            return newsRepository.findAll(spec, PageRequest.of(page - 1, 10));
+        }
     }
 
     @Transactional
