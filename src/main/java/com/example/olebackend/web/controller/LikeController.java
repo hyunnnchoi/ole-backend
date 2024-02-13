@@ -48,7 +48,14 @@ public class LikeController {
     @Operation(summary = "찜 취소(위시리스트 삭제)")
     public ApiResponse<String> pressUnLike(
             @PathVariable(name = "lessonId") Long lessonId,
-            @RequestParam(name = "memberId") Long memberId){
+            HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
 
         likeService.removeFromWishlist(lessonId, memberId);
         return ApiResponse.onSuccess("isSuccess");
@@ -56,8 +63,14 @@ public class LikeController {
     @GetMapping("/member/likes")
     @Operation(summary = "찜 목록 조회")
     public ApiResponse<List<LikeResponse.LikeResponseDto>> likes(
-            @RequestParam(name = "memberId") Long memberId){
+            HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
 
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
         List<Lesson> likeList = likeService.likeList(memberId) ;
         List<LikeResponse.LikeResponseDto> result = likeList.stream()
                 .map(s -> LikeConverter.toLikeResponse(s))
