@@ -51,17 +51,18 @@ public class NewsResponse {
         String category;
         String author;
         LocalDateTime createdAt;
-        List<NewsResponse.getNewsFileDTO> fileList;
+        List<NewsResponse.getNewsImagesDTO> imageList;
         int views;
 
     }
+
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class getNewsFileDTO {
+    public static class getNewsImagesDTO {
 
-        String filePath;
+        String imageUrl;
 
     }
 

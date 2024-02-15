@@ -2,6 +2,7 @@ package com.example.olebackend.converter;
 
 import com.example.olebackend.domain.File;
 import com.example.olebackend.domain.News;
+import com.example.olebackend.domain.NewsImage;
 import com.example.olebackend.web.dto.NewsResponse;
 import org.springframework.data.domain.Page;
 
@@ -39,17 +40,17 @@ public class NewsConverter {
                 .build();
     }
 
-    public static NewsResponse.getNewsFileDTO toNewsFileDTO(File file) {
-        return NewsResponse.getNewsFileDTO.builder()
-                .filePath(file.getPath())
+    public static NewsResponse.getNewsImagesDTO toNewsImageDTO(NewsImage newsImage) {
+        return NewsResponse.getNewsImagesDTO.builder()
+                .imageUrl(newsImage.getImageUrl())
                 .build();
     }
 
     public static NewsResponse.getNewsDetailDTO toNewsDetailDTO(Optional<News> news) {
-        List<File> fileList = news.get().getFileList();
+        List<NewsImage> imageList = news.get().getImageList();
 
-        List<NewsResponse.getNewsFileDTO> newsFileDTOList = fileList.stream()
-                .map(NewsConverter::toNewsFileDTO).collect(Collectors.toList());
+        List<NewsResponse.getNewsImagesDTO> newsImagesDTOList = imageList.stream()
+                .map(NewsConverter::toNewsImageDTO).collect(Collectors.toList());
 
         return NewsResponse.getNewsDetailDTO.builder()
                 .title(news.get().getTitle())
@@ -57,7 +58,7 @@ public class NewsConverter {
                 .category(news.get().getCategory().toString())
                 .author(news.get().getAuthor())
                 .createdAt(news.get().getCreatedAt())
-                .fileList(newsFileDTOList)
+                .imageList(newsImagesDTOList)
                 .views(news.get().getViews())
                 .build();
 
