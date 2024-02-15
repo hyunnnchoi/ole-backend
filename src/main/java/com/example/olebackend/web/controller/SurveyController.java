@@ -31,7 +31,8 @@ public class SurveyController {
 
     @Operation(summary = "세부 카테고리 목록조회", description = "세부 카테고리 목록조회")
     @GetMapping("/sub_categories/{categoryId}")
-    public ApiResponse<List<SurveyResponse.SubCategoryDto>> secondProblem(@PathVariable long categoryId){
+    public ApiResponse<List<SurveyResponse.SubCategoryDto>> secondProblem(
+            @PathVariable long categoryId){
 
         log.info("/sub_categories - "+ categoryId);
 
@@ -70,7 +71,7 @@ public class SurveyController {
     @Operation(summary = "설문조사 제출- 강의 추천하기", description = "설문조사 - 강의 추천하기")
     @PostMapping("/lessons/survey")
     public ApiResponse<List<SurveyResponse.SurveyResponseDto>> surveyResults(
-            SurveyRequest.SurveyCondition condition,
+            @RequestBody SurveyRequest.SurveyCondition condition,
             HttpServletRequest request){
 
         log.info("/lessons/survey(post)");
