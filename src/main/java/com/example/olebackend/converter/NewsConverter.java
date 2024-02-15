@@ -11,16 +11,8 @@ import java.util.stream.Collectors;
 
 public class NewsConverter {
 
+    // 목록에서의 썸네일
     public static NewsResponse.getNewsPreviewDTO toNewsPreviewDTO(News news) {
-        List<File> fileList = news.getFileList();
-
-        File file = null;
-        if (fileList != null) {
-            file = fileList.stream()
-                    .filter(File::isRepresent)
-                    .findFirst()
-                    .orElse(null);
-        }
 
         return NewsResponse.getNewsPreviewDTO.builder()
                 .id(news.getId())
@@ -29,7 +21,7 @@ public class NewsConverter {
                 .title(news.getTitle())
                 .content(news.getContent())
                 .author(news.getAuthor())
-                .filePath(file != null ? file.getPath() : null)
+                .imageUrl(news.getImageUrl())
                 .build();
     }
 
