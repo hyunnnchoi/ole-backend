@@ -4,6 +4,7 @@ import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.MemberApplyConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.Member;
+import com.example.olebackend.domain.enums.ApplicationStatus;
 import com.example.olebackend.domain.mapping.MemberApply;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
@@ -38,7 +39,9 @@ public class MemberApplyService {
             throw new GeneralException(LESSON_APPLY_ALREADY_EXISTS);
         }
 
-        MemberApply memberApply = MemberApplyConverter.toMemberApply(lesson,member);
+        ApplicationStatus applicationStatus = lesson.getPriceStatus() ? ApplicationStatus.REVIEWING : ApplicationStatus.APPROVED;
+
+        MemberApply memberApply = MemberApplyConverter.toMemberApply(lesson,member,applicationStatus);
 
         return memberApplyRepository.save(memberApply);
     }

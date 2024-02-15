@@ -19,7 +19,7 @@ public class NonMemberConverter {
                 .build();
     }
 
-    public static NonMember toNonMember(NonMemberRequest.ApplyDTO request, Lesson lesson){
+    public static NonMember toNonMember(NonMemberRequest.ApplyDTO request, Lesson lesson,ApplicationStatus applicationStatus){
 
         return NonMember.builder()
                 .lesson(lesson)
@@ -27,7 +27,7 @@ public class NonMemberConverter {
                 .email(request.getEmail())
                 .phoneNum(request.getPhoneNum())
                 .attendanceStatus(Completed.NOT_COMPLETED)
-                .applicationStatus(ApplicationStatus.REVIEWING)
+                .applicationStatus(applicationStatus)
                 .build();
     }
 
