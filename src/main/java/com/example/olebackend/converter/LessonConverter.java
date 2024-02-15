@@ -34,6 +34,7 @@ public class LessonConverter {
                 .price(lesson.get().getPrice())
                 .refund(lesson.get().getRefund())
                 .place(lesson.get().getPlace())
+                .categoryId(lesson.get().getSubCategory().getCategory().getId())
                 .lessonStartDate(lesson.get().getLessonStartDate())
                 .lessonEndDate(lesson.get().getLessonEndDate())
                 .lectureWeekDay(lesson.get().getLectureWeekDay().toString())
