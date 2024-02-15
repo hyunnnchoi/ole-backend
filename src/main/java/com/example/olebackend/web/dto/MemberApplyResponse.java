@@ -1,5 +1,6 @@
 package com.example.olebackend.web.dto;
 
+import com.example.olebackend.domain.enums.ApplicationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,10 @@ public class MemberApplyResponse {
         LocalDateTime lessonEndTime; // 강의 종료 시간
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList; // 강사
         String place; //강의 장소
+        Long categoryId; //신청한 강의 카테고리
+        LocalDateTime createdAt; //신청 날짜
+        ApplicationStatus applicationStatus; //신청 상태
+
     }
 
     @Builder

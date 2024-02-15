@@ -2,6 +2,7 @@ package com.example.olebackend.converter;
 
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.Member;
+import com.example.olebackend.domain.enums.ApplicationStatus;
 import com.example.olebackend.domain.enums.Completed;
 import com.example.olebackend.domain.mapping.LectureTeacher;
 import com.example.olebackend.domain.mapping.MemberApply;
@@ -18,6 +19,7 @@ public class MemberApplyConverter {
                 .lesson(lesson)
                 .member(member)
                 .attendanceStatus(Completed.NOT_COMPLETED)
+                .applicationStatus(ApplicationStatus.REVIEWING)
                 .build();
     }
 
@@ -26,7 +28,7 @@ public class MemberApplyConverter {
                 .memberApplyId(memebrApply.getId())
                 .build();
     }
-    public static MemberApplyResponse.getApplicationResultDTO toApplicationDTO(Lesson lesson){
+    public static MemberApplyResponse.getApplicationResultDTO toApplicationDTO(Lesson lesson, MemberApply memberApply){
 
         List<LectureTeacher> teacherList = lesson.getLectureTeacherList();
 
@@ -41,12 +43,15 @@ public class MemberApplyConverter {
                 .lessonEndTime(lesson.getLessonEndTime())
                 .lessonTeacherList(lessonTeacherList)
                 .place(lesson.getPlace())
+                .categoryId(lesson.getSubCategory().getCategory().getId())
+                .createdAt(memberApply.getCreatedAt())
+                .applicationStatus(memberApply.getApplicationStatus())
                 .build();
     }
     public static MemberApplyResponse.getApplicationListResultDTO toApplicationListDTO(List<MemberApply> memberApplyList) {
 
         List<MemberApplyResponse.getApplicationResultDTO> applicationList = memberApplyList.stream()
-                .map(memberApply -> MemberApplyConverter.toApplicationDTO(memberApply.getLesson()))
+                .map(memberApply -> MemberApplyConverter.toApplicationDTO(memberApply.getLesson(),memberApply))
                 .collect(Collectors.toList());
 
         return MemberApplyResponse.getApplicationListResultDTO.builder()
