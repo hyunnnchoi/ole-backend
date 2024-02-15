@@ -1,7 +1,6 @@
 package com.example.olebackend.web.dto;
 
 
-import com.example.olebackend.domain.File;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,6 +32,8 @@ public class LessonResponse {
         Integer price; // 가격
         String refund; // 환불 규정
         String place; // 수업 장소
+
+        Long categoryId; // 카테고리 id
 
         LocalDateTime lessonStartDate; // 강의 시작일
         LocalDateTime lessonEndDate; // 강의 종료일
