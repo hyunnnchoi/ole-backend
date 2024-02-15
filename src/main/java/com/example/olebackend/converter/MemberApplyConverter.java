@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MemberApplyConverter {
-    public static MemberApply toMemberApply(Lesson lesson, Member member){
+    public static MemberApply toMemberApply(Lesson lesson, Member member, ApplicationStatus applicationStatus){
 
         return MemberApply.builder()
                 .lesson(lesson)
                 .member(member)
                 .attendanceStatus(Completed.NOT_COMPLETED)
-                .applicationStatus(ApplicationStatus.REVIEWING)
+                .applicationStatus(applicationStatus)
                 .build();
     }
 

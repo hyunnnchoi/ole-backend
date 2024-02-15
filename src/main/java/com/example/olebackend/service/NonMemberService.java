@@ -4,6 +4,7 @@ import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.NonMemberConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.NonMember;
+import com.example.olebackend.domain.enums.ApplicationStatus;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.NonMemberRepository;
 import com.example.olebackend.web.dto.NonMemberRequest;
@@ -33,7 +34,10 @@ public class NonMemberService {
             throw new GeneralException(LESSON_APPLY_ALREADY_EXISTS);
         }
 
-        NonMember nonMember = NonMemberConverter.toNonMember(request,lesson);
+        ApplicationStatus applicationStatus = lesson.getPriceStatus() ? ApplicationStatus.REVIEWING : ApplicationStatus.APPROVED;
+
+
+        NonMember nonMember = NonMemberConverter.toNonMember(request,lesson,applicationStatus);
 
         return nonMemberRepository.save(nonMember);
     }
