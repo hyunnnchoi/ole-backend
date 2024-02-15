@@ -29,6 +29,8 @@ public class News extends BaseEntity {
 
     private String author;
 
+    private String imageUrl;
+
     @ColumnDefault("0")
     private int views;
 

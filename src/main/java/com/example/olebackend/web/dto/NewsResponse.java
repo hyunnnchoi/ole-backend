@@ -21,7 +21,7 @@ public class NewsResponse {
         String title;
         String content;
         String author;
-        String filePath;
+        String imageUrl;
 
 
     }
