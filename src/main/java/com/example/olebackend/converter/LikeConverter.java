@@ -18,15 +18,6 @@ public class LikeConverter {
      */
     public static LikeResponse.LikeResponseDto toLikeResponse(Lesson lesson){
 
-        // '대표 이미지여부' 속성이 true인 파일 필터링
-        Optional<File> representativeFile = lesson.getFileList()
-                .stream()
-                .filter(e -> e.isRepresent())
-                .findAny() ;
-
-        // 대표 이미지가 존재하는 경우에만 imgUrl을 설정, 아니면 null
-        String imgUrl =  representativeFile.map(File::getPath).orElse(null);
-
         return LikeResponse.LikeResponseDto.builder()
                 .lessonId(lesson.getId())
                 .title(lesson.getTitle())
@@ -34,10 +25,8 @@ public class LikeConverter {
                 .endDate(lesson.getLessonEndDate())
                 .startTime(lesson.getLessonStartTime())
                 .endTime(lesson.getLessonEndTime())
-                .imgUrl(imgUrl)
+                .imgUrl(lesson.getImageUrl())
                 .leftDays((int)ChronoUnit.DAYS.between(LocalDate.now(), lesson.getGatherEndDate()))
                 .build();
     }
-
-
 }
