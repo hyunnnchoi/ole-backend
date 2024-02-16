@@ -49,6 +49,7 @@ public class NonMemberConverter {
                 .categoryId(lesson.getSubCategory().getCategory().getId())
                 .createdAt(nonMember.getCreatedAt())
                 .applicationStatus(nonMember.getApplicationStatus())
+                .imgUrl(lesson.getImageUrl())
                 .build();
     }
     public static NonMemberResponse.getApplicationListResultDTO toApplicationListDTO(List<NonMember> nonMembers) {
