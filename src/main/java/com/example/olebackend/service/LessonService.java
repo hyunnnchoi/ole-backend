@@ -1,10 +1,14 @@
 package com.example.olebackend.service;
 
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
+import com.example.olebackend.converter.LessonConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.repository.CategoryRepository;
 import com.example.olebackend.repository.LessonRepository;
+import com.example.olebackend.repository.LikeRepository;
+import com.example.olebackend.repository.MemberApplyRepository;
+import com.example.olebackend.web.dto.LessonResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,16 +29,31 @@ public class LessonService {
 
     private final LessonRepository lessonRepository;
     private final CategoryRepository categoryRepository;
+    private final LikeRepository likeRepository;
+    private final MemberApplyRepository memberApplyRepository;
 
     @Transactional
-    public Optional<Lesson> getLessonDetail(Long lessonId) {
+    public LessonResponse.getLessonDetailDTO getLessonDetail(Long lessonId, Long memberId) {
         Optional<Lesson> lesson = lessonRepository.findById(lessonId);
+
+        Boolean likeStatus = false;
+        Boolean applyStatus = false;
+
+        // 로그인이 된 상태라면
+        if (memberId != null) {
+            likeStatus = likeRepository.existsByLesson_IdAndMember_Id(lessonId, memberId);
+            applyStatus = memberApplyRepository.existsByLessonIdAndMemberId(lessonId, memberId);
+        }
+
+        // 조회 수 증가 로직
         lesson.ifPresent(Lesson::incrementViews);
         lessonRepository.save(lesson.get());
+
+        // 해당하는 교육이 없으면
         if (!lessonRepository.existsById(lessonId)) {
             throw new GeneralException(LESSON_NOT_FOUND);
         }
-        return lesson;
+        return LessonConverter.toLessonDetailDTO(lesson, likeStatus, applyStatus);
     }
 
     public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
