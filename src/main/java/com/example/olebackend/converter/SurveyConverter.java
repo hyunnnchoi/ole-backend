@@ -25,15 +25,6 @@ public class SurveyConverter {
      */
     public static SurveyResponse.SurveyResponseDto toSurveyResponseDto(Lesson lesson){
 
-        // '대표 이미지여부' 속성이 true인 파일 필터링
-        Optional<File> representativeFile = lesson.getFileList()
-                .stream()
-                .filter(e -> e.isRepresent())
-                .findAny() ;
-
-        // 대표 이미지가 존재하는 경우에만 imgUrl을 설정, 아니면 null
-        String imgUrl =  representativeFile.map(File::getPath).orElse(null);
-
         return SurveyResponse.SurveyResponseDto.builder()
                 .lessonId(lesson.getId())
                 .title(lesson.getTitle())
@@ -46,11 +37,9 @@ public class SurveyConverter {
                 .gatherStartDate(lesson.getGatherStartDate())
                 .gatherEndDate(lesson.getGatherEndDate())
                 .weekDay(lesson.getLectureWeekDay().toString())
-                .imgUrl(imgUrl)
+                .imgUrl(lesson.getImageUrl())
                 .currentCount(lesson.getCurrentCount())
                 .limitCount(lesson.getLimitCount())
                 .build();
     }
-
-
 }
