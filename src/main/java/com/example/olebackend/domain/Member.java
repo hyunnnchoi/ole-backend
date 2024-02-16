@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
