@@ -84,7 +84,9 @@ public class SurveyController {
             memberId = jwtService.extractId(accessToken).orElse(null);
         }
         List<Lesson> surveyResults = surveyService.getSurveyResults(condition);
-        surveyService.saveSurveyResults(memberId ,surveyResults) ;
+        if(memberId != null){
+            surveyService.saveSurveyResults(memberId ,surveyResults) ;
+        }
 
         List<SurveyResponse.SurveyResponseDto> result = surveyResults.stream()
                 .map(s -> SurveyConverter.toSurveyResponseDto(s))
