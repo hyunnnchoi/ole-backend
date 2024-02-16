@@ -35,6 +35,9 @@ public class LessonResponse {
 
         Long categoryId; // 카테고리 id
 
+        Boolean likeStatus; // 해당 교육 찜하기 여부
+        Boolean applyStatus; // 해당 교육 신청 여부
+
         LocalDateTime lessonStartDate; // 강의 시작일
         LocalDateTime lessonEndDate; // 강의 종료일
 

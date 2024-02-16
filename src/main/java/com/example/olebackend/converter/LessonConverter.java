@@ -3,6 +3,7 @@ package com.example.olebackend.converter;
 import com.example.olebackend.domain.File;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.mapping.LectureTeacher;
+import com.example.olebackend.domain.mapping.Likes;
 import com.example.olebackend.web.dto.LessonResponse;
 import org.springframework.data.domain.Page;
 
@@ -19,12 +20,13 @@ public class LessonConverter {
                 .build();
     }
 
-    public static LessonResponse.getLessonDetailDTO toLessonDetailDTO(Optional<Lesson> lesson) {
+    public static LessonResponse.getLessonDetailDTO toLessonDetailDTO(Optional<Lesson> lesson, Boolean likeStatus, Boolean applyStatus) {
 
         List<LectureTeacher> teacherList = lesson.get().getLectureTeacherList();
 
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList = teacherList.stream()
                 .map(LessonConverter::toTeacherNameDTO).collect(Collectors.toList());
+
 
         return LessonResponse.getLessonDetailDTO.builder()
                 .title(lesson.get().getTitle())
@@ -35,6 +37,8 @@ public class LessonConverter {
                 .refund(lesson.get().getRefund())
                 .place(lesson.get().getPlace())
                 .categoryId(lesson.get().getSubCategory().getCategory().getId())
+                .likeStatus(likeStatus)
+                .applyStatus(applyStatus)
                 .lessonStartDate(lesson.get().getLessonStartDate())
                 .lessonEndDate(lesson.get().getLessonEndDate())
                 .lectureWeekDay(lesson.get().getLectureWeekDay().toString())

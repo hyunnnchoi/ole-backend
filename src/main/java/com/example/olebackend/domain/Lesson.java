@@ -5,6 +5,7 @@ import com.example.olebackend.domain.enums.Approved;
 import com.example.olebackend.domain.enums.Type;
 import com.example.olebackend.domain.enums.Week;
 import com.example.olebackend.domain.mapping.LectureTeacher;
+import com.example.olebackend.domain.mapping.Likes;
 import com.example.olebackend.domain.mapping.MemberApply;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -72,6 +73,8 @@ public class Lesson extends BaseEntity {
 
     private int currentCount ; // 현재 신청 인원
 
+    private String imageUrl; // 이미지
+
     @ColumnDefault("0")
     private int views ; // 조회수
     public void incrementViews() {
@@ -90,10 +93,13 @@ public class Lesson extends BaseEntity {
     @Builder.Default
     private List<MemberApply> memberApplyList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "lesson", fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
+    @Builder.Default
+    private List<Likes> likes = new ArrayList<>() ;
+
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.REMOVE)
     @Builder.Default
     private List<File> fileList = new ArrayList<>() ;
 
-    private String imageUrl; // 이미지
 }

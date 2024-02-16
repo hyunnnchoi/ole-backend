@@ -4,6 +4,7 @@ import com.example.olebackend.apiPayLoad.ApiResponse;
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.LessonConverter;
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.jwt.service.JwtService;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.specification.LessonSpecification;
 import com.example.olebackend.service.LessonService;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,13 +29,24 @@ import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.KEYWORD_
 public class LessonController {
 
     private final LessonService lessonService;
-    private final LessonRepository lessonRepository;
+    private final JwtService jwtService;
 
     @GetMapping("/{lessonId}")
     @Operation(summary = "교육 상세 조회 API")
-    public ApiResponse<LessonResponse.getLessonDetailDTO> getLessonDetail(@PathVariable Long lessonId) {
-        Optional<Lesson> lesson = lessonService.getLessonDetail(lessonId);
-        return ApiResponse.onSuccess(LessonConverter.toLessonDetailDTO(lesson));
+    public ApiResponse<LessonResponse.getLessonDetailDTO> getLessonDetail(@PathVariable Long lessonId, HttpServletRequest request) {
+
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
+
+        LessonResponse.getLessonDetailDTO lessonDetail = lessonService.getLessonDetail(lessonId, memberId);
+
+        return ApiResponse.onSuccess(lessonDetail);
     }
 
     @GetMapping("/category/{categoryId}")
@@ -43,8 +56,8 @@ public class LessonController {
             @Parameter(name = "page", description = "페이지 번호이며, 1페이지부터 시작입니다."),
     })
     public ApiResponse<LessonResponse.getLessonListDTO> getLessonListByCategory(@PathVariable Long categoryId,
-                                                                                                   @RequestParam(required = false, value = "keyword") String keyword,
-                                                                                                   @RequestParam(required = false, defaultValue = "1") Integer page) {
+                                                                                @RequestParam(required = false, value = "keyword") String keyword,
+                                                                                @RequestParam(required = false, defaultValue = "1") Integer page) {
         Specification<Lesson> spec = (root, query, criteriaBuilder) -> null;
 
         // 키워드가 있으면 -> 카테고리별로 조회한 교육 리스트 내에서 keyword 포함한 교육 리턴
