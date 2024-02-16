@@ -33,6 +33,7 @@ public class NonMemberResponse {
         Long categoryId; //신청한 강의 카테고리
         LocalDateTime createdAt; //신청 날짜
         ApplicationStatus applicationStatus; //신청 상태
+        String imgUrl; //이미지 url
 
     }
 

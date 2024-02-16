@@ -1,5 +1,6 @@
 package com.example.olebackend.converter;
 
+import com.example.olebackend.domain.File;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.Member;
 import com.example.olebackend.domain.enums.ApplicationStatus;
@@ -10,6 +11,7 @@ import com.example.olebackend.web.dto.LessonResponse;
 import com.example.olebackend.web.dto.MemberApplyResponse;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MemberApplyConverter {
@@ -46,6 +48,7 @@ public class MemberApplyConverter {
                 .categoryId(lesson.getSubCategory().getCategory().getId())
                 .createdAt(memberApply.getCreatedAt())
                 .applicationStatus(memberApply.getApplicationStatus())
+                .imgUrl(lesson.getImageUrl())
                 .build();
     }
     public static MemberApplyResponse.getApplicationListResultDTO toApplicationListDTO(List<MemberApply> memberApplyList) {
