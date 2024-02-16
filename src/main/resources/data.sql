@@ -217,18 +217,47 @@ VALUES (2, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소',
 INSERT IGNORE INTO member(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
 VALUES (3, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾3', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
 
-INSERT INTO community(created_at, body, category, title, member_id, views) VALUES (NOW(), '저처럼 요리 초보이신 남자분들 수업 같이 들으면 좋을 것 같아요. 링크는 여기 있습니다.', 'TOGETHER', '은평구 요리 교실 수업 같이 들어요', 1, 10);
-INSERT INTO community(body, category, title, member_id, views) VALUES ('저는 음료수를 잘 안먹어서 환불하고 싶은데 좀 쉽게 설명해주실 분. 지금 편의점에 있어서 빨리', 'QUESTION', '기프티콘 환불하는 법 아시는 분?', 2, 122);
-INSERT INTO community(body, category, title, member_id, views) VALUES ('기존 사진의 색상을 바꾸거나 위치 수정 또는 배경 변경하려고 하는데 포토샵에서 어떤 기능 써야 하나요?', 'QUESTION', '이거 포토샵으로 가능한건가요?', 3, 1233);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-20 12:50:19.000000', '저는 음료수를 잘 안먹어서 환불하고 싶은데 좀 쉽게 설명해주실 분 있나요? 며칠 전에 친구가 카카오톡으로 스타벅스 기프티콘을 보내줬어요. 안먹는거면 환불 된다는데 방법을 모르겠네요... ', 'QUESTION', '기프티콘 환불하는 법 아시는 분?', 1, 30490);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-20 11:50:19.000000', '저처럼 요리 초보이신 남자분들 수업 같이 들으면 좋을 것 같아요. 링크는 여기 있습니다. ', 'TOGETHER', '은평구 요리 교실 수업 같이 들어요', 1, 1923);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-19 21:50:19.000000', '기존 사진의 색상을 바꾸거나 위치 수정 또는 배경 변경하려고 하는데 포토샵에서 어떤 기능 써야 하나요?', 'QUESTION', '이거 포토샵으로 가능한건가요?', 1, 1329);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-19 20:50:19.000000', '갓수저로 살아가기, 주요 내용 : 1) 빌 게이츠, 스티브 잡스, 스티븐 스필버그 등 세계를 주름잡는 위인 사례 소개 2) 교육적 및 정서적 차원에서 분석한 그들의 성공 비결 ', 'TOGETHER', '특강 같이 가실 분', 1, 521);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-19 21:28:19.000000', '저희 동네에 고려대 경영대 나오신 20대 중국인 원어민 선생님이 있는데, 엄청 잘 가르친다고 하네요. 말하기 수업 1시간에 15000원이고, 전화 수업도 하신다고 하는', 'TOGETHER', '중국어 교육 같이 들어요', 1, 597);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-19 20:50:19.000000', '올래 회원이 된지 6개월 차입니다^^ 수업을 듣다 보니까 저도 가르치고 싶은 마음이 들더라고요. 올래 선생님이 되는 방법 아시는 분 좀 알려주세요~', 'QUESTION', '저도 올래 선생님 하고 싶은데 어떻게 하나요?', 1, 20008);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-18 22:50:19.000000', '혼자 했다가 부품이나 잘못 훼손되기라도 하면... 끔찍하기에 업체 맡겨 청소 쫙 하고 싶은데 요즘 본체 청소 괜찮은 곳 추천할 만한 곳 있나요? 보통 가격대는 얼마나 하', 'QUESTION', '컴퓨터 본체 청소 개인이 하시나요?', 1, 21052);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-18 23:50:19.000000', '안녕하세요~ 현재 대전 둔산동에서 보컬 학원 다니고 있는데 너무 괜찮은 것 같아서 소개해 드리고 싶어요~^^ 기초부터 탄탄히 가르쳐주고 바이브레이션도 잘 알려줍ㄴ', 'TOGETHER', '대전에 노래 잘하는 사람~', 1, 1542);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-02-18 23:50:19.000000', '겨울철이라 그런지 결로가 너무 심하네요... 벽에 곰팡이 피고 관리가 넘 어려워요 ~', 'QUESTION', '겨울철 결로 현상 ㅠㅠ', 1, 388);
+INSERT INTO community(created_at, body, category, title, member_id, views)
+VALUES ('2024-01-17 20:50:19.000000', '올래에서 수업 신청하면 문자로 알려주잖아요. 근데 저는 문자가 안와요.. 어떻게 해결하죠?', 'QUESTION', '수업 신청해도 문자가 안와요', 1, 20692);
 
-INSERT INTO community_comment(content, community_id, member_id) VALUES ("1번글 댓글",1, 2);
-INSERT INTO community_comment(content, community_id, member_id) VALUES ("2번글 댓글",2, 3);
-INSERT INTO community_comment(content, community_id, member_id) VALUES ("3번글 댓글",3, 1);
-
-INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-26 23:50:19.000000', 'BOARD', '친절한 쩡아쌤', '생활뉴스 글1', '생활뉴스 제목1');
-INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-27 23:50:19.000000', 'HEALTH', '친절한 쩡아쌤', '생활뉴스 글2', '생활뉴스 제목2');
-INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-25 23:50:19.000000','LIFE', '친절한 쩡아쌤', '생활뉴스 글3', '생활뉴스 제목3');
-INSERT INTO news(created_at, category, author, content, title) VALUES ('2024-01-23 23:50:19.000000','RECRUIT', '친절한 쩡아쌤', '생활뉴스 글4', '생활뉴스 제목4');
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-20 12:50:19.000000', 'HEALTH', '친절한 쩡아쌤', '안녕하세요, 쩡이쌤입니다! 건강을 위해 반드시 지켜야 하는 식단 다섯가지를 가져왔습니다!', '건강을 위해 반드시 지켜야 하는 식단!',30982);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-20 11:50:19.000000', 'LIFE', '시골청년', '안정적인 경제적 터전을 마련하는 방편이기도 하지만 귀향하고 싶은 마음의 중장년을 위한 안정적인 귀농귀촌에 대한 정보를 소개합니다.', '도시를 떠난 삶을 위해 가장 먼저 가야 할 곳',20912);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-19 11:50:19.000000','RECRUIT', '슬기로운취준생활', '퇴직 후 우울감을 느끼는 중장년 세대가 많은 요즘, 은퇴 후 설계의 사회적 의미를 확인할 수 있는 다양한 사회공헌활동에 대해 정보를 소개합니다.', '인생 2막 의미를 찾은 사회공헌활동 정보 2024',23873);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-19 10:50:19.000000','LIFE', '생활통통', '해가 거듭될수록 더욱 두드러지게 늘어나고 있는 중장년층 1인가구. 가족과 함께하는 세대에 비해 삶의 만족도가 급격히 하락하고, 건강, 사회적 고립, ', '중장년 1인가구를 지켜주는 생활정보',11923);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-18 11:50:19.000000','BOARD', '팀 올래', '안녕하세요, 팀 올래입니다! 아주 반가운 소식을 들고 왔습니다~(짝짝짝) 드디어 올래가 자체적으로 카카오톡 채널을 만들었어요! 이 채널을 추가하시면 앞', '올래 카카오톡 채널 추가!',29102);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-18 10:50:19.000000','HEALTH', '친절한 쩡아쌤', '2030년 대한민국 기대 수명은 85.2세로 ‘100세 시대’는 이제 얼마 남지 않은 듯 합니다. 하지만 노년의 평균 12년을 병상에서 지내야 한다는 통계도 나', '건강한 100세를 위한 중장년 건강 진단',9210);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-17 11:50:19.000000','RECRUIT', '빛이되어줄게', '위드코로나 시대로 일상이 회복되었지만, 여전히 자영업자 40%는 3년 이내에 여러 부담으로 인해 폐업을 고민할만큼 골목상권의 어려움은 지속되고 ', '자영업, 소상공인을 위한 지원정보',21901);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-16 20:50:19.000000','RECRUIT', '친절한 쩡아쌤', '지속적인 경제활동 욕구와 도전에도 불구하고 한국인들의 평균 은퇴 나이는 49세. 퇴직 후에도 중장년층의 창업을 지원하는 다양한 제도에 대해서 알아', '퇴직 후 창업을 준비하는 중장년을 위한 지원제도',8920);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-16 17:50:19.000000','LIFE', '여행을 떠나요', '추운 겨울도 조금씩 지나가고 있네요. 곧 봄이 오니 한번 여행 계획을 짜는 것도 좋겠죠? 생활 속 스트레스를 해소하고 새로운 변화를 줄 수 있는 서울에', '봄을 즐기는 행복 충전 서울 힐링여행',9281);
+INSERT INTO news(created_at, category, author, content, title, views)
+VALUES ('2024-02-16 15:50:19.000000','RECRUIT', '이전직전문가', '채용시장에서 실제 어떤 자격증이 유리하게 작용하고 있을까요?', '중장년 이직, 전직을 위한 자격증',819);
 
 INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 1);
 INSERT INTO file(name, path, represent, lesson_id, member_id, news_id) VALUES ('test', 'resources/static/test.png', FALSE, null, null, 1);
