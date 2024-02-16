@@ -141,10 +141,11 @@ public class LessonResponse {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class getLessonOrderByCriteriaDTO {
+        Long lessonId;
         String title;
         Integer currentCount;
         String place;
-        String filePath;
+        String imageUrl;
     }
 
     @Builder
