@@ -6,9 +6,7 @@ import com.example.olebackend.domain.Member;
 import com.example.olebackend.jwt.service.JwtService;
 import com.example.olebackend.login.filter.CustomJsonUsernamePasswordAuthenticationFilter;
 import com.example.olebackend.service.MemberService;
-import com.example.olebackend.web.dto.MemberLoginRequest;
-import com.example.olebackend.web.dto.MemberResponse;
-import com.example.olebackend.web.dto.MemberSignUpRequest;
+import com.example.olebackend.web.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +38,30 @@ public class MemberController {
             // AccessToken에서 memberId 추출
             memberId = jwtService.extractId(accessToken).orElse(null);
         }
+        return ApiResponse.onSuccess(MemberConverter.toMemberDetailDTO(memberService.getMemberDetail(memberId)));
+    }
+    @PatchMapping("/member/detail")
+    public ApiResponse<MemberResponse.getMemberDetailDTO> memberUpdate(@RequestBody MemberChangeInfoRequest memberChangeInfoRequest, HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
+        memberService.updateMemberDetail(memberId, memberChangeInfoRequest);
+        return ApiResponse.onSuccess(MemberConverter.toMemberDetailDTO(memberService.getMemberDetail(memberId)));
+    }
+    @PatchMapping("member/password")
+    public ApiResponse<MemberResponse.getMemberDetailDTO> memberPasswordUpdate(@RequestBody MemberChangePasswordRequest memberChangePasswordRequest, HttpServletRequest request){
+        String accessToken = jwtService.extractAccessToken(request).orElse(null);
+
+        Long memberId = null;
+        if (accessToken != null) {
+            // AccessToken에서 memberId 추출
+            memberId = jwtService.extractId(accessToken).orElse(null);
+        }
+        memberService.updatePassword(memberId, memberChangePasswordRequest);
         return ApiResponse.onSuccess(MemberConverter.toMemberDetailDTO(memberService.getMemberDetail(memberId)));
     }
 
