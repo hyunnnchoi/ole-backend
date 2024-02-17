@@ -49,10 +49,10 @@ public class NonMemberController {
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 
-    @DeleteMapping("/guest/lessons")
+    @DeleteMapping("/guest/lessons/{lessonId}")
     @Operation(summary = "신청취소(비로그인)API")
     public ApiResponse<Object> cancelLesson(
-            @RequestBody NonMemberRequest.getPhoneNumDTO request, @RequestParam Long lessonId) {
+            @RequestBody NonMemberRequest.getPhoneNumDTO request, @PathVariable(name = "lessonId") Long lessonId) {
         nonMemberService.cancelLesson(request,lessonId);
         return ApiResponse.onSuccess(null);
     }
