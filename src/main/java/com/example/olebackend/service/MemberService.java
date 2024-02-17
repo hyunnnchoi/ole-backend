@@ -7,6 +7,8 @@ import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
 import com.example.olebackend.repository.MemberRepository;
 //import com.example.olebackend.web.dto.MemberLoginRequest;
+import com.example.olebackend.web.dto.MemberChangeInfoRequest;
+import com.example.olebackend.web.dto.MemberChangePasswordRequest;
 import com.example.olebackend.web.dto.MemberSignUpRequest;
 import lombok.RequiredArgsConstructor;
 //import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,4 +58,24 @@ public class MemberService {
         Member member = memberRepository.findById(memberId).orElseThrow();
         return member;
     }
+
+    public void updateMemberDetail(Long memberId, MemberChangeInfoRequest memberChangeInfoRequest) {
+        Member member = memberRepository.findById(memberId).orElseThrow();
+        member.setEmail(memberChangeInfoRequest.getEmail());
+        member.setName(memberChangeInfoRequest.getName());
+        member.setPhoneNum(memberChangeInfoRequest.getPhoneNum());
+        member.setBirthYear(memberChangeInfoRequest.getBirthYear());
+        member.setAddress(memberChangeInfoRequest.getAddress());
+        member.setGender(memberChangeInfoRequest.getGender());
+        member.setMailAgree(memberChangeInfoRequest.getMailAgree());
+        member.setSmsAgree(memberChangeInfoRequest.getSmsAgree());
+        member.passwordEncode(passwordEncoder);
+        memberRepository.save(member);
+    }
+    public void updatePassword(Long memberId, MemberChangePasswordRequest memberChangePasswordRequest) {
+        Member member = memberRepository.findById(memberId).orElseThrow();
+        member.updatePassword(memberChangePasswordRequest.getPassword(), passwordEncoder);
+        memberRepository.save(member);
+    }
+
 }
