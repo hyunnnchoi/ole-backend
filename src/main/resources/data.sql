@@ -32,155 +32,155 @@ INSERT INTO sub_category( name, category_id, created_at) VALUES('기초 부동�
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, refund, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, refund, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-01','APPROVED', 1, '카카오톡의 다양한 기능을 알아보는 과정(카메라,오픈채팅방,카카오T,카카오 선물하기 등)',
         '2024-02-20', '2024-02-01',
         'WEDNESDAY', '2024-03-29 16:00', '2024-03-29', '2024-02-28', '2024-02-28 14:00',
-        'ONLINE', 16, '노원50플러스센터 3층 배움탐색실', 20000, '환불규정', '스마트폰', '카카오톡, 생활에 유용한 앱 활용', 3, TRUE, TRUE);
+        'ONLINE', 16, '노원50플러스센터 3층 배움탐색실', 20000, '환불규정', '스마트폰', '카카오톡, 생활에 유용한 앱 활용', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone1.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price,  supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price,  supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ( '2024-02-01', 'APPROVED', 1, '일반적 표현을 위한 주요 어휘 및 관련 문장 학습: 대중교통 이용, 여가와 오락,항공,금융,호텔,주거 등등 일상 생활에서 쓰이는 영어 학습',
         '2024-02-20', '2024-02-01',
         'MONDAY', '2024-05-03 12:00', '2024-05-03', '2024-04-08', '2024-04-08 10:00',
-        'OFFLINE', 30, '동작50플러스센터 2층 미디어실', 15000, '필기구', 'YOU CAN SPEAK 일상표현 영어', 6, TRUE, TRUE);
+        'OFFLINE', 30, '동작50플러스센터 2층 미디어실', 15000, '필기구', 'YOU CAN SPEAK 일상표현 영어', 6, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone5.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-10', 'APPROVED', 1, '내 손안에 들어온 작은 컴퓨터_스마트폰을 일상생활에 잘 활용하는 방법을 기초부터 천천히 알아보는 시간입니다.처음 시작하는 분 모이세요~',
         '2024-02-25', '2024-02-10',
         'WEDNESDAY', '2024-03-27 15:30', '2024-03-27', '2024-02-28', '2024-02-28 13:30',
-        'OFFLINE', 15, '서대문50플러스센터 강의실 3', 0, '스마트폰, 개인 충전기', '생활 스마트폰-처음시작', 2, TRUE, FALSE);
+        'OFFLINE', 15, '서대문50플러스센터 강의실 3', 0, '스마트폰, 개인 충전기', '생활 스마트폰-처음시작', 2, TRUE, FALSE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone10.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-24','APPROVED', 1,'스마트폰의 다양한 기능을 100% 활용하고 싶은 5060 세대를 위한 강좌. 디지털 기기 사용에 서툰 분들에게 차근차근 설명해드립니다.',
         '2024-03-01', '2024-02-24',
         'MONDAY', '2024-03-25','2024-03-25 16:00', '2024-03-11', '2024-03-11 14:00',
-        'OFFLINE',15,'더하기홀',0,'스마트(안드로이드)', '디지털 왕초보를 위한 생활 속 스마트폰 활용 꿀팁!', 2, TRUE, FALSE);
+        'OFFLINE',15,'더하기홀',0,'스마트(안드로이드)', '디지털 왕초보를 위한 생활 속 스마트폰 활용 꿀팁!', 2, TRUE, FALSE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone11.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-01-21','APPROVED', 1,
         '2024-02-21', '2024-01-21',
         'SATURDAY', '2024-03-15','2024-03-15 12:00', '2024-02-24', '2024-02-24 10:00',
-        'OFFLINE', 10,20000,'K강사가 알려주는 스마트한 디지털 활용(스마트폰 초급)', 1, TRUE, TRUE);
+        'OFFLINE', 10,20000,'K강사가 알려주는 스마트한 디지털 활용(스마트폰 초급)', 1, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone12.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-01','APPROVED', 1, '모바일 뱅킹 이용 학습, 금융인증서 발급, 계좌조회/기관 계좌이체/출금의 다양한 기능,오픈뱅킹,마이데이터,은행 거래 꿀팁 등 학습 및 실습',
         '2024-02-27', '2024-02-01',
         'TUESDAY', '2024-04-25','2024-04-25 12:00', '2024-03-12', '2024-03-12 10:00',
-        'OFFLINE',20,'양천 다누리홀',5000,'스마트폰,신분증,OTP 또는 보안카드', '[시니어디지털금융교육]넌 은행가니? 난 스마트폰으로 한다!', 3, TRUE, TRUE);
+        'OFFLINE',20,'양천 다누리홀',5000,'스마트폰,신분증,OTP 또는 보안카드', '[시니어디지털금융교육]넌 은행가니? 난 스마트폰으로 한다!', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone13.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type,limit_count,  price, title, sub_category_id, gather_status, price_status)
+                   lesson_type,limit_count,  price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-07','APPROVED', 1,
         '2024-03-02', '2024-02-07',
         'WEDNESDAY', '2024-03-20','2024-03-20 15:30', '2024-03-13', '2024-03-13 13:30',
-        'ONLINE', 10,0,'스마트폰 내 손안의 컴퓨터', 1, TRUE, FALSE);
+        'ONLINE', 10,0,'스마트폰 내 손안의 컴퓨터', 1, TRUE, FALSE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone8.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count,price,title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count,price,title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-11','APPROVED', 1,
         '2024-03-08', '2024-02-11',
         'FRIDAY', '2024-03-29','2024-03-29 12:00', '2024-03-15', '2024-03-15 10:00',
-        'OFFLINE',10,0,'누구나 쉽게 배우는 스마트폰 영상 만들기(초급)', 3, TRUE, FALSE);
+        'OFFLINE',10,0,'누구나 쉽게 배우는 스마트폰 영상 만들기(초급)', 3, TRUE, FALSE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone7.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type,limit_count, price, title, sub_category_id, gather_status, price_status)
+                   lesson_type,limit_count, price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-15','APPROVED', 1,
         '2024-03-10', '2024-02-15',
         'WEDNESDAY', '2024-04-03','2024-04-03 16:30', '2024-03-20', '2024-03-20 14:30',
-        'OFFLINE', 10,5000,'스마트폰, 이것만 알아도!', 2, TRUE, TRUE);
+        'OFFLINE', 10,5000,'스마트폰, 이것만 알아도!', 2, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone6.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type,limit_count, price,title, sub_category_id, gather_status, price_status)
+                   lesson_type,limit_count, price,title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-19','APPROVED', 1,
         '2024-03-19', '2024-02-19',
         'MONDAY', '2024-04-02','2024-04-02 11:00', '2024-04-01', '2024-04-01 10:00',
-        'ONLINE',10,8000, '스마트폰으로 구직정보 탐색하기', 3, TRUE, TRUE);
+        'ONLINE',10,8000, '스마트폰으로 구직정보 탐색하기', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone5.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-12','APPROVED', 1,
         '2024-03-25', '2024-02-12',
         'TUESDAY', '2024-04-09','2024-04-09 17:30', '2024-04-02', '2024-04-02 15:30',
-        'ONLINE',10,6000, '누구나 쉽게 배우는 스마트폰 영상 만들기(중급)', 3, TRUE, TRUE);
+        'ONLINE',10,6000, '누구나 쉽게 배우는 스마트폰 영상 만들기(중급)', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone4.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price,title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price,title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-01-30','APPROVED', 1,
         '2024-03-30', '2024-01-30',
         'THURSDAY', '2024-04-15','2024-04-15 16:00', '2024-04-04', '2024-04-04 13:00',
-        'OFFLINE',10, 0,'스마트폰을 더 스마트하게! 유용한 앱(APP) 활용', 3, TRUE, FALSE);
+        'OFFLINE',10, 0,'스마트폰을 더 스마트하게! 유용한 앱(APP) 활용', 3, TRUE, FALSE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone3.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-15','APPROVED', 1,
         '2024-03-15', '2024-02-15',
         'SUNDAY', '2024-05-19','2024-05-15 17:00', '2024-04-14', '2024-04-14 13:00',
-        'OFFLINE', 10,3000,'스마트폰 & Chat GPT 활용 중년 돈 공부', 3, TRUE, TRUE);
+        'OFFLINE', 10,3000,'스마트폰 & Chat GPT 활용 중년 돈 공부', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone1.png');
 
 INSERT INTO lesson(created_at, approved, current_count,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-19','APPROVED', 1,
         '2024-04-01', '2024-02-19',
         'MONDAY', '2024-04-29','2024-04-29 12:00', '2024-04-22', '2024-04-22 09:00',
-        'ONLINE', 10,2000,'소상공인을 위한 스마트폰 사용법', 2, TRUE, TRUE);
+        'ONLINE', 10,2000,'소상공인을 위한 스마트폰 사용법', 2, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone11.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-01','APPROVED', 1, '모바일 뱅킹 이용 학습, 금융인증서 발급, 계좌조회/기관 계좌이체/출금의 다양한 기능,오픈뱅킹,마이데이터,은행 거래 꿀팁 등 학습 및 실습',
         '2024-02-27', '2024-02-01',
         'TUESDAY', '2024-04-25','2024-04-25 12:00', '2024-03-12', '2024-03-12 10:00',
-        'OFFLINE',20,'양천 다누리홀',5000,'스마트폰,신분증,OTP 또는 보안카드', '[시니어디지털금융교육]넌 은행가니? 난 스마트폰으로 한다!', 3, TRUE, TRUE);
+        'OFFLINE',20,'양천 다누리홀',5000,'스마트폰,신분증,OTP 또는 보안카드', '[시니어디지털금융교육]넌 은행가니? 난 스마트폰으로 한다!', 3, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone9.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, place, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-01-20','APPROVED', 1, '컴퓨터 기초 과정으로, 컴퓨터와 주변 기기의 사용법을 학습하며, 컴퓨터와 스마트폰을 함께 활용하며 배우는 과정',
         '2024-02-20', '2024-01-20',
         'SATURDAY', '2024-04-27','2024-04-27 15:30', '2024-03-17', '2024-03-17 13:30',
-        'OFFLINE',16,'노원 50 플러스센터 4층 미디어실',30000,'스마트폰(안드로이드),교재구입(개강날 안내)','누구나 쉽게 귀에 쏙쏘 컴퓨터 왕기초',4, TRUE, TRUE);
+        'OFFLINE',16,'노원 50 플러스센터 4층 미디어실',30000,'스마트폰(안드로이드),교재구입(개강날 안내)','누구나 쉽게 귀에 쏙쏘 컴퓨터 왕기초',4, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone13.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-20','APPROVED', 1, '키오스크 사용이 불편하고 두려운 분, 키오스크 사용에 관심은 있지만, 접할 기회가 없었던 분!',
         '2024-04-05', '2024-02-20',
         'MONDAY', '2024-04-17','2024-04-11 16:00', '2024-04-11', '2024-04-11 14:00',
-        'ONLINE',20,5000,'개인 카드','무인단말기(키오스트) 사용 실전 체험 과정',5, TRUE, TRUE);
+        'ONLINE',20,5000,'개인 카드','무인단말기(키오스트) 사용 실전 체험 과정',5, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/smartphone4.png');
 
 
 
@@ -238,30 +238,31 @@ VALUES ('2024-02-18 23:50:19.000000', '겨울철이라 그런지 결로가 너�
 INSERT INTO community(created_at, body, category, title, member_id, views)
 VALUES ('2024-01-17 20:50:19.000000', '올래에서 수업 신청하면 문자로 알려주잖아요. 근데 저는 문자가 안와요.. 어떻게 해결하죠?', 'QUESTION', '수업 신청해도 문자가 안와요', 1, 20692);
 
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-20 12:50:19.000000', 'HEALTH', '친절한 쩡아쌤', '안녕하세요, 쩡이쌤입니다! 건강을 위해 반드시 지켜야 하는 식단 다섯가지를 가져왔습니다!', '건강을 위해 반드시 지켜야 하는 식단!',30982);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-20 11:50:19.000000', 'LIFE', '시골청년', '안정적인 경제적 터전을 마련하는 방편이기도 하지만 귀향하고 싶은 마음의 중장년을 위한 안정적인 귀농귀촌에 대한 정보를 소개합니다.', '도시를 떠난 삶을 위해 가장 먼저 가야 할 곳',20912);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-19 11:50:19.000000','RECRUIT', '슬기로운취준생활', '퇴직 후 우울감을 느끼는 중장년 세대가 많은 요즘, 은퇴 후 설계의 사회적 의미를 확인할 수 있는 다양한 사회공헌활동에 대해 정보를 소개합니다.', '인생 2막 의미를 찾은 사회공헌활동 정보 2024',23873);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-19 10:50:19.000000','LIFE', '생활통통', '해가 거듭될수록 더욱 두드러지게 늘어나고 있는 중장년층 1인가구. 가족과 함께하는 세대에 비해 삶의 만족도가 급격히 하락하고, 건강, 사회적 고립, ', '중장년 1인가구를 지켜주는 생활정보',11923);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-18 11:50:19.000000','BOARD', '팀 올래', '안녕하세요, 팀 올래입니다! 아주 반가운 소식을 들고 왔습니다~(짝짝짝) 드디어 올래가 자체적으로 카카오톡 채널을 만들었어요! 이 채널을 추가하시면 앞', '올래 카카오톡 채널 추가!',29102);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-18 10:50:19.000000','HEALTH', '친절한 쩡아쌤', '2030년 대한민국 기대 수명은 85.2세로 ‘100세 시대’는 이제 얼마 남지 않은 듯 합니다. 하지만 노년의 평균 12년을 병상에서 지내야 한다는 통계도 나', '건강한 100세를 위한 중장년 건강 진단',9210);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-17 11:50:19.000000','RECRUIT', '빛이되어줄게', '위드코로나 시대로 일상이 회복되었지만, 여전히 자영업자 40%는 3년 이내에 여러 부담으로 인해 폐업을 고민할만큼 골목상권의 어려움은 지속되고 ', '자영업, 소상공인을 위한 지원정보',21901);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-16 20:50:19.000000','RECRUIT', '친절한 쩡아쌤', '지속적인 경제활동 욕구와 도전에도 불구하고 한국인들의 평균 은퇴 나이는 49세. 퇴직 후에도 중장년층의 창업을 지원하는 다양한 제도에 대해서 알아', '퇴직 후 창업을 준비하는 중장년을 위한 지원제도',8920);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-16 17:50:19.000000','LIFE', '여행을 떠나요', '추운 겨울도 조금씩 지나가고 있네요. 곧 봄이 오니 한번 여행 계획을 짜는 것도 좋겠죠? 생활 속 스트레스를 해소하고 새로운 변화를 줄 수 있는 서울에', '봄을 즐기는 행복 충전 서울 힐링여행',9281);
-INSERT INTO news(created_at, category, author, content, title, views)
-VALUES ('2024-02-16 15:50:19.000000','RECRUIT', '이전직전문가', '채용시장에서 실제 어떤 자격증이 유리하게 작용하고 있을까요?', '중장년 이직, 전직을 위한 자격증',819);
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-20 12:50:19.000000', 'HEALTH', '친절한 쩡아쌤', '안녕하세요, 쩡이쌤입니다! 건강을 위해 반드시 지켜야 하는 식단 다섯가지를 가져왔습니다!', '건강을 위해 반드시 지켜야 하는 식단!',30982, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news8.png';
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-20 11:50:19.000000', 'LIFE', '시골청년', '안정적인 경제적 터전을 마련하는 방편이기도 하지만 귀향하고 싶은 마음의 중장년을 위한 안정적인 귀농귀촌에 대한 정보를 소개합니다.', '도시를 떠난 삶을 위해 가장 먼저 가야 할 곳',20912 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news6.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-19 11:50:19.000000','RECRUIT', '슬기로운취준생활', '퇴직 후 우울감을 느끼는 중장년 세대가 많은 요즘, 은퇴 후 설계의 사회적 의미를 확인할 수 있는 다양한 사회공헌활동에 대해 정보를 소개합니다.', '인생 2막 의미를 찾은 사회공헌활동 정보 2024',23873 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news7.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-19 10:50:19.000000','LIFE', '생활통통', '해가 거듭될수록 더욱 두드러지게 늘어나고 있는 중장년층 1인가구. 가족과 함께하는 세대에 비해 삶의 만족도가 급격히 하락하고, 건강, 사회적 고립, ', '중장년 1인가구를 지켜주는 생활정보',11923, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news3.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-18 11:50:19.000000','BOARD', '팀 올래', '안녕하세요, 팀 올래입니다! 아주 반가운 소식을 들고 왔습니다~(짝짝짝) 드디어 올래가 자체적으로 카카오톡 채널을 만들었어요! 이 채널을 추가하시면 앞', '올래 카카오톡 채널 추가!',29102, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news10.png');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-18 10:50:19.000000','HEALTH', '친절한 쩡아쌤', '2030년 대한민국 기대 수명은 85.2세로 ‘100세 시대’는 이제 얼마 남지 않은 듯 합니다. 하지만 노년의 평균 12년을 병상에서 지내야 한다는 통계도 나', '건강한 100세를 위한 중장년 건강 진단',9210, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news1.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-17 11:50:19.000000','RECRUIT', '빛이되어줄게', '위드코로나 시대로 일상이 회복되었지만, 여전히 자영업자 40%는 3년 이내에 여러 부담으로 인해 폐업을 고민할만큼 골목상권의 어려움은 지속되고 ', '자영업, 소상공인을 위한 지원정보',21901, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news4.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-16 20:50:19.000000','RECRUIT', '친절한 쩡아쌤', '지속적인 경제활동 욕구와 도전에도 불구하고 한국인들의 평균 은퇴 나이는 49세. 퇴직 후에도 중장년층의 창업을 지원하는 다양한 제도에 대해서 알아', '퇴직 후 창업을 준비하는 중장년을 위한 지원제도',8920, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news2.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-16 17:50:19.000000','LIFE', '여행을 떠나요', '추운 겨울도 조금씩 지나가고 있네요. 곧 봄이 오니 한번 여행 계획을 짜는 것도 좋겠죠? 생활 속 스트레스를 해소하고 새로운 변화를 줄 수 있는 서울에', '봄을 즐기는 행복 충전 서울 힐링여행',9281, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news5.jpeg');
+INSERT INTO news(created_at, category, author, content, title, views, image_url)
+VALUES ('2024-02-16 15:50:19.000000','RECRUIT', '이전직전문가', '채용시장에서 실제 어떤 자격증이 유리하게 작용하고 있을까요?', '중장년 이직, 전직을 위한 자격증',819, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news7.jpeg');
 
-INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 1);
-INSERT INTO file(name, path, represent, lesson_id, member_id, news_id) VALUES ('test', 'resources/static/test.png', FALSE, null, null, 1);
-
-INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 2);
-INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 3);
-INSERT INTO file(name, lesson_id, member_id, news_id) VALUES ('뉴스 테스트', null, null, 4);
+-- 뉴스 상세 이미지
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news8.png', 1);
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news11.png', 1);
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news12.png', 1);
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news13.png', 4);
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news14.png', 4);
+INSERT INTO news_image (image_url, news_id) VALUES ('https://olae-bucket.s3.ap-northeast-2.amazonaws.com/news/news15.png', 4);
