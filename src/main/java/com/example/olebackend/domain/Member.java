@@ -25,32 +25,32 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String name; // 이름
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String email; // 이메일
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String phoneNum; // 전화번호
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String address; // 주소
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Long birthYear; // 생년
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Gender gender; // 성별
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private boolean mailAgree; // 메일 수신 동의
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private boolean smsAgree; // 문자 수신 동의
 
 
