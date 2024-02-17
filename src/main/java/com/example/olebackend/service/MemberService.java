@@ -1,11 +1,8 @@
 package com.example.olebackend.service;
 
-import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.MemberConverter;
-import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.domain.Member;
 import com.example.olebackend.domain.enums.Role;
-import com.example.olebackend.domain.mapping.MemberApply;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
 import com.example.olebackend.repository.MemberRepository;
@@ -16,10 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-
-import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 
 @Service
 @Transactional
@@ -57,5 +50,10 @@ public class MemberService {
         member.passwordEncode(passwordEncoder);
         memberRepository.save(member);
         return member.getId();
+    }
+    public Member getMemberDetail(Long memberId) {
+
+        Member member = memberRepository.findById(memberId).orElseThrow();
+        return member;
     }
 }
