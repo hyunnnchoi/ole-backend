@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.mapping.NullAuthoritiesMapper
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,6 +23,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter{
+    private AntPathMatcher pathMatcher = new AntPathMatcher();
+
     private static final String NO_CHECK_URL = "/member/login";
 
     private final JwtService jwtService;
@@ -35,6 +38,18 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter{
             filterChain.doFilter(request, response);
             return;
         }
+        if (pathMatcher.match("/member/**", request.getRequestURI()) ||
+                pathMatcher.match("/guest/**", request.getRequestURI())||
+                pathMatcher.match("/community/**", request.getRequestURI())||
+                pathMatcher.match("/community", request.getRequestURI())||
+                pathMatcher.match("/sub_categories/**", request.getRequestURI())||
+                pathMatcher.match("/lessons/**", request.getRequestURI())||
+                pathMatcher.match("/news/**", request.getRequestURI())||
+                pathMatcher.match("/lesson/**", request.getRequestURI())||
+                pathMatcher.match("/health", request.getRequestURI())) {
+                filterChain.doFilter(request, response);
+                return;
+            }
         String refreshToken = jwtService.extractRefreshToken(request)
                 .filter(jwtService::isTokenValid)
                 .orElse(null);
