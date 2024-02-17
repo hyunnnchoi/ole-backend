@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins="*", allowedHeaders = "*") // 임시 (나중에 필터로 수정되어야함)
 @RestController
 @RequiredArgsConstructor
 public class LikeController {
