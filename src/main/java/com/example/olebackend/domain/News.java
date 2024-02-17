@@ -23,6 +23,7 @@ public class News extends BaseEntity {
 
     private String title;
 
+    @Column(length = 10000)
     private String content;
 
     @Enumerated(EnumType.STRING)
