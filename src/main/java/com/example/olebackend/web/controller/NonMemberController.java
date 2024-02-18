@@ -33,27 +33,27 @@ public class NonMemberController {
             return ApiResponse.onSuccess(resultDto);
     }
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping ("/guest/lessons")
+    @GetMapping ("/guest/lessons/{phoneNum}")
     @Operation(summary = "비회원 신청 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getApplication(
-            @PathVariable NonMemberRequest.getPhoneNumDTO request) {
-        List<NonMember> nonMemberList = nonMemberService.getApplication(request);
+            @PathVariable(name = "phoneNum") String phoneNum) {
+        List<NonMember> nonMemberList = nonMemberService.getApplication(phoneNum);
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 
-    @GetMapping ("/guest/lessons/completed")
+    @GetMapping ("/guest/lessons/{phoneNum}/completed")
     @Operation(summary = "비회원 수강 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getCompletedApplication(
-            @PathVariable NonMemberRequest.getPhoneNumDTO request) {
-        List<NonMember> nonMemberList = nonMemberService.getCompletedApplication(request);
+            @PathVariable(name = "phoneNum") String phoneNum) {
+        List<NonMember> nonMemberList = nonMemberService.getCompletedApplication(phoneNum);
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 
-    @DeleteMapping("/guest/lessons/{lessonId}")
+    @DeleteMapping("/guest/lessons/{phoneNum}/{lessonId}")
     @Operation(summary = "신청취소(비로그인)API")
     public ApiResponse<Object> cancelLesson(
-            @RequestBody NonMemberRequest.getPhoneNumDTO request, @PathVariable(name = "lessonId") Long lessonId) {
-        nonMemberService.cancelLesson(request,lessonId);
+            @PathVariable(name = "phoneNum") String phoneNum, @PathVariable(name = "lessonId") Long lessonId) {
+        nonMemberService.cancelLesson(phoneNum,lessonId);
         return ApiResponse.onSuccess(null);
     }
 

@@ -14,9 +14,4 @@ public class NonMemberRequest {
         @NotBlank(message = "전화번호는 공백일 수 없습니다!")
         String phoneNum;
     }
-    @Getter
-    public static class getPhoneNumDTO{
-        @NotBlank(message = "전화번호는 공백일 수 없습니다!")
-        String phoneNum;
-    }
 }
