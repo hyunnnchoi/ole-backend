@@ -8,8 +8,10 @@ import com.example.olebackend.repository.CategoryRepository;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.LikeRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
+import com.example.olebackend.repository.specification.LessonSpecification;
 import com.example.olebackend.web.dto.LessonResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,6 +27,7 @@ import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class LessonService {
 
     private final LessonRepository lessonRepository;
@@ -56,9 +59,18 @@ public class LessonService {
         return LessonConverter.toLessonDetailDTO(lesson, likeStatus, applyStatus);
     }
 
-    public Page<Lesson> getLessonListByCategory(Long categoryId, Integer page) {
+    public Page<Lesson> getLessonList(Long categoryId, Specification<Lesson> spec, Integer page) {
 
-        Page<Lesson> lessonList = lessonRepository.findBySubCategoryCategoryId(categoryId, PageRequest.of(page - 1, 10));
+
+        Page<Lesson> lessonList = null;
+
+        if(spec != null) { // 검색어가 있을 때
+            lessonList = lessonRepository.findAll(spec, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
+
+        } else { // 검색어 없이 카테고리로만 조회
+            lessonList = lessonRepository.findBySubCategoryCategoryId(categoryId, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
+
+        }
 
         // 카테고리 자체가 없을 때
         if (!categoryRepository.existsById(categoryId)) {
@@ -74,31 +86,7 @@ public class LessonService {
         if (page > lessonList.getTotalPages()) {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
-
         return lessonList;
-    }
-
-
-    public Page<Lesson> getLessonListBySpecification(Long categoryId, Specification<Lesson> spec, Integer page) {
-        Page<Lesson> lessonList = lessonRepository.findBySubCategoryCategoryId(categoryId, PageRequest.of(page - 1, 10));
-
-        Page<Lesson> lessonListByKeyWord = lessonRepository.findAll(spec.and((root, query, criteriaBuilder) -> criteriaBuilder.isTrue(criteriaBuilder.literal(true))), lessonList.getPageable());
-
-        // 카테고리 자체가 없을 때
-        if (!categoryRepository.existsById(categoryId)) {
-            throw new GeneralException(CATEGORY_NOT_FOUND);
-        }
-
-        // 해당 카테고리에 존재하는 교육이 없을 때
-        if (lessonListByKeyWord.getTotalPages() == 0) {
-            throw new GeneralException(LESSON_NOT_FOUND);
-        }
-
-        // 전체 페이지 수 이상의 값을 입력했을 때
-        if (page > lessonList.getTotalPages()) {
-            throw new GeneralException(PAGE_NOT_FOUND);
-        }
-        return lessonListByKeyWord;
     }
 
     public List<Lesson> getLessonListByOrderCriteria(String orderCriteria) {

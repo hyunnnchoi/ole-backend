@@ -60,19 +60,17 @@ public class LessonController {
                                                                                 @RequestParam(required = false, defaultValue = "1") Integer page) {
         Specification<Lesson> spec = (root, query, criteriaBuilder) -> null;
 
-        // 키워드가 있으면 -> 카테고리별로 조회한 교육 리스트 내에서 keyword 포함한 교육 리턴
+        // 키워드가 있으면 -> 키워드로 검색하는 spec 추가
         if (keyword != null) {
             spec = spec.and(LessonSpecification.findByKeyword(keyword));
-            Page<Lesson> lessonList = lessonService.getLessonListBySpecification(categoryId, spec, page);
-            return ApiResponse.onSuccess(LessonConverter.toLessonListDTO(lessonList));
+
+        } else {
+            spec = null;
         }
 
-        // 키워드가 없으면 -> 단순 카테고리별 교육 조회
-        else {
-            Page<Lesson> lessonList = lessonService.getLessonListByCategory(categoryId, page);
-            return ApiResponse.onSuccess(LessonConverter.toLessonListDTO(lessonList));
+        Page<Lesson> lessonList = lessonService.getLessonList(categoryId, spec, page);
+        return ApiResponse.onSuccess(LessonConverter.toLessonListDTO(lessonList));
 
-        }
     }
 
     @GetMapping
