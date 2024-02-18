@@ -43,7 +43,7 @@ public class SurveyController {
 
         return ApiResponse.onSuccess(result) ;
     } // secondProblem
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @Operation(summary = "설문조사-이전 참여내역 조회", description = "설문조사 - 이전 참여내역 조회")
     @GetMapping("/lessons/{categoryId}/surveys")
     public ApiResponse<List<SurveyResponse.SurveyResponseDto>> pastResults(
