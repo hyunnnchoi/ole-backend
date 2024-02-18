@@ -42,8 +42,7 @@ public class NonMemberService {
         return nonMemberRepository.save(nonMember);
     }
 
-    public List<NonMember> getApplication(NonMemberRequest.getPhoneNumDTO request) {
-        String phoneNum=request.getPhoneNum();
+    public List<NonMember> getApplication(String phoneNum) {
 
         if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
@@ -53,8 +52,7 @@ public class NonMemberService {
         return nonMemberList;
     }
 
-    public List<NonMember> getCompletedApplication(NonMemberRequest.getPhoneNumDTO request) {
-        String phoneNum=request.getPhoneNum();
+    public List<NonMember> getCompletedApplication(String phoneNum) {
 
         //비회원 정보가 없을 때
         if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
@@ -71,8 +69,8 @@ public class NonMemberService {
     }
 
     @Transactional
-    public void cancelLesson(NonMemberRequest.getPhoneNumDTO request, Long lessonId) {
-        String phoneNum=request.getPhoneNum();
+    public void cancelLesson(String phoneNum, Long lessonId) {
+
         if (!nonMemberRepository.existsByPhoneNum(phoneNum)) {
             throw new GeneralException(NON_MEMBER_NOT_FOUND);
         }
