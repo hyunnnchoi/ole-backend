@@ -38,6 +38,7 @@ public class MemberApplyConverter {
                 .map(LessonConverter::toTeacherNameDTO).collect(Collectors.toList());
 
         return MemberApplyResponse.getApplicationResultDTO.builder()
+                .lessonId(lesson.getId())
                 .title(lesson.getTitle())
                 .lessonStartDate(lesson.getLessonStartDate())
                 .lessonEndDate(lesson.getLessonEndDate())
