@@ -39,6 +39,7 @@ public class NonMemberConverter {
                 .map(LessonConverter::toTeacherNameDTO).collect(Collectors.toList());
 
         return NonMemberResponse.getApplicationResultDTO.builder()
+                .lessonId(lesson.getId())
                 .title(lesson.getTitle())
                 .lessonStartDate(lesson.getLessonStartDate())
                 .lessonEndDate(lesson.getLessonEndDate())
@@ -46,7 +47,7 @@ public class NonMemberConverter {
                 .lessonEndTime(lesson.getLessonEndTime())
                 .lessonTeacherList(lessonTeacherList)
                 .place(lesson.getPlace())
-                .categoryId(lesson.getSubCategory().getCategory().getId())
+                .categoryName(lesson.getSubCategory().getCategory().getName())
                 .createdAt(nonMember.getCreatedAt())
                 .applicationStatus(nonMember.getApplicationStatus())
                 .imgUrl(lesson.getImageUrl())
