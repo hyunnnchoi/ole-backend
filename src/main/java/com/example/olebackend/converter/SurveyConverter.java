@@ -40,6 +40,7 @@ public class SurveyConverter {
                 .imgUrl(lesson.getImageUrl())
                 .currentCount(lesson.getCurrentCount())
                 .limitCount(lesson.getLimitCount())
+                .categoryId(lesson.getSubCategory().getCategory().getId())
                 .build();
     }
 }

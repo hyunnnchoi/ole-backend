@@ -37,6 +37,8 @@ public class SurveyResponse {
         Integer price; // 가격
         Integer limitCount; // 신청 제한 인원
         Integer currentCount; // 현재 신청 인원
+        
+        Long categoryId ; // 추가
     } // SubCategoryDto
 
 
