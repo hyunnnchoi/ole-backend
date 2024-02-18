@@ -24,6 +24,7 @@ public class MemberApplyResponse {
     @AllArgsConstructor
     public static class getApplicationResultDTO{
 
+        Long lessonId; //강의 아이디
         String title; //강의 제목
         LocalDateTime lessonStartDate; // 강의 시작일
         LocalDateTime lessonEndDate; // 강의 종료일
@@ -31,7 +32,7 @@ public class MemberApplyResponse {
         LocalDateTime lessonEndTime; // 강의 종료 시간
         List<LessonResponse.getTeacherNameDTO> lessonTeacherList; // 강사
         String place; //강의 장소
-        Long categoryId; //신청한 강의 카테고리
+        String categoryName; //신청한 강의 카테고리 이름
         LocalDateTime createdAt; //신청 날짜
         ApplicationStatus applicationStatus; //신청 상태
         String imgUrl ; //이미지 url

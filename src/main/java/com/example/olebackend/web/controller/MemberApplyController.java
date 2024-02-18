@@ -55,7 +55,7 @@ public class MemberApplyController {
         return ApiResponse.onSuccess(null);
     }
 
-    @PostMapping ("/member/lessons")
+    @GetMapping ("/member/lessons")
     @Operation(summary = "수업 신청 내역 조회 API")
     public ApiResponse<MemberApplyResponse.getApplicationListResultDTO> getLessons(
             HttpServletRequest request) {
@@ -70,7 +70,7 @@ public class MemberApplyController {
         return ApiResponse.onSuccess(MemberApplyConverter.toApplicationListDTO(memeberApplyList));
     }
 
-    @PostMapping ("/member/lessons/completed")
+    @GetMapping ("/member/lessons/completed")
     @Operation(summary = "수업 수강 내역 조회 API")
     public ApiResponse<MemberApplyResponse.getApplicationListResultDTO> getCompletedLessons(
             HttpServletRequest request) {
