@@ -188,47 +188,38 @@ VALUES ('2024-02-20','APPROVED', 1, '키오스크 사용이 불편하고 두려�
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-03','APPROVED', 1, '부동산 투자의 첫걸음! 재미있고 쉽게 배우는 쏙쏙 부동산 상식',
         '2024-02-25', '2024-02-03',
         'MONDAY', '2024-03-25','2024-02-26 16:00', '2024-02-26', '2024-04-11 14:00',
-        'ONLINE',20,5000,'필기 도구','재미있고 유익한 부동산 상식',9, TRUE, TRUE );
+        'ONLINE',20,5000,'필기 도구','재미있고 유익한 부동산 상식',9, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/lesson/property1.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
-VALUES ('2024-02-03','APPROVED', 1, '부동산 투자의 첫걸음! 재미있고 쉽게 배우는 쏙쏙 부동산 상식',
-        '2024-02-25', '2024-02-03',
-        'MONDAY', '2024-03-25','2024-02-26 16:00', '2024-02-26', '2024-04-11 14:00',
-        'ONLINE',20,5000,'필기 도구','재미있고 유익한 부동산 상식',9, TRUE, TRUE );
-
-INSERT INTO lesson(created_at, approved, current_count, description,
-                   gather_end_date, gather_start_date,
-                   lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type, limit_count, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-01','APPROVED', 1, '전문가에게 제대로 배우는 법률 첫걸음',
         '2024-02-25', '2024-02-01',
         'FRIDAY', '2024-03-29','2024-03-29 17:00', '2024-02-29', '2024-02-29 13:00',
-        'ONLINE',20,10000,'필기 도구','대한법률구조공단과 함께하는 생활법률',11, TRUE, TRUE );
+        'ONLINE',20,10000,'필기 도구','대한법률구조공단과 함께하는 생활법률',11, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/lesson/property2.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type,place ,limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type,place ,limit_count, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-10','APPROVED', 1, '간단 투자를 통해 편안하고 풍족한 노후생활 준비',
         '2024-02-28', '2024-02-10',
         'MONDAY', '2024-04-11','2024-04-11 17:00', '2024-03-19', '2024-03-19 14:00',
-        'OFFLINE','서울시',15,0,'필기 도구','부동산 재태크를 통한 똑똑한 노후준비 2기',10, TRUE, TRUE );
+        'OFFLINE','서울시',15,0,'필기 도구','부동산 재태크를 통한 똑똑한 노후준비 2기',10, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/lesson/property3.png');
 
 INSERT INTO lesson(created_at, approved, current_count, description,
                    gather_end_date, gather_start_date,
                    lecture_week_day, lesson_end_date, lesson_end_time, lesson_start_date, lesson_start_time,
-                   lesson_type,place ,limit_count, price, supplies, title, sub_category_id, gather_status, price_status)
+                   lesson_type,place ,limit_count, price, supplies, title, sub_category_id, gather_status, price_status, image_url)
 VALUES ('2024-02-10','APPROVED', 1, '답답하고 어려웠던 부동산에 대해 어떤 것이든 물어보세요! 10년 경력 전문가가 명쾌하게 답변해드립니다!',
         '2024-03-10', '2024-02-10',
         'THURSDAY', '2024-04-11','2024-04-11 17:00', '2024-04-11', '2024-04-11 14:00',
-        'OFFLINE','서울시',15,20000,'필기 도구','무엇이든 물어보세요:부동산편',9, TRUE, TRUE );
+        'OFFLINE','서울시',15,20000,'필기 도구','무엇이든 물어보세요:부동산편',9, TRUE, TRUE, 'https://olae-bucket.s3.ap-northeast-2.amazonaws.com/lesson/property4.png');
 
 
 
