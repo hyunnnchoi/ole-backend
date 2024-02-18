@@ -46,7 +46,7 @@ public class MemberApplyConverter {
                 .lessonEndTime(lesson.getLessonEndTime())
                 .lessonTeacherList(lessonTeacherList)
                 .place(lesson.getPlace())
-                .categoryId(lesson.getSubCategory().getCategory().getId())
+                .categoryName(lesson.getSubCategory().getCategory().getName())
                 .createdAt(memberApply.getCreatedAt())
                 .applicationStatus(memberApply.getApplicationStatus())
                 .imgUrl(lesson.getImageUrl())
