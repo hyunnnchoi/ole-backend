@@ -123,4 +123,9 @@ public class LessonService {
         Page<Lesson> lessonList = lessonRepository.findAll(spec, PageRequest.of(page - 1, 10));
         return lessonList;
     }
+
+    public Page<Lesson> getFreeLessonList(Long categoryId, Integer page) {
+        Page<Lesson> lessonList = lessonRepository.findBySubCategoryCategoryAndPrice(categoryId, 0, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
+        return lessonList;
+    }
 }

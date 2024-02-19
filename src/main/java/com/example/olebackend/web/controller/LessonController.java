@@ -104,5 +104,14 @@ public class LessonController {
         return ApiResponse.onSuccess(LessonConverter.toLessonListByCategoryAndSearchDTO(lessonList));
     }
 
+    @GetMapping("/category/{categoryId}/free")
+    @Operation(summary = "무료 교육 조회 API")
+    public ApiResponse<LessonResponse.getLessonListDTO> getFreeLessonList(@PathVariable Long categoryId,
+                                                                          @RequestParam(required = false, defaultValue = "1") Integer page) {
+
+        Page<Lesson> lessonList = lessonService.getFreeLessonList(categoryId, page);
+        return ApiResponse.onSuccess(LessonConverter.toLessonListDTO(lessonList));
+    }
+
 }
 
