@@ -14,4 +14,10 @@ import java.util.List;
 public interface LessonRepository extends JpaRepository<Lesson, Long>, JpaSpecificationExecutor<Lesson> {
     Page<Lesson> findBySubCategoryCategoryId(Long categoryId, PageRequest pageRequest);
 
+    List<Lesson> findBySubCategoryCategoryId(Long categoryId);
+
+    @Query("SELECT l FROM Lesson l ORDER BY (l.limitCount / l.currentCount)")
+    Page<Lesson> orderByLimitAndCurrent(List<Lesson> lessonList, PageRequest pageRequest);
+
+
 }
