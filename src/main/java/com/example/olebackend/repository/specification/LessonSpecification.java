@@ -1,6 +1,8 @@
 package com.example.olebackend.repository.specification;
 
+import com.example.olebackend.domain.Category;
 import com.example.olebackend.domain.Lesson;
+import com.example.olebackend.domain.SubCategory;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -39,11 +41,18 @@ public class LessonSpecification {
                     predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get(field.getName())), likePattern));
                 }
             }
-
-            Join<Object, Object> teachersJoin = root.join("lectureTeacherList").join("teacher");
-            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(teachersJoin.get("name")), likePattern));
+//            Join<Lesson, LectureTeacher> lectureTeacherJoin = root.join("lectureTeacherList", JoinType.INNER);
+//            Join<LectureTeacher, Teacher> teacherJoin = lectureTeacherJoin.join("teacher", JoinType.INNER);
+//            predicates.add(criteriaBuilder.like(criteriaBuilder.lower(teacherJoin.get("name")), likePattern));
 
             return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
+        };
+    }
+    public static Specification<Lesson> findByCategoryId(Long categoryId) {
+        return (root, query, criteriaBuilder) -> {
+            Join<Lesson, SubCategory> subCategoryJoin = root.join("subCategory", JoinType.INNER);
+            Join<SubCategory, Category> categoryJoin = subCategoryJoin.join("category", JoinType.INNER);
+            return criteriaBuilder.equal(categoryJoin.get("id"), categoryId);
         };
     }
 

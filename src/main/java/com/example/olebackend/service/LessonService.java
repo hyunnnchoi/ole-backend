@@ -3,15 +3,12 @@ package com.example.olebackend.service;
 import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.LessonConverter;
 import com.example.olebackend.domain.Lesson;
-import com.example.olebackend.domain.common.BaseEntity;
 import com.example.olebackend.repository.CategoryRepository;
 import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.LikeRepository;
 import com.example.olebackend.repository.MemberApplyRepository;
-import com.example.olebackend.repository.specification.LessonSpecification;
 import com.example.olebackend.web.dto.LessonResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -27,7 +24,6 @@ import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.*;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@Slf4j
 public class LessonService {
 
     private final LessonRepository lessonRepository;
@@ -59,17 +55,18 @@ public class LessonService {
         return LessonConverter.toLessonDetailDTO(lesson, likeStatus, applyStatus);
     }
 
-    public Page<Lesson> getLessonList(Long categoryId, Specification<Lesson> spec, Integer page) {
+    public Page<Lesson> getLessonList(Long categoryId, Specification<Lesson> spec, String orderCriteria, Integer page) {
 
+        Sort sort = buildSort(orderCriteria);
 
-        Page<Lesson> lessonList = null;
+        PageRequest pageRequest = PageRequest.of(page - 1, 10, sort);
 
-        if(spec != null) { // 검색어가 있을 때
-            lessonList = lessonRepository.findAll(spec, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
+        Page<Lesson> lessonList;
 
-        } else { // 검색어 없이 카테고리로만 조회
-            lessonList = lessonRepository.findBySubCategoryCategoryId(categoryId, PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "createdAt")));
-
+        if (orderCriteria.equals("join")) {
+            lessonList = lessonRepository.orderByLimitAndCurrent(lessonRepository.findAll(spec), PageRequest.of(page - 1, 10));
+        } else {
+            lessonList = lessonRepository.findAll(spec, pageRequest);
         }
 
         // 카테고리 자체가 없을 때
@@ -86,7 +83,18 @@ public class LessonService {
         if (page > lessonList.getTotalPages()) {
             throw new GeneralException(PAGE_NOT_FOUND);
         }
+
         return lessonList;
+    }
+
+    private Sort buildSort(String orderCriteria) {
+        if ("gatherEndDate".equals(orderCriteria)) {
+            return Sort.by("gatherEndDate");
+        } else if ("createdAt".equals(orderCriteria)) {
+            return Sort.by("createdAt").descending();
+        } else {
+            return Sort.by("createdAt").descending();
+        }
     }
 
     public List<Lesson> getLessonListByOrderCriteria(String orderCriteria) {

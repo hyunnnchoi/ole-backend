@@ -5,7 +5,6 @@ import com.example.olebackend.apiPayLoad.exception.GeneralException;
 import com.example.olebackend.converter.LessonConverter;
 import com.example.olebackend.domain.Lesson;
 import com.example.olebackend.jwt.service.JwtService;
-import com.example.olebackend.repository.LessonRepository;
 import com.example.olebackend.repository.specification.LessonSpecification;
 import com.example.olebackend.service.LessonService;
 import com.example.olebackend.web.dto.LessonResponse;
@@ -13,19 +12,20 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.olebackend.apiPayLoad.code.status.ErrorStatus.KEYWORD_NOT_FOUND;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/lesson")
+@Slf4j
 public class LessonController {
 
     private final LessonService lessonService;
@@ -57,18 +57,16 @@ public class LessonController {
     })
     public ApiResponse<LessonResponse.getLessonListDTO> getLessonListByCategory(@PathVariable Long categoryId,
                                                                                 @RequestParam(required = false, value = "keyword") String keyword,
+                                                                                @RequestParam(required = false, value = "orderBy", defaultValue = "createdAt") String orderCriteria,
                                                                                 @RequestParam(required = false, defaultValue = "1") Integer page) {
         Specification<Lesson> spec = (root, query, criteriaBuilder) -> null;
 
-        // 키워드가 있으면 -> 키워드로 검색하는 spec 추가
+        spec = spec.and(LessonSpecification.findByCategoryId(categoryId));
+
         if (keyword != null) {
             spec = spec.and(LessonSpecification.findByKeyword(keyword));
-
-        } else {
-            spec = null;
         }
-
-        Page<Lesson> lessonList = lessonService.getLessonList(categoryId, spec, page);
+        Page<Lesson> lessonList = lessonService.getLessonList(categoryId, spec, orderCriteria, page);
         return ApiResponse.onSuccess(LessonConverter.toLessonListDTO(lessonList));
 
     }
