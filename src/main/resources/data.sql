@@ -231,7 +231,17 @@ INSERT INTO teacher(birth, gender, name) VALUES (1992, 'WOMAN', '정희정');
 INSERT INTO teacher(birth, gender, name) VALUES (2001, 'MAN', '조현호');
 INSERT INTO teacher(birth, gender, name) VALUES (1972, 'WOMAN', '전윤정');
 INSERT INTO teacher(birth, gender, name) VALUES (2005, 'WOMAN', '손지연');
-INSERT INTO teacher(birth, gender, name) VALUES (1985, 'MAN', '매지에코');
+INSERT INTO teacher(birth, gender, name) VALUES (1950, 'MAN', '매지에코');
+INSERT INTO teacher(birth, gender, name) VALUES (1980, 'WOMAN', '이지연');
+INSERT INTO teacher(birth, gender, name) VALUES (2004, 'MAN', '최진형');
+INSERT INTO teacher(birth, gender, name) VALUES (2000, 'WOMAN', '김하늘');
+INSERT INTO teacher(birth, gender, name) VALUES (1998, 'MAN', '박민수');
+INSERT INTO teacher(birth, gender, name) VALUES (2001, 'MAN', '박진수');
+INSERT INTO teacher(birth, gender, name) VALUES (2001, 'MAN', '이민형');
+INSERT INTO teacher(birth, gender, name) VALUES (1985, 'WOMAN', '김지수');
+INSERT INTO teacher(birth, gender, name) VALUES (1996, 'MAN', '이상혁');
+
+
 
 
 -- 교육-강사 테이블
@@ -240,8 +250,23 @@ INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (1, 1);
 INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (2, 3);
 INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (3, 2);
 INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (4, 5);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (5, 8);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (6, 9);
 INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (7, 6);
-INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (17, 7);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (8, 10);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (9, 3);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (10, 4);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (11, 15);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (12, 6);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (13, 7);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (14, 8);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (15, 9);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (16, 15);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (17, 10);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (18, 11);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (19, 12);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (20, 13);
+INSERT INTO lecture_teacher(lesson_id, teacher_id) VALUES (21, 14);
 
 
 INSERT INTO file(name, path, represent, lesson_id, member_id) VALUES ('test', 'resources/static/test.png', TRUE, 1, null);
