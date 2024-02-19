@@ -31,6 +31,7 @@ public class CommunityController {
     private final JwtService jwtService;
 
 
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "소통하러올래 목록 조회 API")
     @Parameters({
