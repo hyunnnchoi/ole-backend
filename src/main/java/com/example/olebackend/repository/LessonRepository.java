@@ -15,6 +15,7 @@ public interface LessonRepository extends JpaRepository<Lesson, Long>, JpaSpecif
 
     @Query("SELECT l FROM Lesson l ORDER BY (l.limitCount / l.currentCount)")
     Page<Lesson> orderByLimitAndCurrent(List<Lesson> lessonList, PageRequest pageRequest);
+    @Query("SELECT l FROM Lesson l WHERE l.price = 0")
     Page<Lesson> findBySubCategoryCategoryAndPrice(Long categoryId, Integer price, PageRequest pageRequest);
 
 
