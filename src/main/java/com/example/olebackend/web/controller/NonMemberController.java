@@ -21,6 +21,7 @@ import java.util.List;
 public class NonMemberController {
     private final NonMemberService nonMemberService;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/lesson/{lessonId}/guest")
         @Operation(summary = "교육 신청하기(비로그인) API")
         public ApiResponse<NonMemberResponse.ApplyResultDTO> apply(
@@ -32,7 +33,7 @@ public class NonMemberController {
             NonMemberResponse.ApplyResultDTO resultDto = NonMemberConverter.toApplyresultDTO(nonMember);
             return ApiResponse.onSuccess(resultDto);
     }
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping ("/guest/lessons/{phoneNum}")
     @Operation(summary = "비회원 신청 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getApplication(
@@ -41,6 +42,7 @@ public class NonMemberController {
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping ("/guest/lessons/{phoneNum}/completed")
     @Operation(summary = "비회원 수강 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getCompletedApplication(
@@ -49,6 +51,7 @@ public class NonMemberController {
         return ApiResponse.onSuccess(NonMemberConverter.toApplicationListDTO(nonMemberList));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/guest/lessons/{phoneNum}/{lessonId}")
     @Operation(summary = "신청취소(비로그인)API")
     public ApiResponse<Object> cancelLesson(
