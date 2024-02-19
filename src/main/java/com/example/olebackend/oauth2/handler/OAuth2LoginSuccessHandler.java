@@ -31,8 +31,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             // 최초 OAuth 로그인 시 Guest, 그리고 회원가입 페이지로 Redirect
             if(oAuth2User.getRole() == Role.GUEST){
                 String accessToken = jwtService.createAccessToken(oAuth2User.getEmail());
+                String redirectUrl = "http://localhost:3000/auth/socialJoin?accessToken=" + accessToken;
                 response.addHeader(jwtService.getAccessHeader(), "Bearer "+ accessToken);
-                response.sendRedirect("https://center.pawdlypartners.com/login/oauth2/code/kakao");
+                response.sendRedirect(redirectUrl);
 
                 jwtService.sendAccessAndRefreshToken(response, accessToken, null);
             }else{
