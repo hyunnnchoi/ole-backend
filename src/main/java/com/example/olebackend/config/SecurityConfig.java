@@ -125,20 +125,5 @@ public class SecurityConfig {
         return jwtAuthenticationFilter;
     }
 
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration config = new CorsConfiguration();
-
-        config.addAllowedOrigin("http://localhost:3000"); // 로컬
-        config.addAllowedOrigin("http://oleole1357.s3-website.ap-northeast-2.amazonaws.com/"); // 프론트 IPv4 주소
-        config.addAllowedMethod("*"); // 모든 메소드 허용.
-        config.addAllowedHeader("*");
-        config.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
-        return source;
-    }
 }
 
