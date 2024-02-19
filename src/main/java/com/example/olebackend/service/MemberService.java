@@ -69,7 +69,6 @@ public class MemberService {
         member.setGender(memberChangeInfoRequest.getGender());
         member.setMailAgree(memberChangeInfoRequest.getMailAgree());
         member.setSmsAgree(memberChangeInfoRequest.getSmsAgree());
-        member.passwordEncode(passwordEncoder);
         memberRepository.save(member);
     }
     public void updatePassword(Long memberId, MemberChangePasswordRequest memberChangePasswordRequest) {
