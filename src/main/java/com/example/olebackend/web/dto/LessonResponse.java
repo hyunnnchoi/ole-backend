@@ -78,6 +78,8 @@ public class LessonResponse {
         String description; // 수업 설명
         String place; // 수업 장소
 
+        Integer price; // 수강료
+
 
     }
 

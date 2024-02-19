@@ -66,6 +66,7 @@ public class LessonConverter {
                 .imageUrl(lesson.getImageUrl())
                 .description(lesson.getDescription())
                 .place(lesson.getPlace())
+                .price(lesson.getPrice())
                 .build();
     }
     public static LessonResponse.getLessonListDTO toLessonListDTO(Page<Lesson> lessonList){
