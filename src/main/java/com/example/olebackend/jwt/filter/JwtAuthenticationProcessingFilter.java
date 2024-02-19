@@ -44,6 +44,7 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter{
                 pathMatcher.match("/community", request.getRequestURI())||
                 pathMatcher.match("/sub_categories/**", request.getRequestURI())||
                 pathMatcher.match("/lessons/**", request.getRequestURI())||
+                pathMatcher.match("/lessons/**/**", request.getRequestURI())||
                 pathMatcher.match("/news/**", request.getRequestURI())||
                 pathMatcher.match("/lesson/**", request.getRequestURI())||
                 pathMatcher.match("/health", request.getRequestURI())) {
