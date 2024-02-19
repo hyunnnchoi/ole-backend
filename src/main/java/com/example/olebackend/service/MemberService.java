@@ -32,10 +32,10 @@ public class MemberService {
             throw new Exception("이미 가입된 이메일입니다.");
         }
 
-        if(memberRepository.findByPhoneNum(memberSignUpDto.getPhoneNum()).isPresent()){
-            throw new Exception("이미 가입된 전화번호입니다.");
-        }
-
+//        if(memberRepository.findByPhoneNum(memberSignUpDto.getPhoneNum()).isPresent()){
+//            throw new Exception("이미 가입된 전화번호입니다.");
+//        }
+//
         Member member = Member.builder()
                 .email(memberSignUpDto.getEmail())
                 .password(memberSignUpDto.getPassword())
