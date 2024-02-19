@@ -250,7 +250,7 @@ INSERT INTO file(name, lesson_id, member_id) VALUES ('test2', 2, null);
 INSERT INTO file(name, lesson_id, member_id) VALUES ('test3', 3, null);
 
 INSERT IGNORE INTO member(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
-VALUES (1, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
+VALUES (1, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ole@ole.com', 'MALE', true, '이륾', '{bcrypt}$2a$10$JlDiqaE0QjE9FPr7T6SoBuAEkUtSUKJsiNFtTQqspZWrvXOsxQpT2', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
 INSERT IGNORE INTO member(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
 VALUES (2, '2024-01-26 23:50:17.000000', '2024-01-26 23:50:19.000000', '주소', 1999, 'ji@naver.com', 'MALE', true, '이륾2', 'qwerty', '010-1234-4646', 'sdadfasdfasdf', 'USER', true, 'asd', 'KAKAO');
 INSERT IGNORE INTO member(id, created_at, updated_at, address, birth_year, email, gender, mail_agree, name, password, phone_num, refresh_token, role, sms_agree, social_id, social_type)
