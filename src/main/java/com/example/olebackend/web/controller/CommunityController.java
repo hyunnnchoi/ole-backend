@@ -31,7 +31,7 @@ public class CommunityController {
     private final JwtService jwtService;
 
 
-    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     @Operation(summary = "소통하러올래 목록 조회 API")
     @Parameters({
@@ -58,6 +58,7 @@ public class CommunityController {
         }
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/{communityId}")
     @Operation(summary = "소통하러올래 게시글 상세 조회 API")
     public ApiResponse<CommunityResponse.getCommunityDetailDTO> getCommunityDetail(@PathVariable Long communityId) {
@@ -65,6 +66,7 @@ public class CommunityController {
         return ApiResponse.onSuccess(CommunityConverter.toCommunityDetailDTO(community));
     }
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/{communityId}/comments")
     @Operation(summary = "소통하러올래 댓글 작성 API")
     public ApiResponse<Object> addCommunityComments(@PathVariable Long communityId,
