@@ -32,7 +32,7 @@ public class NonMemberController {
             NonMemberResponse.ApplyResultDTO resultDto = NonMemberConverter.toApplyresultDTO(nonMember);
             return ApiResponse.onSuccess(resultDto);
     }
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
     @GetMapping ("/guest/lessons/{phoneNum}")
     @Operation(summary = "비회원 신청 내역 조회 API")
     public ApiResponse<NonMemberResponse.getApplicationListResultDTO> getApplication(
